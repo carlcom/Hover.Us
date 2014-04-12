@@ -1,0 +1,6 @@
+﻿@using VTSV.Models
+@model IList<Image>
+@foreach (var image in Model.OrderByDescending(i => i.DateTaken))
+{
+    @Html.Action("Thumb", "Images", new { image.ID })
+}
