@@ -1,2 +1,7 @@
-/obj
-/bin
+.vs
+artifcats
+bin
+obj
+*.user
+PublishProfiles
+*.lock.*
