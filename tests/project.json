@@ -1,0 +1,18 @@
+{
+    "version": "1.0.0-*",
+    "dependencies": {
+        "xunit": "2.1.0-beta1-*",
+        "xunit.runner.aspnet": "2.1.0-beta1-*",
+        "web": "1.0.0-*",
+    },
+    "commands": {
+        "test": "xunit.runner.aspnet"
+    },
+    "frameworks": {
+        "dnx50": {
+            "frameworkAssemblies": {
+                "System.Drawing": "4.0.0.0"
+            }
+        }
+    }
+}
