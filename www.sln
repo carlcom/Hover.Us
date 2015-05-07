@@ -3,9 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "stevedesmond.ca", "web\web.xproj", "{CFF8A3E1-9AB7-4FCB-81CD-2786058CF9F7}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{717B002A-E237-4ADE-8658-02561BF39086}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "tests", "tests\tests.xproj", "{89E149E6-953F-4AB6-8159-BE4EDB88438A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{1676948F-995B-4585-8D7A-3F9D69BABC72}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{12E7822A-705D-4968-A97B-CC7DA051A30A}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "web", "src\web\web.xproj", "{CFF8A3E1-9AB7-4FCB-81CD-2786058CF9F7}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "web.Tests", "test\web.Tests\web.Tests.xproj", "{89E149E6-953F-4AB6-8159-BE4EDB88438A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +33,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CFF8A3E1-9AB7-4FCB-81CD-2786058CF9F7} = {717B002A-E237-4ADE-8658-02561BF39086}
+		{89E149E6-953F-4AB6-8159-BE4EDB88438A} = {1676948F-995B-4585-8D7A-3F9D69BABC72}
 	EndGlobalSection
 EndGlobal

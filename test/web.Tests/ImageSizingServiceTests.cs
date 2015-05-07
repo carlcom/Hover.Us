@@ -94,5 +94,14 @@ namespace tests
             var newSize = ImageSizer.GetNewSize(image, screen);
             Assert.Equal(new Size(256, 512), newSize);
         }
+
+        [Fact]
+        public void imageWillNotBeEnlarged()
+        {
+            var image = new Size(720, 480);
+            var screen = new Size(1280, 720);
+            var newSize = ImageSizer.GetNewSize(image, screen);
+            Assert.Equal(new Size(720,480), newSize);
+        }
     }
 }

@@ -11,7 +11,7 @@
     <OutputPath Condition="'$(OutputPath)'=='' ">..\www\artifacts\bin\$(MSBuildProjectName)\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <AssemblyName>stevedesmond.ca</AssemblyName>
+    <AssemblyName>web</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <AssemblyName>stevedesmond.ca</AssemblyName>

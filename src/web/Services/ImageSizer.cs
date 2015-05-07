@@ -6,6 +6,11 @@ namespace VTSV.Services
     {
         public static Size GetNewSize(Size image, Size screen)
         {
+            //first make sure we're not trying to enlarge the image
+            if ((image.Width < screen.Width && image.Height < screen.Height)
+                || (image.Width < screen.Height && image.Height < screen.Width))
+                return image;
+
             //screen orientation matches image orientation
             if ((screen.AspectRatio() > 1 && image.AspectRatio() > 1)
                 || (screen.AspectRatio() < 1 && image.AspectRatio() < 1))
