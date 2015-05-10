@@ -11,7 +11,7 @@ namespace web.Services
             var httpRequest = httpContext.Request;
             var headerDictionary = httpRequest.Headers;
             var referer = headerDictionary["Referer"];
-            if (!(referer.StartsWith("http://localhost") || referer.StartsWith("http://stevedesmond.ca")))
+            if (!(referer.StartsWith("http://stevedesmond.ca") || referer.StartsWith("http://beta.stevedesmond.ca") || referer.StartsWith("http://localhost")))
             {
                 throw new Exception();
             }
