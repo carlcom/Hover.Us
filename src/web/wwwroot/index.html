@@ -1,70 +1,72 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-
-    <title>Steve Desmond Photography</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
     <script type="text/javascript" src="//code.jquery.com/jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-    <script type="text/javascript" src="/site.js"></script>
+    <script type="text/javascript" src="index.js"></script>
 
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
-    <link rel=" stylesheet" type="text/css" href="/site.css"/>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+    <link rel=" stylesheet" type="text/css" href="index.css" />
+
+    <title>Steve Desmond</title>
 </head>
-<body ng-app="stevedesmond.ca" ng-controller="gallery as gallery">
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="#" class="navbar-brand" ng-click="gallery.resetFilter()">
-                <span>steve</span><span>desmond</span><span>photog</span><span>raphy</span></a>
-        </div>
-        <div class="navbar-collapse collapse">
+<body>
+    <div class="header">
+        <h1 class="title">
+            <a href="">Steve Desmond</a>
+        </h1>
+        <h1 class="pull-right link-icons hidden-xs">
+            <a target="_blank" href="https://github.com/stevedesmond-ca">
+                <i class="fa fa-github"></i>
+            </a>
+            <a target="_blank" href="https://twitter.com/stevedesmond_ca">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </h1>
+    </div>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
             <ul class="nav navbar-nav">
-                <li class="dropdown" ng-repeat="tagType in gallery.TagTypes">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        {{tagType.Name}}
-                        <b class="caret"></b>
+                <li>
+                    <a href="">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
                     </a>
-                    <ul id="{{tagType.Name.toLowerCase()}}-list" class="dropdown-menu">
-                        <li ng-repeat="tag in tagType.Tags">
-                            <a href="#" ng-click="gallery.setFilter(tag.ID)">{{tag.Name}} ({{tag.ImageTags.length}})</a>
-                        </li>
-                    </ul>
+                </li>
+                <li>
+                    <a href="photo">
+                        <i class="fa fa-camera"></i>
+                        <span>Photography</span>
+                    </a>
+                </li>
+                <li class="visible-xs">
+                    <a target="_blank" href="https://github.com/stevedesmond-ca">
+                        <i class="fa fa-github"></i>
+                        <span>Github</span>
+                    </a>
+                </li>
+                <li class="visible-xs">
+                    <a target="_blank" href="https://twitter.com/stevedesmond_ca">
+                        <i class="fa fa-twitter"></i>
+                        <span>Twitter</span>
+                    </a>
                 </li>
             </ul>
         </div>
+    </nav>
+    <img class="profile-photo" src="steve.jpg" />
+    <div class="container">
+        <h3>Hello, vNext World!</h3>
+        <h4><small><i>Friday, May 7, 2015 @ 10:33pm</i></small></h4>
+        <p>Welcome!</p>
+        <p>This brand new site is running on ASP.NET 5 "vNext" (beta 4) and will become a home for my many thoughts.</p>
+        <p>Check back soon for those, but for now, click on that camera link in the menu up top to get to my old <a href="photo"><i class="fa fa-camera"></i> photography</a> site (also now running ASP.NET 5, with a new Angular front-end), or follow me on <a target="_blank" href="https://github.com/stevedesmond-ca"><i class="fa fa-github"></i> Github</a> and/or <a target="_blank" href="https://twitter.com/stevedesmond_ca"><i class="fa fa-twitter"></i> Twitter</a>!</p>
+        <p><i>-Steve</i></p>
     </div>
-</div>
-<div class="gallery">
-    <div class="container-fluid">
-        <div class="thumbnail-container" ng-repeat="image in gallery.Images">
-            <div id="image{{image.ID}}" class="thumbnail-image"
-                 style="background-image: url('{{gallery.getThumbnail(image)}}')"
-                 data-toggle="modal" data-target=".lightbox" ng-click="gallery.getImage(image)">
-            </div>
-        </div>
-    </div>
-    <div class="lightbox modal fade in" role="dialog" aria-hidden="true">
-        &nbsp;
-        <div class="image-info" onclick=" $('.lightbox').click(); ">
-            <label>Date Taken:</label>
-            <span>{{gallery.formatDate(gallery.Info.DateTaken)}}</span>
-            <br/>
-            <label>Tags:</label>
-            <span ng-repeat="tag in gallery.Info.ImageTags | sortInfoTags">
-                    <a href="#" class="tag" ng-click="gallery.setFilter(tag.Tag.ID)">{{tag.Tag.Name}}</a>
-                </span>
-        </div>
-    </div>
-</div>
 </body>
 </html>

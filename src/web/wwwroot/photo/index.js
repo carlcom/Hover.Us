@@ -1,6 +1,6 @@
 ﻿(function () {
 
-    var app = angular.module('stevedesmond.ca', []);
+    var app = angular.module('photo', []);
 
     function sortInfoTags() {
         return function (items) {
@@ -19,8 +19,8 @@
         vm.Images = [];
         vm.Info = {};
 
-        var screenWidth = $(window).width();
-        var screenHeight = $(window).height();
+        var screenWidth = screen.width;
+        var screenHeight = screen.height;
         var devicePixelRatio = window.devicePixelRatio || 1;
         var thumbnailSize = 128;
 
@@ -37,13 +37,13 @@
         }
 
         vm.getThumbnail = function getThumbnail(image) {
-            var url = '/image?id=' + image.ID + '&x=' + (thumbnailSize * devicePixelRatio) + '&y=' + (thumbnailSize * devicePixelRatio);
+            var url = 'image?id=' + image.ID + '&x=' + (thumbnailSize * devicePixelRatio) + '&y=' + (thumbnailSize * devicePixelRatio);
             return url;
         };
 
         vm.getImage = function getImage(image) {
             $http.get('info?id=' + image.ID).success(loadInfo);
-            var url = '/image?id=' + image.ID + '&x=' + (screenWidth * devicePixelRatio) + '&y=' + (screenHeight * devicePixelRatio);
+            var url = 'image?id=' + image.ID + '&x=' + (screenWidth * devicePixelRatio) + '&y=' + (screenHeight * devicePixelRatio);
             $('.lightbox').css('background-image', 'url("' + url + '")');
         };
 

@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Linq;
 using Microsoft.AspNet.Mvc;
-using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Query;
 using Microsoft.Framework.ConfigurationModel;
 using Newtonsoft.Json;
 using VTSV.Models;
@@ -11,27 +8,28 @@ using Image = VTSV.Models.Image;
 
 namespace VTSV.Controllers
 {
-    public class HomeController : Controller
+    [Route("photo")]
+    public class PhotoController : Controller
     {
         private readonly DB db;
         private readonly string imagePath;
         private readonly JsonSerializerSettings jsonSettings;
 
-        public HomeController(IConfiguration configuration)
+        public PhotoController(IConfiguration configuration)
         {
             db = new DB(configuration);
             imagePath = configuration.Get("Images");
             jsonSettings = new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore };
         }
 
-        [HttpGet("/navbar")]
+        [HttpGet("navbar")]
         public string Navbar()
         {
             var navbar = new Navbar { TagTypes = db.TagTypes.Include(tt => tt.Tags).ThenInclude(t => t.ImageTags) };
             return JsonConvert.SerializeObject(navbar, jsonSettings);
         }
 
-        [HttpGet("/images")]
+        [HttpGet("images")]
         public string Images(int id)
         {
             IQueryable<Image> images = db.Images.Include(i => i.ImageTags);
@@ -42,7 +40,7 @@ namespace VTSV.Controllers
             return JsonConvert.SerializeObject(images.OrderByDescending(i => i.DateTaken), jsonSettings);
         }
 
-        [HttpGet("/image")]
+        [HttpGet("image")]
         public FilePathResult Image(int id, int x, int y)
         {
             var image = db.Images.First(i => i.ID == id);
@@ -50,7 +48,7 @@ namespace VTSV.Controllers
             return File(newPath, "image/jpeg");
         }
 
-        [HttpGet("/info")]
+        [HttpGet("info")]
         public string Info(int id)
         {
             var image =
