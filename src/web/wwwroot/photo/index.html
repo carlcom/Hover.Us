@@ -1,70 +1,83 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
     <script type="text/javascript" src="//code.jquery.com/jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
     <script type="text/javascript" src="index.js"></script>
 
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
-    <link rel=" stylesheet" type="text/css" href="index.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <link rel=" stylesheet" type="text/css" href="index.css" />
 
     <title>Steve Desmond Photography</title>
 </head>
 <body ng-app="photo" ng-controller="gallery as gallery">
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="#" class="navbar-brand" ng-click="gallery.setFilter()">
-                <span>steve</span><span>desmond</span><span>photog</span><span>raphy</span></a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="dropdown" ng-repeat="tagType in gallery.TagTypes">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        {{tagType.Name}}
-                        <b class="caret"></b>
-                    </a>
-                    <ul id="{{tagType.Name.toLowerCase()}}-list" class="dropdown-menu">
-                        <li ng-repeat="tag in tagType.Tags">
-                            <a href="#" ng-click="gallery.setFilter(tag.ID)">{{tag.Name}} ({{tag.ImageTags.length}})</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="gallery">
-    <div class="container-fluid">
-        <div class="thumbnail-container" ng-repeat="image in gallery.Images">
-            <div id="image{{image.ID}}" class="thumbnail-image"
-                 style="background-image: url('{{gallery.getThumbnail(image)}}')"
-                 data-toggle="modal" data-target=".lightbox" ng-click="gallery.getImage(image)">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand" ng-click="gallery.setFilter()">
+                    <span>steve</span><span>desmond</span><span>photog</span><span>raphy</span>
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown" ng-repeat="tagType in gallery.TagTypes">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            {{tagType.Name}}
+                            <b class="caret"></b>
+                        </a>
+                        <ul id="{{tagType.Name.toLowerCase()}}-list" class="dropdown-menu">
+                            <li ng-repeat="tag in tagType.Tags">
+                                <a href="#" ng-click="gallery.setFilter(tag.ID)">{{tag.Name}} ({{tag.ImageTags.length}})</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
-    <div class="lightbox modal fade in" role="dialog" aria-hidden="true">
-        &nbsp;
-        <div class="image-info" onclick=" $('.lightbox').click(); ">
-            <label>Date Taken:</label>
-            <span>{{gallery.formatDate(gallery.Info.DateTaken)}}</span>
-            <br/>
-            <label>Tags:</label>
-            <span ng-repeat="tag in gallery.Info.ImageTags | sortInfoTags">
+    <div class="gallery">
+        <div class="container-fluid">
+            <div class="thumbnail-container" ng-repeat="image in gallery.Images">
+                <div id="image{{image.ID}}" class="thumbnail-image"
+                     style="background-image: url('{{gallery.getThumbnail(image)}}')"
+                     data-toggle="modal" data-target=".lightbox" ng-click="gallery.getImage(image)">
+                </div>
+            </div>
+        </div>
+        <div class="lightbox modal fade in" role="dialog" aria-hidden="true">
+            &nbsp;
+            <div class="image-info" onclick=" $('.lightbox').click(); ">
+                <label>Date Taken:</label>
+                <span>{{gallery.formatDate(gallery.Info.DateTaken)}}</span>
+                <br />
+                <label>Tags:</label>
+                <span ng-repeat="tag in gallery.Info.ImageTags | sortInfoTags">
                     <a href="#" class="tag" ng-click="gallery.setFilter(tag.Tag.ID)">{{tag.Tag.Name}}</a>
                 </span>
+            </div>
         </div>
     </div>
-</div>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-63008239-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
 </body>
 </html>
