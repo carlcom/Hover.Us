@@ -29,7 +29,7 @@ namespace VTSV.Models
             builder.Entity<ImageTag>().Key("Image_ID", "Tag_ID");
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        protected override void OnConfiguring(EntityOptionsBuilder options)
         {
             var connectionString = configuration.Get("DB");
             options.UseSqlServer(connectionString);

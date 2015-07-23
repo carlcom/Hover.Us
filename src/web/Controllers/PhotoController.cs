@@ -2,11 +2,11 @@
 using System.Linq;
 using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Mvc;
+using Microsoft.Data.Entity;
 using Microsoft.Framework.ConfigurationModel;
 using Newtonsoft.Json;
 using VTSV.Models;
 using VTSV.Services;
-using web.Services;
 using Image = VTSV.Models.Image;
 
 namespace VTSV.Controllers

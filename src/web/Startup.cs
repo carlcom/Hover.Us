@@ -2,16 +2,15 @@
 using Microsoft.AspNet.Hosting;
 using Microsoft.Framework.ConfigurationModel;
 using Microsoft.Framework.DependencyInjection;
+using Microsoft.Framework.Runtime;
 
 namespace VTSV
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
         {
-            // Setup configuration sources.
-            Configuration = new Configuration()
-                .AddJsonFile("config.json");
+            Configuration = new Configuration(appEnv.ApplicationBasePath).AddJsonFile("config.json");
         }
 
         public IConfiguration Configuration { get; set; }
@@ -22,11 +21,9 @@ namespace VTSV
             services.AddMvc();
         }
 
-        // Configure is called after ConfigureServices is called.
         public void Configure(IApplicationBuilder app)
         {
             app.UseStaticFiles();
-            // Add MVC to the request pipeline.
             app.UseMvc(
                 routes =>
                 {

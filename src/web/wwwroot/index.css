@@ -46,6 +46,7 @@ a {
     background:#900 linear-gradient(#a00, #800);
     border: none;
     font-weight: bold;
+    border-radius: 0;
 }
 
     .navbar-inverse .navbar-nav > li > a,
