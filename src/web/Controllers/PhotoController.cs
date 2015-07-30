@@ -1,15 +1,14 @@
 ﻿using System.Drawing;
 using System.Linq;
-using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Data.Entity;
 using Microsoft.Framework.ConfigurationModel;
 using Newtonsoft.Json;
-using VTSV.Models;
-using VTSV.Services;
-using Image = VTSV.Models.Image;
+using web.Models;
+using web.Services;
+using Image = web.Models.Image;
 
-namespace VTSV.Controllers
+namespace web.Controllers
 {
     [Route("photo")]
     public class PhotoController : Controller
@@ -25,6 +24,8 @@ namespace VTSV.Controllers
             jsonSettings = new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore };
         }
 
+        public IActionResult Index() => PartialView();
+
         [HttpGet("navbar")]
         public string Navbar()
         {
@@ -35,7 +36,7 @@ namespace VTSV.Controllers
         [HttpGet("images")]
         public string Images(int id)
         {
-            IQueryable<Image> images = db.Images.Include(i => i.ImageTags);
+            IQueryable<Models.Image> images = db.Images.Include(i => i.ImageTags);
             if (id > 0)
             {
                 images = images.Where(i => i.ImageTags.Any(it => it.Tag_ID == id));

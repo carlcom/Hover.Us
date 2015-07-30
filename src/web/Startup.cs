@@ -1,19 +1,20 @@
 ﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
+using Microsoft.AspNet.StaticFiles;
 using Microsoft.Framework.ConfigurationModel;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Runtime;
 
-namespace VTSV
+namespace web
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
-        {
-            Configuration = new Configuration(appEnv.ApplicationBasePath).AddJsonFile("config.json");
-        }
-
         public IConfiguration Configuration { get; set; }
+
+        public Startup(IApplicationEnvironment appEnv)
+        {
+            var basePath = appEnv.ApplicationBasePath;
+            Configuration = new Configuration(basePath).AddJsonFile("config.json");
+        }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -23,12 +24,20 @@ namespace VTSV
 
         public void Configure(IApplicationBuilder app)
         {
+            var defaultFiles = new DefaultFilesOptions() { DefaultFileNames = new[] { "index.html" } };
+            app.UseDefaultFiles(defaultFiles);
+
             app.UseStaticFiles();
+
             app.UseMvc(
                 routes =>
                 {
                     routes.MapRoute("default", "{controller}/{action}/{id?}",
-                        new {controller = "Home", action = "Index"});
+                        new { controller = "Home", action = "Index" });
+                    routes.MapRoute("category", "{category}",
+                        new { controller = "Home", action = "Category" });
+                    routes.MapRoute("page", "{category}/{url}",
+                        new { controller = "Home", action = "Page" });
                 });
         }
     }

@@ -25,10 +25,7 @@
         "Microsoft.Framework.ConfigurationModel.Json": "1.0.0-beta5",
         "Microsoft.Framework.DependencyInjection": "1.0.0-beta5",
         "Microsoft.Framework.Logging": "1.0.0-beta5",
-        "Microsoft.Framework.Logging.Console": "1.0.0-beta5",
-        "xunit": "2.1.0-beta1-*",
-        "xunit.runner.aspnet": "2.1.0-beta1-*",
-        "xunit.runner.visualstudio": "2.1.0-beta1-*"
+        "Microsoft.Framework.Logging.Console": "1.0.0-beta5"
     },
     "frameworks": {
         "dnx451": {

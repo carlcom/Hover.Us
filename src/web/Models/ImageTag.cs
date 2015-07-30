@@ -1,4 +1,4 @@
-﻿namespace VTSV.Models
+﻿namespace web.Models
 {
     public class ImageTag
     {

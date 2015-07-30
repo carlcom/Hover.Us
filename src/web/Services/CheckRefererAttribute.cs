@@ -1,7 +1,7 @@
 using System;
 using Microsoft.AspNet.Mvc;
 
-namespace VTSV.Services
+namespace web.Services
 {
     public class CheckRefererAttribute : AuthorizationFilterAttribute
     {

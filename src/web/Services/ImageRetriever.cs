@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.IO;
 
-namespace VTSV.Services
+namespace web.Services
 {
     public static class ImageRetriever
     {

@@ -1,6 +1,6 @@
 using System.Drawing;
 
-namespace VTSV.Services
+namespace web.Services
 {
     public class ImageSizer
     {

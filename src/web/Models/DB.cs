@@ -1,14 +1,11 @@
 ﻿using Microsoft.Data.Entity;
 using Microsoft.Framework.ConfigurationModel;
 
-namespace VTSV.Models
+namespace web.Models
 {
     public class DB : DbContext
     {
-        public DB(IConfiguration configuration)
-        {
-            this.configuration = configuration;
-        }
+        public DbSet<Page> Pages { get; set; }
 
         private IConfiguration configuration { get; }
         public DbSet<TagType> TagTypes { get; set; }
@@ -16,8 +13,15 @@ namespace VTSV.Models
         public DbSet<Image> Images { get; set; }
         public DbSet<ImageTag> ImageTags { get; set; }
 
+        public DB(IConfiguration config)
+        {
+            configuration = config;
+        }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<Page>().ForSqlServer().Table("Pages");
+
             builder.Entity<TagType>().ForSqlServer().Table("TagTypes");
             builder.Entity<Tag>().ForSqlServer().Table("Tags");
             builder.Entity<Image>().ForSqlServer().Table("Images");

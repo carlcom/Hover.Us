@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using VTSV.Services;
+using web.Services;
 
-namespace VTSV.Models
+namespace web.Models
 {
     public class Image
     {
@@ -13,10 +13,7 @@ namespace VTSV.Models
         public bool Enabled { get; set; }
         public ICollection<ImageTag> ImageTags { get; set; }
 
-        public string GetFile(string imageDirectory, Size size)
-        {
-            return ImageRetriever.GetImage(imageDirectory, Name, size)
-                   ?? ImageCreator.CreateImage(imageDirectory, Name, size);
-        }
+        public string GetFile(string imageDirectory, Size size) => ImageRetriever.GetImage(imageDirectory, Name, size)
+                                                                   ?? ImageCreator.CreateImage(imageDirectory, Name, size);
     }
 }

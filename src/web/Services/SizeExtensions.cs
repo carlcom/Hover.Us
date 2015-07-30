@@ -1,12 +1,9 @@
 using System.Drawing;
 
-namespace VTSV.Services
+namespace web.Services
 {
     public static class SizeExtensions
     {
-        public static double AspectRatio(this Size size)
-        {
-            return (double) size.Width/size.Height;
-        }
+        public static double AspectRatio(this Size size) => (double) size.Width/size.Height;
     }
 }

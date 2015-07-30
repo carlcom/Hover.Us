@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace VTSV.Models
+namespace web.Models
 {
     public class Navbar
     {
