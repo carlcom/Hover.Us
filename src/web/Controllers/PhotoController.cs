@@ -13,9 +13,9 @@ namespace web.Controllers
     [Route("photo")]
     public class PhotoController : Controller
     {
-        private readonly DB db;
-        private readonly string imagePath;
-        private readonly JsonSerializerSettings jsonSettings;
+        readonly DB db;
+        readonly string imagePath;
+        readonly JsonSerializerSettings jsonSettings;
 
         public PhotoController(IConfiguration configuration)
         {
@@ -36,7 +36,7 @@ namespace web.Controllers
         [HttpGet("images")]
         public string Images(int id)
         {
-            IQueryable<Models.Image> images = db.Images.Include(i => i.ImageTags);
+            IQueryable<Image> images = db.Images.Include(i => i.ImageTags);
             if (id > 0)
             {
                 images = images.Where(i => i.ImageTags.Any(it => it.Tag_ID == id));

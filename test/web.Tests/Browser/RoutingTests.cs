@@ -5,7 +5,7 @@ namespace web.Tests.Browser
 {
     public class RoutingTests : BrowserTest
     {
-        private const string baseURL = "http://stevedesmond.ca";
+        private const string baseURL = "http://beta.stevedesmond.ca";
 
         [Fact]
         public void FindsHomePage()

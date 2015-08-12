@@ -19,6 +19,8 @@
   <PropertyGroup>
     <SchemaVersion>2.0</SchemaVersion>
     <DevelopmentServerPort>8080</DevelopmentServerPort>
+    <IISExpressAnonymousAuthentication>Enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>Disabled</IISExpressWindowsAuthentication>
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\DNX\Microsoft.DNX.Props" />
   <Import Project="$(VSToolsPath)\DNX\Microsoft.DNX.targets" />

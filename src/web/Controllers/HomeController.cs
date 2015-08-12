@@ -3,13 +3,11 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.Framework.ConfigurationModel;
 using web.Models;
 
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace web.Controllers
 {
     public class HomeController : Controller
     {
-        public DB db { get; }
+        readonly DB db;
 
         public HomeController(IConfiguration configuration)
         {
@@ -26,6 +24,13 @@ namespace web.Controllers
         public IActionResult Talks()
         {
             ViewBag.Subtitle = " - Talks";
+            return View();
+        }
+
+        [HttpGet("about")]
+        public IActionResult About()
+        {
+            ViewBag.Subtitle = " - About";
             return View();
         }
 

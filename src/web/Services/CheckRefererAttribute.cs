@@ -7,10 +7,7 @@ namespace web.Services
     {
         public override void OnAuthorization(AuthorizationContext context)
         {
-            var httpContext = context.HttpContext;
-            var httpRequest = httpContext.Request;
-            var headerDictionary = httpRequest.Headers;
-            var referer = headerDictionary["Referer"];
+            var referer = context.HttpContext.Request.Headers["Referer"];
             if (!(referer.StartsWith("http://stevedesmond.ca") || referer.StartsWith("http://beta.stevedesmond.ca") || referer.StartsWith("http://localhost")))
             {
                 throw new Exception();

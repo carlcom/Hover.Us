@@ -19,6 +19,8 @@ namespace web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton(s => Configuration);
+            services.AddAuthentication();
+            services.AddAuthorization();
             services.AddMvc();
         }
 

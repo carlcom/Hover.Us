@@ -20,12 +20,12 @@ namespace web.Models
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Page>().ForSqlServer().Table("Pages");
+            builder.Entity<Page>().ToSqlServerTable("Pages");
 
-            builder.Entity<TagType>().ForSqlServer().Table("TagTypes");
-            builder.Entity<Tag>().ForSqlServer().Table("Tags");
-            builder.Entity<Image>().ForSqlServer().Table("Images");
-            builder.Entity<ImageTag>().ForSqlServer().Table("ImageTags");
+            builder.Entity<TagType>().ToSqlServerTable("TagTypes");
+            builder.Entity<Tag>().ToSqlServerTable("Tags");
+            builder.Entity<Image>().ToSqlServerTable("Images");
+            builder.Entity<ImageTag>().ToSqlServerTable("ImageTags");
 
             builder.Entity<TagType>().Collection(tt => tt.Tags).InverseReference(t => t.TagType).ForeignKey("Type_ID");
             builder.Entity<Tag>().Collection(t => t.ImageTags).InverseReference(it => it.Tag).ForeignKey("Tag_ID");
@@ -33,7 +33,7 @@ namespace web.Models
             builder.Entity<ImageTag>().Key("Image_ID", "Tag_ID");
         }
 
-        protected override void OnConfiguring(EntityOptionsBuilder options)
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             var connectionString = configuration.Get("DB");
             options.UseSqlServer(connectionString);
