@@ -43,7 +43,7 @@ a {
 }
 
 .navbar-inverse {
-    background:#900 linear-gradient(#a00, #800);
+    background: #900 linear-gradient(#a00, #800);
     border: none;
     font-weight: bold;
     border-radius: 0;
@@ -103,5 +103,16 @@ a {
     .profile-photo {
         width: 100px;
         height: 100px;
+    }
+}
+
+@media print {
+    .navbar {
+        display: inherit;
+        background: #900 linear-gradient(#a00, #800) !important;
+    }
+
+    .link-icons, a[href]:after {
+        display: none;
     }
 }

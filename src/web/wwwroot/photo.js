@@ -37,13 +37,13 @@
         }
 
         vm.getThumbnail = function getThumbnail(image) {
-            var url = 'image?id=' + image.ID + '&x=' + (thumbnailSize * devicePixelRatio) + '&y=' + (thumbnailSize * devicePixelRatio);
+            var url = '/photo/image?id=' + image.ID + '&x=' + (thumbnailSize * devicePixelRatio) + '&y=' + (thumbnailSize * devicePixelRatio);
             return url;
         };
 
         vm.getImage = function getImage(image) {
             $http.get('/photo/info?id=' + image.ID).success(loadInfo);
-            var url = 'image?id=' + image.ID + '&x=' + (screenWidth * devicePixelRatio) + '&y=' + (screenHeight * devicePixelRatio);
+            var url = '/photo/image?id=' + image.ID + '&x=' + (screenWidth * devicePixelRatio) + '&y=' + (screenHeight * devicePixelRatio);
             $('.lightbox').css('background-image', 'url("' + url + '")');
         };
 

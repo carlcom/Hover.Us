@@ -27,13 +27,6 @@ namespace web.Controllers
             return View();
         }
 
-        [HttpGet("about")]
-        public IActionResult About()
-        {
-            ViewBag.Subtitle = " - About";
-            return View();
-        }
-
         public IActionResult Category(string category)
         {
             var pages = db.Pages.Where(p => p.Live && p.Category.ToLower() == category).OrderByDescending(p => p.Timestamp);
