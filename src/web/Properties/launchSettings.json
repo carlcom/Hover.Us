@@ -9,11 +9,10 @@
       },
       "sdkVersion": "dnx-clr-win-x64.1.0.0-beta6"
     },
-    "dev": {
-      "commandName": "dev",
+    "web": {
+      "commandName": "web",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:8080/",
-      "sdkVersion": "dnx-clr-win-x64.1.0.0-beta6"
+      "launchUrl": "http://localhost:5000/"
     }
   }
 }

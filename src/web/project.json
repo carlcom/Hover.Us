@@ -28,9 +28,7 @@
     "Microsoft.Framework.Logging.Console": "1.0.0-beta6"
   },
   "commands": {
-    "dev": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:8080",
-    "beta": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://beta.stevedesmond.ca",
-    "www": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://stevedesmond.ca"
+    "web": "Microsoft.AspNet.Hosting --server Kestrel"
   },
   "frameworks": {
     "dnx46": {
