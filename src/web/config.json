@@ -1,0 +1,5 @@
+﻿{
+    "DB": "Server=server;Database=www;Integrated Security=true;MultipleActiveResultSets=true",
+    "Images": "D:\\www\\images",
+    "AdminKey": "D:\\www\\admin.key"
+}
