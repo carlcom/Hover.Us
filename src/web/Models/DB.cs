@@ -1,5 +1,5 @@
 ﻿using Microsoft.Data.Entity;
-using Microsoft.Framework.ConfigurationModel;
+using Microsoft.Framework.Configuration;
 
 namespace web.Models
 {
@@ -35,7 +35,7 @@ namespace web.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            var connectionString = configuration.Get("DB");
+            var connectionString = configuration["DB"];
             options.UseSqlServer(connectionString);
         }
     }

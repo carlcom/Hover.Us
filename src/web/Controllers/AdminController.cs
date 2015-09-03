@@ -4,7 +4,7 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using Microsoft.AspNet.Mvc;
-using Microsoft.Framework.ConfigurationModel;
+using Microsoft.Framework.Configuration;
 using web.Models;
 
 namespace web.Controllers
@@ -18,7 +18,7 @@ namespace web.Controllers
         public AdminController(IConfiguration configuration)
         {
             db = new DB(configuration);
-            adminKey = System.IO.File.ReadAllText(configuration.Get("AdminKey")).Replace("\\u", "\\u");
+            adminKey = System.IO.File.ReadAllText(configuration["AdminKey"]).Replace("\\u", "\\u");
         }
 
         bool authorized

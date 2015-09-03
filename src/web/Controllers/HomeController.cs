@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using Microsoft.AspNet.Mvc;
-using Microsoft.Framework.ConfigurationModel;
+using Microsoft.Framework.Configuration;
 using web.Models;
 
 namespace web.Controllers

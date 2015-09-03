@@ -2,7 +2,7 @@
 using System.Linq;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Data.Entity;
-using Microsoft.Framework.ConfigurationModel;
+using Microsoft.Framework.Configuration;
 using Newtonsoft.Json;
 using web.Models;
 using web.Services;
@@ -20,7 +20,7 @@ namespace web.Controllers
         public PhotoController(IConfiguration configuration)
         {
             db = new DB(configuration);
-            imagePath = configuration.Get("Images");
+            imagePath = configuration["Images"];
             jsonSettings = new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore };
         }
 
