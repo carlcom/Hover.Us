@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using Xunit;
 
-namespace web.Tests.Browser
+namespace test.Browser
 {
     public class RoutingTests : BrowserTest
     {

@@ -2,7 +2,7 @@ using System.Drawing;
 using web.Services;
 using Xunit;
 
-namespace web.Tests.Services
+namespace test.Services
 {
     public class SizeExtensionsTests
     {

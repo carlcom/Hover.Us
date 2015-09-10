@@ -2,7 +2,7 @@
 using web.Services;
 using Xunit;
 
-namespace web.Tests.Services
+namespace test.Services
 {
     public class ImageSizingServiceTests
     {
