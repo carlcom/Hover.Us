@@ -1,4 +1,4 @@
-[submodule "src/web/wwwroot/talks/hewny15/presentation"]
-	path = src/web/wwwroot/talks/hewny15/presentation
+[submodule "web/wwwroot/talks/hewny15/presentation"]
+	path = web/wwwroot/talks/hewny15/presentation
 	url = git@github.com:stevedesmond-ca/presentations.git
 	branch = hew-ny-15
