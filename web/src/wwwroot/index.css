@@ -82,6 +82,30 @@ a {
     float: right !important;
 }
 
+.gallery {
+    text-align: center;
+}
+
+.thumbnail-image {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 2px solid #999;
+    border-radius: 4px;
+    box-shadow: 0 0 16px #666;
+    cursor: pointer;
+    display: inline-block;
+    height: 120px;
+    margin: 16px;
+    transition: 0.1s;
+    width: 120px;
+}
+
+    .thumbnail-image:hover {
+        border-color: #c00;
+        border-color: rgba(192, 0, 0, 0.5);
+    }
+
 @media (max-width: 767px) {
     h1, .navbar-inverse a {
         font-size: 150%;

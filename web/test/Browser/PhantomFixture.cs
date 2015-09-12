@@ -4,11 +4,11 @@ using OpenQA.Selenium.PhantomJS;
 
 namespace test.Browser
 {
-    public abstract class BrowserTest : IDisposable
+    public class PhantomFixture : IDisposable
     {
-        protected readonly IWebDriver driver;
+        public readonly IWebDriver driver;
 
-        protected BrowserTest()
+        public PhantomFixture()
         {
             driver = new PhantomJSDriver();
         }

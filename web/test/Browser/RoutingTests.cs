@@ -3,8 +3,15 @@ using Xunit;
 
 namespace test.Browser
 {
-    public class RoutingTests : BrowserTest
+    public class RoutingTests : IClassFixture<PhantomFixture>
     {
+        private readonly IWebDriver driver;
+
+        public RoutingTests(PhantomFixture fixture)
+        {
+            driver = fixture.driver;
+        }
+
         private const string baseURL = "http://localhost:5000";
 
         [Fact]
@@ -94,29 +101,29 @@ namespace test.Browser
         [Fact]
         public void FindsOtherController()
         {
-            driver.Navigate().GoToUrl(baseURL + "/photo");
-            Assert.Equal("Steve Desmond Photography", driver.Title);
+            driver.Navigate().GoToUrl(baseURL + "/about");
+            Assert.Contains("About Steve", driver.FindElement(By.TagName("body")).Text);
         }
 
         [Fact]
         public void FindsOtherControllerWithSlash()
         {
-            driver.Navigate().GoToUrl(baseURL + "/photo/");
-            Assert.Equal("Steve Desmond Photography", driver.Title);
+            driver.Navigate().GoToUrl(baseURL + "/about/");
+            Assert.Contains("About Steve", driver.FindElement(By.TagName("body")).Text);
         }
 
         [Fact]
         public void FindsOtherControllerMethod()
         {
-            driver.Navigate().GoToUrl(baseURL + "/photo/navbar");
-            Assert.StartsWith("{\"TagTypes\":[{", driver.FindElement(By.TagName("body")).Text);
+            driver.Navigate().GoToUrl(baseURL + "/about/datacenter");
+            Assert.Contains("machines", driver.FindElement(By.TagName("body")).Text);
         }
 
         [Fact]
         public void FindsOtherControllerMethodWithSlash()
         {
-            driver.Navigate().GoToUrl(baseURL + "/photo/navbar/");
-            Assert.StartsWith("{\"TagTypes\":[{", driver.FindElement(By.TagName("body")).Text);
+            driver.Navigate().GoToUrl(baseURL + "/about/datacenter/");
+            Assert.Contains("machines", driver.FindElement(By.TagName("body")).Text);
         }
     }
 }

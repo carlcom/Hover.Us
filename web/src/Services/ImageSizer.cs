@@ -2,7 +2,7 @@ using System.Drawing;
 
 namespace web.Services
 {
-    public class ImageSizer
+    public static class ImageSizer
     {
         public static Size GetNewSize(Size image, Size screen)
         {
