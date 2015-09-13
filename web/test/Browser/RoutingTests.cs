@@ -85,20 +85,6 @@ namespace test.Browser
         }
 
         [Fact]
-        public void FindsNestedStaticPage()
-        {
-            driver.Navigate().GoToUrl(baseURL + "/talks/hewny15/presentation");
-            Assert.Equal("There's an App for That", driver.Title);
-        }
-
-        [Fact]
-        public void FindsNestedStaticPageWithSlash()
-        {
-            driver.Navigate().GoToUrl(baseURL + "/talks/hewny15/presentation/");
-            Assert.Equal("There's an App for That", driver.Title);
-        }
-
-        [Fact]
         public void FindsOtherController()
         {
             driver.Navigate().GoToUrl(baseURL + "/about");
