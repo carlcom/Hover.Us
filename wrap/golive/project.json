@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0-*",
+  "frameworks": {
+    "net46": {
+      "wrappedProject": "../../LiveSwitcher/LiveSwitcher.csproj",
+      "bin": {
+        "assembly": "../../LiveSwitcher/obj/{configuration}/golive.exe",
+        "pdb": "../../LiveSwitcher/obj/{configuration}/golive.pdb"
+      }
+    }
+  }
+}

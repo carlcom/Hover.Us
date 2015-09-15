@@ -1,0 +1,4 @@
+﻿@model Web.Models.Image
+
+<rimg base="@Model.Name" alt="@string.Join(", ", Model.ImageTags.Select(it => it.Tag).Select(t => t.Name))" />
+@Model.Name

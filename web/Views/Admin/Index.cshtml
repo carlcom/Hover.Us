@@ -1,0 +1,25 @@
+﻿@model IQueryable<Web.Models.Page>
+
+@Html.ActionLink("New", "create")
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Category</th>
+            <th>Title</th>
+            <th>Live</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var page in Model)
+        {
+            <tr>
+                <td>@page.ID</td>
+                <td>@page.Category</td>
+                <td>@Html.ActionLink(page.Title, "edit", new { id = page.ID })</td>
+                <td>@page.Live</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,61 @@
+﻿@using System.Threading.Tasks
+@model Web.Models.Page
+
+@if (ViewBag.Success ?? false)
+{
+    <div class="alert alert-success">Saved!</div>
+}
+@if (!ViewData.ModelState.IsValid)
+{
+    @Html.ValidationSummary(false, "Unable to save:", new { Class = "alert alert-danger" })
+}
+
+@{
+    Html.BeginForm();
+}
+
+<div class="form-group">
+    @Html.LabelFor(p => p.ID)
+    @Html.TextBoxFor(p => p.ID, new { Class = "form-control" })
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(p => p.Category)
+    @Html.TextBoxFor(p => p.Category, new { Class = "form-control" })
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(p => p.URL)
+    @Html.TextBoxFor(p => p.URL, new { Class = "form-control" })
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(p => p.Title)
+    @Html.TextBoxFor(p => p.Title, new { Class = "form-control" })
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(p => p.Body)
+    @Html.TextAreaFor(p => p.Body, new { Class = "form-control", style = "height: 20em;" })
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(p => p.Timestamp)
+    @Html.TextBoxFor(p => p.Timestamp, new { Class = "form-control" })
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(p => p.TwitterStatus)
+    @Html.TextBoxFor(p => p.TwitterStatus, new { Class = "form-control" })
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(p => p.Live)
+    @Html.CheckBoxFor(p => p.Live)
+</div>
+
+<button type="submit" class="btn btn-default btn-primary col-xs-4 col-xs-offset-4">Save</button>
+
+@{
+    Html.EndForm();
+}

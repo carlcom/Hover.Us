@@ -1,4 +1,0 @@
-﻿@model web.Models.Image
-
-<img src="/images/@{@Model.Name}.jpg" alt="@string.Join(", ", Model.ImageTags.Select(it => it.Tag).Select(t => t.Name))" />
-@Model.Name
