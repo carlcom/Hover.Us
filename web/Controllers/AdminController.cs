@@ -3,21 +3,19 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using Microsoft.AspNet.Mvc;
-using Microsoft.Framework.Configuration;
 using Web.Models;
 
 namespace Web.Controllers
 {
-    [Route("admin")]
     public class AdminController : Controller
     {
         private readonly string adminKey;
         private readonly DB db;
 
-        public AdminController(IConfiguration configuration)
+        public AdminController()
         {
-            db = new DB(configuration);
-            adminKey = System.IO.File.ReadAllText(configuration["AdminKey"]).Replace("\\u", "\\u");
+            db = new DB();
+            adminKey = System.IO.File.ReadAllText("D:\\www\\admin.key").Replace("\\u", "\\u");
         }
 
         bool authorized

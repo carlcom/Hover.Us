@@ -11,11 +11,6 @@
     "test": "xunit.runner.dnx"
   },
   "frameworks": {
-    "dnx46": {
-      "dependencies": {
-        "golive": "1.0.0-*",
-        "resize": "1.0.0-*"
-      }
-    }
+    "dnx46": { }
   }
 }

@@ -3,11 +3,11 @@ using Xunit;
 
 namespace Test
 {
-    public class RoutingTests : IClassFixture<PhantomFixture>
+    public class Routing : IClassFixture<PhantomFixture>
     {
         private readonly IWebDriver driver;
 
-        public RoutingTests(PhantomFixture fixture)
+        public Routing(PhantomFixture fixture)
         {
             driver = fixture.driver;
         }
@@ -15,101 +15,129 @@ namespace Test
         private const string baseURL = "http://localhost:5000";
 
         [Fact]
-        public void FindsHomePage()
+        public void HomePage()
         {
             driver.Navigate().GoToUrl(baseURL);
             Assert.Equal("Steve Desmond", driver.Title);
         }
 
         [Fact]
-        public void FindsStaticFile()
+        public void StaticFile()
         {
-            driver.Navigate().GoToUrl(baseURL + "/steve.jpg");
-            Assert.Equal("steve.jpg (400x400 pixels)", driver.Title);
+            driver.Navigate().GoToUrl(baseURL + "/index.css");
+            Assert.Contains("h1, h2, h3", driver.PageSource);
         }
 
         [Fact]
-        public void FindsCategory()
+        public void Category()
         {
             driver.Navigate().GoToUrl(baseURL + "/blog");
-            Assert.Equal("Steve Desmond - Blog", driver.Title);
+            Assert.Equal("Steve Desmond — Blog", driver.Title);
         }
 
         [Fact]
-        public void FindsCategoryWithSlash()
+        public void CategorySlash()
         {
             driver.Navigate().GoToUrl(baseURL + "/blog/");
-            Assert.Equal("Steve Desmond - Blog", driver.Title);
+            Assert.Equal("Steve Desmond — Blog", driver.Title);
         }
 
         [Fact]
-        public void FindsPost()
+        public void Post()
         {
             driver.Navigate().GoToUrl(baseURL + "/blog/hello-vnext-world");
-            Assert.Equal("Steve Desmond - Blog - Hello, vNext World!", driver.Title);
+            Assert.Equal("Steve Desmond — Blog — Hello, vNext World!", driver.Title);
         }
 
         [Fact]
-        public void FindsPostWithSlash()
+        public void PostSlash()
         {
             driver.Navigate().GoToUrl(baseURL + "/blog/hello-vnext-world/");
-            Assert.Equal("Steve Desmond - Blog - Hello, vNext World!", driver.Title);
+            Assert.Equal("Steve Desmond — Blog — Hello, vNext World!", driver.Title);
         }
 
         [Fact]
-        public void FindsStaticCategory()
+        public void StaticCategory()
         {
             driver.Navigate().GoToUrl(baseURL + "/talks");
-            Assert.Equal("Steve Desmond - Talks", driver.Title);
+            Assert.Equal("Steve Desmond — Talks", driver.Title);
         }
 
         [Fact]
-        public void FindsStaticCategoryWithSlash()
+        public void StaticCategorySlash()
         {
             driver.Navigate().GoToUrl(baseURL + "/talks/");
-            Assert.Equal("Steve Desmond - Talks", driver.Title);
+            Assert.Equal("Steve Desmond — Talks", driver.Title);
         }
 
         [Fact]
-        public void FindsStaticPage()
+        public void StaticPage()
         {
             driver.Navigate().GoToUrl(baseURL + "/talks/hewny15");
             Assert.Equal("There's an App for That", driver.Title);
         }
 
         [Fact]
-        public void FindsStaticPageWithSlash()
+        public void StaticPageSlash()
         {
             driver.Navigate().GoToUrl(baseURL + "/talks/hewny15/");
             Assert.Equal("There's an App for That", driver.Title);
         }
 
         [Fact]
-        public void FindsOtherController()
+        public void OtherController()
         {
             driver.Navigate().GoToUrl(baseURL + "/about");
             Assert.Contains("About Steve", driver.FindElement(By.TagName("body")).Text);
         }
 
         [Fact]
-        public void FindsOtherControllerWithSlash()
+        public void OtherControllerSlash()
         {
             driver.Navigate().GoToUrl(baseURL + "/about/");
             Assert.Contains("About Steve", driver.FindElement(By.TagName("body")).Text);
         }
 
         [Fact]
-        public void FindsOtherControllerMethod()
+        public void OtherControllerMethod()
         {
             driver.Navigate().GoToUrl(baseURL + "/about/datacenter");
             Assert.Contains("machines", driver.FindElement(By.TagName("body")).Text);
         }
 
         [Fact]
-        public void FindsOtherControllerMethodWithSlash()
+        public void OtherControllerMethodSlash()
         {
             driver.Navigate().GoToUrl(baseURL + "/about/datacenter/");
             Assert.Contains("machines", driver.FindElement(By.TagName("body")).Text);
+        }
+
+        [Fact]
+        public void Photos()
+        {
+            driver.Navigate().GoToUrl(baseURL + "/photo");
+            Assert.Equal("Steve Desmond — Photography", driver.Title);
+        }
+
+        [Fact]
+        public void PhotosSlash()
+        {
+            driver.Navigate().GoToUrl(baseURL + "/photo/");
+            Assert.Equal("Steve Desmond — Photography", driver.Title);
+        }
+
+        [Fact]
+        public void Image()
+        {
+            driver.Navigate().GoToUrl(baseURL + "/photo/image/135");
+            Assert.Equal("Steve Desmond — View Photo", driver.Title);
+        }
+
+        [Fact]
+        public void ImageSlash()
+        {
+            driver.Navigate().GoToUrl(baseURL + "/photo/image/135/");
+            Assert.Equal("Steve Desmond — View Photo", driver.Title);
         }
     }
 }

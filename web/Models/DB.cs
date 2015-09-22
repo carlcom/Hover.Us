@@ -1,5 +1,4 @@
 ﻿using Microsoft.Data.Entity;
-using Microsoft.Framework.Configuration;
 
 namespace Web.Models
 {
@@ -7,16 +6,10 @@ namespace Web.Models
     {
         public DbSet<Page> Pages { get; set; }
 
-        private IConfiguration configuration { get; }
         public DbSet<TagType> TagTypes { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<ImageTag> ImageTags { get; set; }
-
-        public DB(IConfiguration config)
-        {
-            configuration = config;
-        }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -35,8 +28,7 @@ namespace Web.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            var connectionString = configuration["DB"];
-            options.UseSqlServer(connectionString);
+            options.UseSqlServer("Server=server;Database=www;Integrated Security=true;MultipleActiveResultSets=true");
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using Microsoft.AspNet.Mvc;
-using Microsoft.Framework.Configuration;
 using Web.Models;
 
 namespace Web.Controllers
@@ -9,9 +8,9 @@ namespace Web.Controllers
     {
         readonly DB db;
 
-        public HomeController(IConfiguration configuration)
+        public HomeController()
         {
-            db = new DB(configuration);
+            db = new DB();
         }
 
         public IActionResult Index()
@@ -20,22 +19,15 @@ namespace Web.Controllers
             return View(pages);
         }
 
-        [HttpGet("talks")]
-        public IActionResult Talks()
-        {
-            ViewBag.Subtitle = " - Talks";
-            return View();
-        }
-
         public IActionResult Category(string category)
         {
             var pages = db.Pages.Where(p => p.Live && p.Category.ToLower() == category).OrderByDescending(p => p.Timestamp);
             if (!pages.Any())
             {
-                return new RedirectResult("/");
+                return Redirect("/");
             }
 
-            ViewBag.Subtitle = " - " + pages.First().Category;
+            ViewBag.Subtitle = pages.First().Category;
             return View("Index", pages);
         }
 
@@ -44,10 +36,10 @@ namespace Web.Controllers
             var page = db.Pages.FirstOrDefault(p => p.Category.ToLower() == category && p.URL == url);
             if (page == null)
             {
-                return new RedirectResult("/" + category);
+                return Redirect("/" + category);
             }
 
-            ViewBag.Subtitle = " - " + page.Category + " - " + page.Title;
+            ViewBag.Subtitle = page.Category + " — " + page.Title;
             return View("Page", page);
         }
     }
