@@ -1,6 +1,6 @@
-﻿@model IQueryable<Web.Models.Page>
+﻿@model IEnumerable<Web.Models.Page>
 @foreach (var page in Model)
 {
-    @Html.Partial("Page", page)
+    @Html.Partial("SubPage", page)
     <hr />
 }

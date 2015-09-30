@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Web.Models
 {
@@ -23,7 +24,13 @@ namespace Web.Models
         [Required, Range(typeof(DateTime), "1/1/2015", "1/1/2020")]
         public DateTime Timestamp { get; set; }
 
-        public bool Live { get; set; }
+        [Required, Column("Live")]
+        public bool Aggregate { get; set; }
+
+        public bool Partial { get; set; }
+
+        public bool NoCrawl { get; set; }
+        public bool Crawl => !NoCrawl;
 
         public string TwitterStatus { get; set; }
     }

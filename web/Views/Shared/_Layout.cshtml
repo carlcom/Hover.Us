@@ -1,14 +1,18 @@
-﻿@using System.Threading.Tasks
-@using Web
+﻿@using Web
 <!DOCTYPE html>
 <html>
 <head>
+    @{
+        var name = "Steve Desmond";
+        var title = !string.IsNullOrEmpty(ViewBag.Subtitle) ? name + " – " + ViewBag.Subtitle : name;
+    }
+    <title>@title</title>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    @{var subtitle = !string.IsNullOrEmpty(ViewBag.Subtitle) ? " — " + ViewBag.Subtitle : "";}
-    <title>Steve Desmond @subtitle</title>
+    <meta name="description" content="Software developer and photographer from Ithaca, NY" />
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="/index.css" />
 </head>
 <body>
@@ -69,8 +73,9 @@
          sizes="(max-width: 767px) 100px, 150px" />
     <div class="container">
         @RenderBody()
-        <small class="pull-right">&copy; Steve Desmond</small>
+        <small id="copyright" class="pull-right">&copy; Steve Desmond</small>
     </div>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
     @Html.Partial("GA")
 </body>
 </html>

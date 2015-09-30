@@ -1,12 +1,13 @@
 ﻿using System.Linq;
 using Microsoft.AspNet.Mvc;
+using Web.Helpers;
 using Web.Models;
 
 namespace Web.Controllers
 {
     public class HomeController : Controller
     {
-        readonly DB db;
+        private readonly DB db;
 
         public HomeController()
         {
@@ -15,13 +16,19 @@ namespace Web.Controllers
 
         public IActionResult Index()
         {
-            var pages = db.Pages.Where(p => p.Live).OrderByDescending(p => p.Timestamp);
+            var pages = db.Pages.Where(p => p.Aggregate).OrderByDescending(p => p.Timestamp);
             return View(pages);
         }
 
-        public IActionResult Category(string category)
+        public IActionResult Page(string url)
         {
-            var pages = db.Pages.Where(p => p.Live && p.Category.ToLower() == category).OrderByDescending(p => p.Timestamp);
+            var page = db.Pages.FirstOrDefault(p => p.Category.Matches("Home") && p.URL.Matches(url));
+            if (page != null)
+            {
+                return SubPage(page);
+            }
+
+            var pages = db.Pages.Where(p => p.Category.Matches(url) && p.Aggregate).OrderByDescending(p => p.Timestamp);
             if (!pages.Any())
             {
                 return Redirect("/");
@@ -31,16 +38,21 @@ namespace Web.Controllers
             return View("Index", pages);
         }
 
-        public IActionResult Page(string category, string url)
+        public IActionResult SubPage(string category, string url)
         {
-            var page = db.Pages.FirstOrDefault(p => p.Category.ToLower() == category && p.URL == url);
+            var page = db.Pages.FirstOrDefault(p => p.Category.Matches(category) && p.URL.Matches(url));
             if (page == null)
             {
                 return Redirect("/" + category);
             }
 
-            ViewBag.Subtitle = page.Category + " — " + page.Title;
-            return View("Page", page);
+            return SubPage(page);
+        }
+
+        private IActionResult SubPage(Page page)
+        {
+            ViewBag.Subtitle = (page.Category.Matches("Home") ? "" : page.Category + " – ") + page.Title;
+            return View("SubPage", page);
         }
     }
 }

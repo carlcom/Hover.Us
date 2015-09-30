@@ -1,0 +1,36 @@
+﻿@model Web.Models.Page
+<div id="@Model.URL.ToLower()" class="post">
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="stevedesmond_ca" />
+    <meta name="twitter:title" content="@Model.Title" />
+
+    @if (!Model.Partial)
+    {
+        <h3 class="title">
+            <a href="/@Model.Category.ToLower()/@Model.URL">
+                @Model.Title
+            </a>
+        </h3>
+        <h4 class="timestamp">
+            <small>
+                <i>@Model.Timestamp.ToString("dddd, MMMM dd, yyyy @ h:mm")@Model.Timestamp.ToString("tt").ToLower()</i>
+            </small>
+        </h4>
+    }
+    <content page="Model" />
+    @if (!Model.Partial)
+    {
+        <p class="signature">
+            <i>-Steve</i>
+        </p>
+        if (!string.IsNullOrEmpty(Model.TwitterStatus))
+        {
+            <p class="share">
+                <a href="http://twitter.com/stevedesmond_ca/status/@Model.TwitterStatus" target="_blank">
+                    <i class="fa fa-twitter"></i>
+                    Comment / Share
+                </a>
+            </p>
+        }
+    }
+</div>

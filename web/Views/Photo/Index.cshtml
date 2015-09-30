@@ -1,10 +1,55 @@
-﻿@using Web
-@model IQueryable<Web.Models.Image>
+﻿@using Microsoft.AspNet.Html.Abstractions
+@using Web
+@using Web.Models
+@model IEnumerable<Image>
+
+@functions {
+    private IHtmlContent FilterDropdown(IEnumerable<Tag> list, string name)
+    {
+        return Html.DropDownList(name, new SelectList(list, "ID", "Name"), name, new { Class = "form-control", onchange = "goTo('" + name.ToLower() + "', this)" });
+    }
+
+}
+<script type="text/javascript" language="javascript">
+    function goTo(type, item) {
+        window.location = '/photo/' + type + '/' + item.value;
+    }
+
+    function toggleFilters() {
+        var filters = document.getElementById('filters');
+        var toggleIcon = document.getElementById('filter-toggle');
+        if (filters.className === 'hidden') {
+            filters.className = '';
+            toggleIcon.className = 'fa fa-caret-down';
+        } else {
+            filters.className = 'hidden';
+            toggleIcon.className = 'fa fa-caret-right';
+        }
+    }
+</script>
+
+<h3>@ViewBag.Subtitle</h3>
+
+<div id="photo-filters" class="form-inline">
+    <a href="javascript:toggleFilters()">
+        <i id="filter-toggle" class="fa fa-caret-right"></i>
+        <label for="filter-toggle">Filter</label>
+    </a>
+    <span id="filters" class="hidden">
+        @FilterDropdown(ViewBag.Subjects, "Subject")
+        @FilterDropdown(ViewBag.Locations, "Location")
+        @FilterDropdown(ViewBag.Mediums, "Medium")
+        @FilterDropdown(ViewBag.Treatments, "Treatment")
+    </span>
+</div>
+
 <div class="gallery">
     <div class="container-fluid">
-        @foreach (var image in Model)
-        {
-            <a href="/photo/image/@image.ID" class="thumbnail-image" style="background-image: url('@Startup.ImageBase/@image.Name-0240.jpg')">&nbsp;</a>
-        }
+        <div class="row">
+            @foreach (var image in Model)
+            {
+                <a href="/photo/image/@image.ID" class="thumbnail-image" style="background-image: url('@Startup.ImageBase/@image.Name-0240.jpg')">&nbsp;</a>
+            }
+        </div>
     </div>
 </div>

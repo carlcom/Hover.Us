@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Xml.Linq;
 using Microsoft.AspNet.Razor.Runtime.TagHelpers;
 using Web.Models;
@@ -18,11 +19,14 @@ namespace Web.Helpers
             var content = XDocument.Parse("<root>" + Page.Body + "</root>");
             var images = content.Descendants("img");
             foreach (var image in images)
-            {
-                ResponsiveImage.updateTag(image);
-            }
+                ResponsiveImage.UpdateTag(image);
 
-            output.Content.SetContent(string.Join("", content.Root.ToString().Replace("<root>", "").Replace("</root>", "")));
+            var contact = content.Descendants("contact").FirstOrDefault();
+            if (contact != null)
+                ContactInfo.addContactInfo(context, contact);
+
+            output.Content.SetContent(string.Join("",
+                content.Root.ToString().Replace("<root>", "").Replace("</root>", "")));
         }
     }
 }

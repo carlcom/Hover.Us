@@ -25,10 +25,10 @@ namespace Web
             {
                 routes.MapRoute("default", "{controller}/{action}/{id?}",
                     new { controller = "Home", action = "Index" });
-                routes.MapRoute("category", "{category}",
-                    new { controller = "Home", action = "Category" });
-                routes.MapRoute("page", "{category}/{url}",
+                routes.MapRoute("page", "{url}",
                     new { controller = "Home", action = "Page" });
+                routes.MapRoute("sub-page", "{category}/{url}",
+                    new { controller = "Home", action = "SubPage" });
             });
         }
     }

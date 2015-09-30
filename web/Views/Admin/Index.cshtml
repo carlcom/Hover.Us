@@ -1,6 +1,8 @@
-﻿@model IQueryable<Web.Models.Page>
+﻿@model IEnumerable<Web.Models.Page>
 
-@Html.ActionLink("New", "create")
+<div class="btn">
+    @Html.ActionLink("New", "create")
+</div>
 
 <table class="table table-bordered table-striped">
     <thead>
@@ -8,7 +10,8 @@
             <th>ID</th>
             <th>Category</th>
             <th>Title</th>
-            <th>Live</th>
+            <th>Aggregate</th>
+            <th>Crawl</th>
         </tr>
     </thead>
     <tbody>
@@ -18,7 +21,8 @@
                 <td>@page.ID</td>
                 <td>@page.Category</td>
                 <td>@Html.ActionLink(page.Title, "edit", new { id = page.ID })</td>
-                <td>@page.Live</td>
+                <td>@page.Aggregate</td>
+                <td>@page.Crawl</td>
             </tr>
         }
     </tbody>

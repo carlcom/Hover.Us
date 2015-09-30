@@ -1,4 +1,4 @@
 ﻿@model Web.Models.Image
 
-<h1 class="text-center">@Model.Tag("Subject") &ndash; @Model.Tag("Location") &ndash; @Model.DateTaken.ToString("d")</h1>
+<h3 class="text-center">@ViewBag.Subtitle</h3>
 <rimg base="@Model.Name" alt="@string.Join("; ", Model.ImageTags.Select(it => it.Tag).Select(t => t.Name))" />
