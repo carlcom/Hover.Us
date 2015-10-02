@@ -1,9 +1,5 @@
 ﻿@model Web.Models.Page
 <div id="@Model.URL.ToLower()" class="post">
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="stevedesmond_ca" />
-    <meta name="twitter:title" content="@Model.Title" />
-
     @if (!Model.Partial)
     {
         <h3 class="title">

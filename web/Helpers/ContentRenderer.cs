@@ -25,8 +25,7 @@ namespace Web.Helpers
             if (contact != null)
                 ContactInfo.addContactInfo(context, contact);
 
-            output.Content.SetContent(string.Join("",
-                content.Root.ToString().Replace("<root>", "").Replace("</root>", "")));
+            output.Content.SetContent(content.Root.ToString().Replace("<root>", "").Replace("</root>", ""));
         }
     }
 }

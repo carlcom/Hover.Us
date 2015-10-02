@@ -29,6 +29,10 @@ a {
         text-decoration: none;
     }
 
+img {
+    max-width: 100%;
+}
+
 .link-icons {
     padding-right: 200px;
 }
@@ -151,9 +155,9 @@ a {
         padding: 6px;
     }
 
-    #photo-filters > a > i {
-        width: 8px;
-    }
+        #photo-filters > a > i {
+            width: 8px;
+        }
 
 #resume ~ #copyright {
     display: none;
