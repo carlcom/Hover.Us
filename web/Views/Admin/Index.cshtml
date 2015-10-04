@@ -7,7 +7,7 @@
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>ID</th>
+            <th>Date</th>
             <th>Category</th>
             <th>Title</th>
             <th>Aggregate</th>
@@ -18,7 +18,7 @@
         @foreach (var page in Model)
         {
             <tr>
-                <td>@page.ID</td>
+                <td>@page.Timestamp</td>
                 <td>@page.Category</td>
                 <td>@Html.ActionLink(page.Title, "edit", new { id = page.ID })</td>
                 <td>@page.Aggregate</td>

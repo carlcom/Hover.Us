@@ -1,13 +1,27 @@
 ﻿@using System.Threading.Tasks
 @model Web.Models.Page
 
+<script type="text/javascript" language="javascript">
+    function resetTimestamp() {
+        var date = new Date();
+        var dateString = (date.getMonth()+1) + '/' + date.getDate() + '/' + date.getFullYear() + ' ' + (date.getHours()%12) + ':' + date.getMinutes() + (date.getHours < 12 ? 'am' : 'pm');
+        document.getElementById('Timestamp').value = dateString;
+    }
+</script>
+
 <div class="row">
     <div class="pull-left">
         <a href="/admin">&lt;&lt; Back</a>
     </div>
-    <div class="pull-right">
-        <a href="/@Model.Category.ToLower()/@Model.URL.ToLower()">Preview</a>
-    </div>
+    @if (!string.IsNullOrEmpty(Model.Category) || !string.IsNullOrEmpty(Model.URL))
+    {
+        <div class="pull-right">
+            <a target="_blank" href="/@Model.Category.ToLower()/@Model.URL.ToLower()">
+                <i class="fa fa-external-link"></i>
+                <span>Preview</span>
+            </a>
+        </div>
+    }
 </div>
 
 @if (ViewBag.Success ?? false)
@@ -44,6 +58,7 @@
 <div class="form-group">
     @Html.LabelFor(p => p.Timestamp)
     @Html.TextBoxFor(p => p.Timestamp, new { Class = "form-control" })
+    <a href="javascript:resetTimestamp()">Now</a>
 </div>
 <div class="form-group">
     @Html.LabelFor(p => p.TwitterStatus)

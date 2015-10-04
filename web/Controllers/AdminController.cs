@@ -45,7 +45,7 @@ namespace Web.Controllers
         {
             if (!authorized) return authorizationPrompt;
 
-            var pages = db.Pages.OrderBy(p => p.Category).ThenBy(p => p.ID);
+            var pages = db.Pages.OrderBy(p => p.Category).ThenBy(p => p.Timestamp);
             return View(pages);
         }
 
