@@ -57,17 +57,31 @@ namespace Test
         }
 
         [Fact]
-        public void StaticCategory()
+        public void CapitalizedCategory()
         {
-            driver.Navigate().GoToUrl(baseURL + "/talks");
-            Assert.Equal("Steve Desmond – Talks", driver.Title);
+            driver.Navigate().GoToUrl(baseURL + "/Blog");
+            Assert.Equal("Steve Desmond – Blog", driver.Title);
         }
 
         [Fact]
-        public void StaticCategorySlash()
+        public void CapitalizedCategorySlash()
         {
-            driver.Navigate().GoToUrl(baseURL + "/talks/");
-            Assert.Equal("Steve Desmond – Talks", driver.Title);
+            driver.Navigate().GoToUrl(baseURL + "/Blog/");
+            Assert.Equal("Steve Desmond – Blog", driver.Title);
+        }
+
+        [Fact]
+        public void CapitalizedPost()
+        {
+            driver.Navigate().GoToUrl(baseURL + "/Blog/Hello-vNext-World");
+            Assert.Equal("Steve Desmond – Blog – Hello, vNext World!", driver.Title);
+        }
+
+        [Fact]
+        public void CapitalizedPostSlash()
+        {
+            driver.Navigate().GoToUrl(baseURL + "/Blog/Hello-vNext-World/");
+            Assert.Equal("Steve Desmond – Blog – Hello, vNext World!", driver.Title);
         }
 
         [Fact]
@@ -85,28 +99,28 @@ namespace Test
         }
 
         [Fact]
-        public void OtherController()
+        public void CategoryIndex()
         {
             driver.Navigate().GoToUrl(baseURL + "/about");
             Assert.Contains("About Steve", driver.FindElement(By.TagName("body")).Text);
         }
 
         [Fact]
-        public void OtherControllerSlash()
+        public void CategoryIndexSlash()
         {
             driver.Navigate().GoToUrl(baseURL + "/about/");
             Assert.Contains("About Steve", driver.FindElement(By.TagName("body")).Text);
         }
 
         [Fact]
-        public void OtherControllerMethod()
+        public void PostFromCategoryWithIndex()
         {
             driver.Navigate().GoToUrl(baseURL + "/about/datacenter");
             Assert.Contains("machines", driver.FindElement(By.TagName("body")).Text);
         }
 
         [Fact]
-        public void OtherControllerMethodSlash()
+        public void PostFromCategoryWithIndexSlash()
         {
             driver.Navigate().GoToUrl(baseURL + "/about/datacenter/");
             Assert.Contains("machines", driver.FindElement(By.TagName("body")).Text);
@@ -143,40 +157,40 @@ namespace Test
         [Fact]
         public void CapitalizedStaticPage()
         {
-            driver.Navigate().GoToUrl(baseURL + "/talks/hewny15");
+            driver.Navigate().GoToUrl(baseURL + "/Talks/HEWNY15");
             Assert.Equal("There's an App for That", driver.Title);
         }
 
         [Fact]
         public void CapitalizedStaticPageSlash()
         {
-            driver.Navigate().GoToUrl(baseURL + "/talks/hewny15/");
+            driver.Navigate().GoToUrl(baseURL + "/Talks/HEWNY15/");
             Assert.Equal("There's an App for That", driver.Title);
         }
 
         [Fact]
-        public void CapitalizedOtherController()
+        public void CapitalizedCategoryIndex()
         {
             driver.Navigate().GoToUrl(baseURL + "/About");
             Assert.Contains("About Steve", driver.FindElement(By.TagName("body")).Text);
         }
 
         [Fact]
-        public void CapitalizedOtherControllerSlash()
+        public void CapitalizedCategoryIndexSlash()
         {
             driver.Navigate().GoToUrl(baseURL + "/About/");
             Assert.Contains("About Steve", driver.FindElement(By.TagName("body")).Text);
         }
 
         [Fact]
-        public void CapitalizedOtherControllerMethod()
+        public void CapitalizedPostFromCategoryWithIndex()
         {
             driver.Navigate().GoToUrl(baseURL + "/About/Datacenter");
             Assert.Contains("machines", driver.FindElement(By.TagName("body")).Text);
         }
 
         [Fact]
-        public void CapitalizedOtherControllerMethodSlash()
+        public void CapitalizedPostFromCategoryWithIndexSlash()
         {
             driver.Navigate().GoToUrl(baseURL + "/About/Datacenter/");
             Assert.Contains("machines", driver.FindElement(By.TagName("body")).Text);
@@ -208,6 +222,55 @@ namespace Test
         {
             driver.Navigate().GoToUrl(baseURL + "/Photo/Image/135/");
             Assert.Equal("Steve Desmond – Photography – Matthew Good – Toronto, ON – 6/8/2004", driver.Title);
+        }
+
+        [Fact]
+        public void Resume()
+        {
+            driver.Navigate().GoToUrl(baseURL + "/resume");
+            Assert.Equal("Steve Desmond – Resumé", driver.Title);
+        }
+
+        [Fact]
+        public void ResumeSlash()
+        {
+            driver.Navigate().GoToUrl(baseURL + "/resume/");
+            Assert.Equal("Steve Desmond – Resumé", driver.Title);
+        }
+
+        [Fact]
+        public void CapitalizedResume()
+        {
+            driver.Navigate().GoToUrl(baseURL + "/Resume");
+            Assert.Equal("Steve Desmond – Resumé", driver.Title);
+        }
+
+        [Fact]
+        public void CapitalizedResumeSlash()
+        {
+            driver.Navigate().GoToUrl(baseURL + "/Resume/");
+            Assert.Equal("Steve Desmond – Resumé", driver.Title);
+        }
+
+        [Fact]
+        public void ResumeWithGoodForShowsContact()
+        {
+            driver.Navigate().GoToUrl(baseURL + "/resume?for=test");
+            Assert.NotEmpty(driver.FindElement(By.ClassName("contact")).Text);
+        }
+
+        [Fact]
+        public void ResumeWithBadForDoesNotContact()
+        {
+            driver.Navigate().GoToUrl(baseURL + "/resume?for=x");
+            Assert.Empty(driver.FindElement(By.ClassName("contact")).Text);
+        }
+
+        [Fact]
+        public void CannotHackContact()
+        {
+            driver.Navigate().GoToUrl(baseURL + "/resume/contact");
+            Assert.Contains(";)", driver.PageSource);
         }
     }
 }

@@ -21,10 +21,6 @@ namespace Web.Helpers
             foreach (var image in images)
                 ResponsiveImage.UpdateTag(image);
 
-            var contact = content.Descendants("contact").FirstOrDefault();
-            if (contact != null)
-                ContactInfo.addContactInfo(context, contact);
-
             output.Content.SetContent(content.Root.ToString().Replace("<root>", "").Replace("</root>", ""));
         }
     }

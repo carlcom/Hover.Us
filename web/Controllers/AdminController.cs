@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -15,7 +16,7 @@ namespace Web.Controllers
         public AdminController()
         {
             db = new DB();
-            adminKey = System.IO.File.ReadAllText("D:\\www\\admin.key").Replace("\\u", "\\u");
+            adminKey = System.IO.File.ReadAllText(Path.Combine("D:\\", "www", "admin.key"));
         }
 
         private bool authorized

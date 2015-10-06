@@ -86,6 +86,10 @@ img {
     float: right !important;
 }
 
+.keep-together {
+    page-break-inside: avoid;
+}
+
 .gallery {
     text-align: center;
 }
