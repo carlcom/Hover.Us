@@ -1,5 +1,7 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using Microsoft.Data.Entity;
 using Web.Helpers;
 using Web.Models;
 
@@ -14,39 +16,32 @@ namespace Web.Controllers
             db = new DB();
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var pages = db.Pages.Where(p => p.Aggregate).OrderByDescending(p => p.Timestamp);
-            return View(pages);
+            var pages = db.Pages.Where(p => p.Aggregate).OrderByDescending(p => p.Timestamp).ToListAsync();
+            return View(await pages);
         }
 
-        public IActionResult Page(string url)
+        public async Task<IActionResult> Page(string url)
         {
-            var page = db.Pages.FirstOrDefault(p => p.Category.Matches("Home") && p.URL.Matches(url));
+            var page = await db.Pages.FirstOrDefaultAsync(p => p.Category.Matches("Home") && p.URL.Matches(url));
             if (page != null)
-            {
                 return SubPage(page);
-            }
 
-            var pages = db.Pages.Where(p => p.Category.Matches(url) && p.Aggregate).OrderByDescending(p => p.Timestamp);
+            var pages = await db.Pages.Where(p => p.Category.Matches(url) && p.Aggregate).OrderByDescending(p => p.Timestamp).ToListAsync();
             if (!pages.Any())
-            {
                 return Redirect("/");
-            }
 
             ViewBag.Subtitle = pages.First().Category;
             return View("Index", pages);
         }
 
-        public IActionResult SubPage(string category, string url)
+        public async Task<IActionResult> SubPage(string category, string url)
         {
-            var page = db.Pages.FirstOrDefault(p => p.Category.Matches(category) && p.URL.Matches(url));
-            if (page == null)
-            {
-                return Redirect("/" + category);
-            }
-
-            return SubPage(page);
+            var page = await db.Pages.FirstOrDefaultAsync(p => p.Category.Matches(category) && p.URL.Matches(url));
+            return page != null
+                ? SubPage(page)
+                : Redirect("/" + category);
         }
 
         private IActionResult SubPage(Page page)

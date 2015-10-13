@@ -3,7 +3,9 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using Microsoft.Data.Entity;
 using Web.Models;
 
 namespace Web.Controllers
@@ -24,10 +26,10 @@ namespace Web.Controllers
             get
             {
                 var auth = Request.Headers["Authorization"];
-                if (auth == null) return false;
+                if (auth == null)
+                    return false;
 
-                var hash =
-                    Encoding.UTF8.GetString(SHA256.Create().ComputeHash(Convert.FromBase64String(auth.Substring(6))));
+                var hash = Encoding.UTF8.GetString(SHA256.Create().ComputeHash(Convert.FromBase64String(auth.Substring(6))));
                 return hash == adminKey;
             }
         }
@@ -42,52 +44,63 @@ namespace Web.Controllers
             }
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            if (!authorized) return authorizationPrompt;
+            if (!authorized)
+                return authorizationPrompt;
 
-            var pages = db.Pages.OrderBy(p => p.Category).ThenBy(p => p.Timestamp);
-            return View(pages);
+            var pages = db.Pages.OrderBy(p => p.Category).ThenBy(p => p.Timestamp).ToListAsync();
+            return View(await pages);
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            if (!authorized) return authorizationPrompt;
+            if (!authorized)
+                return authorizationPrompt;
 
-            var page = new Page { ID = db.Pages.Max(p => p.ID) + 1 };
+            var page = new Page { ID = await db.Pages.MaxAsync(p => p.ID) + 1 };
             return View("Edit", page);
         }
 
         [HttpPost]
-        public IActionResult Create(Page page)
+        public async Task<IActionResult> Create(Page page)
         {
-            if (!authorized) return authorizationPrompt;
-            if (!ModelState.IsValid) return View("Edit", page);
+            if (!authorized)
+                return authorizationPrompt;
+
+            if (!ModelState.IsValid)
+                return View("Edit", page);
 
             db.Pages.Add(page);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
+
             ViewBag.Success = true;
             return RedirectToAction("Edit", new { id = page.ID });
         }
 
         [HttpGet]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (!authorized) return authorizationPrompt;
+            if (!authorized)
+                return authorizationPrompt;
 
-            var page = db.Pages.First(p => p.ID == id);
-            return View(page);
+            var page = db.Pages.FirstAsync(p => p.ID == id);
+            return View(await page);
         }
 
         [HttpPost]
-        public IActionResult Edit(Page page)
+        public async Task<IActionResult> Edit(Page page)
         {
-            if (!authorized) return authorizationPrompt;
-            if (!ModelState.IsValid) return View(page);
+            if (!authorized)
+                return authorizationPrompt;
+
+            if (!ModelState.IsValid)
+                return View(page);
 
             db.Pages.Update(page);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
+
             ViewBag.Success = true;
             return View(page);
         }

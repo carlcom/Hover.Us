@@ -1,6 +1,8 @@
 ﻿using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using Microsoft.Data.Entity;
 using Microsoft.Net.Http.Headers;
 using Web.Helpers;
 using Web.Models;
@@ -16,26 +18,29 @@ namespace Web.Controllers
             db = new DB();
         }
 
-        public IActionResult Index(string For)
+        public async Task<IActionResult> Index(string For)
         {
             if (For != null)
             {
                 var active = System.IO.File.ReadAllLines(Path.Combine("D:\\", "www", "active.txt"));
                 if (active.Contains(For))
-                    ViewBag.ContactInfo = db.Pages.FirstOrDefault(p => p.Category.Matches("Resume") && p.URL.Matches("Contact")).Body;
+                {
+                    var contactPage = db.Pages.FirstOrDefaultAsync(p => p.Category.Matches("Resume") && p.URL.Matches("Contact"));
+                    ViewBag.ContactInfo = (await contactPage).Body;
+                }
             }
-            var resume = db.Pages.FirstOrDefault(p => p.Category.Matches("Resume") && p.URL.Matches("Resume"));
+            var resume = await db.Pages.FirstOrDefaultAsync(p => p.Category.Matches("Resume") && p.URL.Matches("Resume"));
             ViewBag.Subtitle = resume.Title;
             return View("Index", resume);
         }
 
-        public IActionResult Contact()
+        public async Task<IActionResult> Contact()
         {
-            var lolPage = db.Pages.FirstOrDefault(p => p.Category.Matches("Resume") && p.URL.Matches("LOL"));
+            var lolPage = db.Pages.FirstOrDefaultAsync(p => p.Category.Matches("Resume") && p.URL.Matches("LOL"));
             var niceTry = new ContentResult
             {
                 ContentType = new MediaTypeHeaderValue("text/plain"),
-                Content = lolPage.Body
+                Content = (await lolPage).Body
             };
             return niceTry;
         }

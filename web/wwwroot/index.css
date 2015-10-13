@@ -1,4 +1,6 @@
-﻿h1, h2, h3 {
+﻿/* general */
+
+h1, h2, h3 {
     font-weight: bold;
 }
 
@@ -33,6 +35,12 @@ img {
     max-width: 100%;
 }
 
+.keep-together {
+    page-break-inside: avoid;
+}
+
+/* header */
+
 .link-icons {
     padding-right: 200px;
 }
@@ -45,6 +53,8 @@ img {
     width: 150px;
     z-index: 10000;
 }
+
+/* navbar */
 
 .navbar-inverse {
     background: #900 linear-gradient(#a00, #800);
@@ -86,9 +96,7 @@ img {
     float: right !important;
 }
 
-.keep-together {
-    page-break-inside: avoid;
-}
+/* photo section */
 
 .gallery {
     text-align: center;
@@ -138,17 +146,6 @@ img {
     }
 }
 
-@media print {
-    .navbar {
-        background: #900 linear-gradient(#a00, #800) !important;
-        display: inherit;
-    }
-
-    .link-icons, a[href]:after {
-        display: none;
-    }
-}
-
 #photo-filters {
     min-height: 34px;
     margin-bottom: 1em;
@@ -163,6 +160,30 @@ img {
             width: 8px;
         }
 
+/* resume */
+
+@media print {
+    .navbar {
+        background: #900 linear-gradient(#a00, #800) !important;
+        display: inherit;
+    }
+
+    .link-icons, a[href]:after {
+        display: none;
+    }
+}
+
 #resume ~ #copyright {
     display: none;
+}
+
+/* talks */
+
+#talks a {
+    white-space: normal;
+}
+
+.slide-thumbnail {
+    width: 100%;
+    margin-top: 8px;
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Data.Entity;
 using Web.Models;
@@ -10,7 +11,7 @@ namespace Web.Controllers
     public class PhotoController : Controller
     {
         private readonly DB db;
-        private readonly List<Tag> allTags;
+        private readonly Task<List<Tag>> allTags;
 
         public PhotoController()
         {
@@ -20,39 +21,40 @@ namespace Web.Controllers
                .Include(t => t.TagType)
                .Include(t => t.ImageTags)
                .ThenInclude(it => it.Image)
-               .ToList();
+               .ToListAsync();
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            ViewBag.Subtitle = "Photography";
-
             var images = db.Images
                 .Where(i => i.Enabled)
-                .OrderByDescending(i => i.DateTaken);
+                .OrderByDescending(i => i.DateTaken)
+                .ToListAsync();
 
-            return Images(images);
+            ViewBag.Subtitle = "Photography";
+            return await Images(images);
         }
 
-        private ViewResult Images(IEnumerable<Image> images)
+        private async Task<IActionResult> Images(Task<List<Image>> images)
         {
             ViewBag.Subjects = getTags("Subject");
             ViewBag.Locations = getTags("Location");
             ViewBag.Mediums = getTags("Medium");
             ViewBag.Treatments = getTags("Treatment");
-            return View("Index", images);
+            return View("Index", await images);
         }
 
-        private IEnumerable<Tag> getTags(string type)
+        private async Task<IEnumerable<Tag>> getTags(string type)
         {
-            return allTags
+            var tags = await allTags;
+            return tags
                 .Where(t => t.TagType.Name == type && t.ImageTags.Any(it => it.Image.Enabled))
                 .OrderBy(t => t.Name);
         }
 
-        public IActionResult Tag(int id)
+        public async Task<IActionResult> Tag(int id)
         {
-            var tag = db.Tags.SingleOrDefault(t => t.ID == id);
+            var tag = await db.Tags.FirstOrDefaultAsync(t => t.ID == id);
             if (tag == null)
                 return Redirect("/photo");
 
@@ -60,30 +62,29 @@ namespace Web.Controllers
 
             var images = db.Images.Include(i => i.ImageTags)
                 .Where(i => i.Enabled && i.ImageTags.Any(it => it.Tag_ID == tag.ID))
-                .OrderByDescending(i => i.DateTaken);
+                .OrderByDescending(i => i.DateTaken)
+                .ToListAsync();
 
-            return Images(images);
+            return await Images(images);
         }
 
-        public IActionResult Subject(int id) => Tag(id);
-        public IActionResult Location(int id) => Tag(id);
-        public IActionResult Medium(int id) => Tag(id);
-        public IActionResult Treatment(int id) => Tag(id);
+        public async Task<IActionResult> Subject(int id) => await Tag(id);
+        public async Task<IActionResult> Location(int id) => await Tag(id);
+        public async Task<IActionResult> Medium(int id) => await Tag(id);
+        public async Task<IActionResult> Treatment(int id) => await Tag(id);
 
-        public IActionResult Image(int id)
+        public async Task<IActionResult> Image(int id)
         {
-            var image = db.Images
+            var image = await db.Images
                 .Include(i => i.ImageTags)
                 .ThenInclude(it => it.Tag)
                 .ThenInclude(t => t.TagType)
-                .SingleOrDefault(i => i.ID == Convert.ToInt32(id));
+                .FirstOrDefaultAsync(i => i.ID == Convert.ToInt32(id));
 
             if (image == null)
-            {
                 return Redirect("/photo");
-            }
 
-            ViewBag.Subtitle = "Photography – " + image.Tag("Subject") + " – " + image.Tag("Location")  + " – " + image.DateTaken.ToString("d");
+            ViewBag.Subtitle = "Photography – " + image.Tag("Subject") + " – " + image.Tag("Location") + " – " + image.DateTaken.ToString("d");
             return View(image);
         }
     }
