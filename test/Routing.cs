@@ -102,14 +102,14 @@ namespace Test
         public void CategoryIndex()
         {
             driver.Navigate().GoToUrl(baseURL + "/about");
-            Assert.Contains("About Steve", driver.FindElement(By.TagName("body")).Text);
+            Assert.Contains("welcome", driver.FindElement(By.TagName("body")).Text);
         }
 
         [Fact]
         public void CategoryIndexSlash()
         {
             driver.Navigate().GoToUrl(baseURL + "/about/");
-            Assert.Contains("About Steve", driver.FindElement(By.TagName("body")).Text);
+            Assert.Contains("welcome", driver.FindElement(By.TagName("body")).Text);
         }
 
         [Fact]
@@ -172,14 +172,14 @@ namespace Test
         public void CapitalizedCategoryIndex()
         {
             driver.Navigate().GoToUrl(baseURL + "/About");
-            Assert.Contains("About Steve", driver.FindElement(By.TagName("body")).Text);
+            Assert.Contains("welcome", driver.FindElement(By.TagName("body")).Text);
         }
 
         [Fact]
         public void CapitalizedCategoryIndexSlash()
         {
             driver.Navigate().GoToUrl(baseURL + "/About/");
-            Assert.Contains("About Steve", driver.FindElement(By.TagName("body")).Text);
+            Assert.Contains("welcome", driver.FindElement(By.TagName("body")).Text);
         }
 
         [Fact]

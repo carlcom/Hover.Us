@@ -1,85 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
-using Microsoft.Data.Entity;
 using Web.Models;
 
 namespace Web.Controllers
 {
     public class PhotoController : Controller
     {
-        private readonly DB db;
-        private readonly Task<List<Tag>> allTags;
+        private IEnumerable<Tag> tags => Cache.Images.SelectMany(i => i.ImageTags.Select(t => t.Tag)).Distinct().ToList();
 
-        public PhotoController()
+        public IActionResult Index()
         {
-            db = new DB();
-
-            allTags = db.Tags
-               .Include(t => t.TagType)
-               .Include(t => t.ImageTags)
-               .ThenInclude(it => it.Image)
-               .ToListAsync();
-        }
-
-        public async Task<IActionResult> Index()
-        {
-            var images = db.Images
+            var images = Cache.Images
                 .Where(i => i.Enabled)
-                .OrderByDescending(i => i.DateTaken)
-                .ToListAsync();
+                .OrderByDescending(i => i.DateTaken);
 
             ViewBag.Subtitle = "Photography";
-            return await Images(images);
+            return Images(images);
         }
 
-        private async Task<IActionResult> Images(Task<List<Image>> images)
+        private IActionResult Images(IEnumerable<Image> images)
         {
-            ViewBag.Subjects = getTags("Subject");
-            ViewBag.Locations = getTags("Location");
-            ViewBag.Mediums = getTags("Medium");
-            ViewBag.Treatments = getTags("Treatment");
-            return View("Index", await images);
+            ViewBag.Subjects = tags.Where(t => t.TagType.Name == "Subject");
+            ViewBag.Locations = tags.Where(t => t.TagType.Name == "Location");
+            ViewBag.Mediums = tags.Where(t => t.TagType.Name == "Medium");
+            ViewBag.Treatments = tags.Where(t => t.TagType.Name == "Treatment");
+            ViewBag.Orientations = tags.Where(t => t.TagType.Name == "Orientation");
+            return View("Index", images);
         }
 
-        private async Task<IEnumerable<Tag>> getTags(string type)
+        public IActionResult Tag(int id)
         {
-            var tags = await allTags;
-            return tags
-                .Where(t => t.TagType.Name == type && t.ImageTags.Any(it => it.Image.Enabled))
-                .OrderBy(t => t.Name);
-        }
-
-        public async Task<IActionResult> Tag(int id)
-        {
-            var tag = await db.Tags.FirstOrDefaultAsync(t => t.ID == id);
+            var tag = tags.FirstOrDefault(t => t.ID == id);
             if (tag == null)
                 return Redirect("/photo");
 
             ViewBag.Subtitle = "Photography – " + tag.Name;
 
-            var images = db.Images.Include(i => i.ImageTags)
+            var images = Cache.Images
                 .Where(i => i.Enabled && i.ImageTags.Any(it => it.Tag_ID == tag.ID))
                 .OrderByDescending(i => i.DateTaken)
-                .ToListAsync();
+                .ToList();
 
-            return await Images(images);
+            return Images(images);
         }
 
-        public async Task<IActionResult> Subject(int id) => await Tag(id);
-        public async Task<IActionResult> Location(int id) => await Tag(id);
-        public async Task<IActionResult> Medium(int id) => await Tag(id);
-        public async Task<IActionResult> Treatment(int id) => await Tag(id);
+        public IActionResult Subject(int id) => Tag(id);
+        public IActionResult Location(int id) => Tag(id);
+        public IActionResult Medium(int id) => Tag(id);
+        public IActionResult Treatment(int id) => Tag(id);
+        public IActionResult Orientation(int id) => Tag(id);
 
-        public async Task<IActionResult> Image(int id)
+        public IActionResult Image(int id)
         {
-            var image = await db.Images
-                .Include(i => i.ImageTags)
-                .ThenInclude(it => it.Tag)
-                .ThenInclude(t => t.TagType)
-                .FirstOrDefaultAsync(i => i.ID == Convert.ToInt32(id));
+            var image = Cache.Images.FirstOrDefault(i => i.ID == Convert.ToInt32(id));
 
             if (image == null)
                 return Redirect("/photo");

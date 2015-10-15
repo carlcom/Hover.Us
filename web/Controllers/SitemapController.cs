@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Data.Entity;
@@ -29,16 +28,16 @@ namespace Web.Controllers
             return new XDocument(new XDeclaration("1.0", "UTF-8", null), xml).ToString().Replace(" xmlns=\"\"", "");
         }
 
-        private static void addTalksSitemap(XElement xml)
+        private static void addTalksSitemap(XContainer xml)
         {
             xml.Add(urlElementFor("talks"));
             xml.Add(urlElementFor("talks/hewny15"));
         }
 
-        private async void addCmsSitemap(XElement xml)
+        private void addCmsSitemap(XContainer xml)
         {
-            var pages = db.Pages.GroupBy(p => p.Category).ToListAsync();
-            foreach (var category in await pages)
+            var pages = Cache.Pages.GroupBy(p => p.Category);
+            foreach (var category in pages)
             {
                 var categoryName = category.Key.ToLower();
 
@@ -50,11 +49,10 @@ namespace Web.Controllers
             }
         }
 
-        private async void addPhotoSitemap(XElement xml)
+        private async void addPhotoSitemap(XContainer xml)
         {
             xml.Add(urlElementFor("photo"));
-            var images = db.Images.ToListAsync();
-            foreach (var photo in await images)
+            foreach (var photo in Cache.Images)
                 xml.Add(urlElementFor("photo/image/" + photo.ID));
 
             var tags = db.Tags
@@ -64,8 +62,8 @@ namespace Web.Controllers
                .Where(t => t.ImageTags.Any(it => it.Image.Enabled))
                .OrderBy(t => t.TagType.ID)
                .ThenBy(t => t.ID)
-               .ToListAsync();
-            foreach (var tag in await tags)
+               .ToList();
+            foreach (var tag in tags)
                 xml.Add(urlElementFor("photo/" + tag.TagType.Name.ToLower() + "/" + tag.ID));
         }
 

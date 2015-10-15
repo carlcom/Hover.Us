@@ -36,10 +36,11 @@
         <label for="filter-toggle">Filter</label>
     </a>
     <span id="filters" class="hidden">
-        @FilterDropdown(await ViewBag.Subjects, "Subject")
-        @FilterDropdown(await ViewBag.Locations, "Location")
-        @FilterDropdown(await ViewBag.Mediums, "Medium")
-        @FilterDropdown(await ViewBag.Treatments, "Treatment")
+        @FilterDropdown(ViewBag.Subjects, "Subject")
+        @FilterDropdown(ViewBag.Locations, "Location")
+        @FilterDropdown(ViewBag.Mediums, "Medium")
+        @FilterDropdown(ViewBag.Treatments, "Treatment")
+        @FilterDropdown(ViewBag.Orientations, "Orientation")
     </span>
 </div>
 
