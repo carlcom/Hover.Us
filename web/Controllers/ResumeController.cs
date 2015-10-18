@@ -31,7 +31,7 @@ namespace Web.Controllers
             var niceTry = new ContentResult
             {
                 ContentType = new MediaTypeHeaderValue("text/plain"),
-                Content = lolPage.Body
+                Content = lolPage.Body.ToString()
             };
             return niceTry;
         }

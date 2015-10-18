@@ -34,7 +34,7 @@ namespace Web.Controllers
             xml.Add(urlElementFor("talks/hewny15"));
         }
 
-        private void addCmsSitemap(XContainer xml)
+        private static void addCmsSitemap(XContainer xml)
         {
             var pages = Cache.Pages.GroupBy(p => p.Category);
             foreach (var category in pages)
@@ -49,7 +49,7 @@ namespace Web.Controllers
             }
         }
 
-        private async void addPhotoSitemap(XContainer xml)
+        private void addPhotoSitemap(XContainer xml)
         {
             xml.Add(urlElementFor("photo"));
             foreach (var photo in Cache.Images)

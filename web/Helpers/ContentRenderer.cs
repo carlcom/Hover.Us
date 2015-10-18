@@ -1,11 +1,12 @@
-using System.Linq;
+using System.Net;
 using System.Xml.Linq;
+using Microsoft.AspNet.Mvc.ViewFeatures;
 using Microsoft.AspNet.Razor.Runtime.TagHelpers;
 using Web.Models;
 
 namespace Web.Helpers
 {
-    [TargetElement("content", Attributes = "page")]
+    [HtmlTargetElement("content", Attributes = "page")]
     public class ContentRenderer : TagHelper
     {
         public Page Page { get; set; }
@@ -21,7 +22,7 @@ namespace Web.Helpers
             foreach (var image in images)
                 ResponsiveImage.UpdateTag(image);
 
-            output.Content.SetContent(content.Root.ToString().Replace("<root>", "").Replace("</root>", ""));
+            output.Content.SetContentEncoded(content.Root.ToString().Replace("<root>", "").Replace("</root>", ""));
         }
     }
 }

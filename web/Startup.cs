@@ -19,7 +19,7 @@ namespace Web
             app.UseDefaultFiles(defaultFiles);
 
             app.UseStaticFiles();
-            app.UseErrorPage();
+            app.UseDeveloperExceptionPage();
 
             app.UseMvc(routes =>
             {

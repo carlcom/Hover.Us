@@ -20,10 +20,10 @@ namespace Web.Models
             builder.Entity<Image>().ToTable("Images");
             builder.Entity<ImageTag>().ToTable("ImageTags");
 
-            builder.Entity<TagType>().Collection(tt => tt.Tags).InverseReference(t => t.TagType).ForeignKey("Type_ID");
-            builder.Entity<Tag>().Collection(t => t.ImageTags).InverseReference(it => it.Tag).ForeignKey("Tag_ID");
-            builder.Entity<Image>().Collection(i => i.ImageTags).InverseReference(it => it.Image).ForeignKey("Image_ID");
-            builder.Entity<ImageTag>().Key("Image_ID", "Tag_ID");
+            builder.Entity<TagType>().HasMany(tt => tt.Tags).WithOne(t => t.TagType).ForeignKey("Type_ID");
+            builder.Entity<Tag>().HasMany(t => t.ImageTags).WithOne(it => it.Tag).ForeignKey("Tag_ID");
+            builder.Entity<Image>().HasMany(i => i.ImageTags).WithOne(it => it.Image).ForeignKey("Image_ID");
+            builder.Entity<ImageTag>().HasKey("Image_ID", "Tag_ID");
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)

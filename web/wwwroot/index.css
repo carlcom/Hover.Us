@@ -173,6 +173,10 @@ img {
     }
 }
 
+@page {
+    margin: 0.5in 0;
+}
+
 #resume ~ #copyright {
     display: none;
 }

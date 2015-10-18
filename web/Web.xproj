@@ -6,7 +6,7 @@
   </PropertyGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>cff8a3e1-9ab7-4fcb-81cd-2786058cf9f7</ProjectGuid>
-    <RootNamespace>VTSV.Web</RootNamespace>
+    <RootNamespace>Web</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">..\www\artifacts\obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">..\www\artifacts\bin\$(MSBuildProjectName)\</OutputPath>
   </PropertyGroup>

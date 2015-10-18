@@ -15,7 +15,7 @@ namespace Web.Models
 
         public string Tag(string type)
         {
-            return ImageTags.Select(it => it.Tag).First(t => t.TagType.Name == type).Name;
+            return ImageTags.Select(it => it.Tag).FirstOrDefault(t => t.TagType.Name == type)?.Name;
         }
     }
 }

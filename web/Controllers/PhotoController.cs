@@ -59,7 +59,12 @@ namespace Web.Controllers
             if (image == null)
                 return Redirect("/photo");
 
-            ViewBag.Subtitle = "Photography – " + image.Tag("Subject") + " – " + image.Tag("Location") + " – " + image.DateTaken.ToString("d");
+            ViewBag.Subtitle = "Photography – "
+                + image.Tag("Subject")
+                + (string.IsNullOrEmpty(image.Tag("Subject")) ? "" : " – ")
+                + image.Tag("Location")
+                + (string.IsNullOrEmpty(image.Tag("Location")) ? "" : " – ")
+                + image.DateTaken.ToString("d");
             return View(image);
         }
     }

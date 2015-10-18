@@ -5,7 +5,7 @@ using Microsoft.AspNet.Razor.Runtime.TagHelpers;
 
 namespace Web.Helpers
 {
-    [TargetElement("rimg", Attributes = "base")]
+    [HtmlTargetElement("rimg", Attributes = "base")]
     public class ResponsiveImage : TagHelper
     {
         public string Base { get; set; }
