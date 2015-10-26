@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Xml.Linq;
 using Microsoft.AspNet.Mvc;
-using Microsoft.Data.Entity;
 using Web.Helpers;
 using Web.Models;
 
@@ -9,13 +8,6 @@ namespace Web.Controllers
 {
     public class SitemapController : Controller
     {
-        private readonly DB db;
-
-        public SitemapController()
-        {
-            db = new DB();
-        }
-
         [HttpGet("sitemap.xml")]
         public string Index()
         {
@@ -23,15 +15,8 @@ namespace Web.Controllers
 
             addCmsSitemap(xml);
             addPhotoSitemap(xml);
-            addTalksSitemap(xml);
 
             return new XDocument(new XDeclaration("1.0", "UTF-8", null), xml).ToString().Replace(" xmlns=\"\"", "");
-        }
-
-        private static void addTalksSitemap(XContainer xml)
-        {
-            xml.Add(urlElementFor("talks"));
-            xml.Add(urlElementFor("talks/hewny15"));
         }
 
         private static void addCmsSitemap(XContainer xml)
@@ -55,10 +40,8 @@ namespace Web.Controllers
             foreach (var photo in Cache.Images)
                 xml.Add(urlElementFor("photo/image/" + photo.ID));
 
-            var tags = db.Tags
-               .Include(t => t.TagType)
-               .Include(t => t.ImageTags)
-               .ThenInclude(it => it.Image)
+            var allTags = Cache.Images.SelectMany(i => i.ImageTags.Select(it => it.Tag)).Distinct();
+            var tags = allTags
                .Where(t => t.ImageTags.Any(it => it.Image.Enabled))
                .OrderBy(t => t.TagType.ID)
                .ThenBy(t => t.ID)

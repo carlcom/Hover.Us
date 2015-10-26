@@ -1,6 +1,5 @@
-using System.Net;
+using System.Linq;
 using System.Xml.Linq;
-using Microsoft.AspNet.Mvc.ViewFeatures;
 using Microsoft.AspNet.Razor.Runtime.TagHelpers;
 using Web.Models;
 
@@ -18,7 +17,7 @@ namespace Web.Helpers
             output.TagMode = TagMode.StartTagAndEndTag;
 
             var content = XDocument.Parse("<root>" + Page.Body + "</root>");
-            var images = content.Descendants("img");
+            var images = content.Descendants("rimg");
             foreach (var image in images)
                 ResponsiveImage.UpdateTag(image);
 

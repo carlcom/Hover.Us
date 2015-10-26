@@ -99,34 +99,6 @@ namespace Test
         }
 
         [Fact]
-        public void CategoryIndex()
-        {
-            driver.Navigate().GoToUrl(baseURL + "/about");
-            Assert.Contains("welcome", driver.FindElement(By.TagName("body")).Text);
-        }
-
-        [Fact]
-        public void CategoryIndexSlash()
-        {
-            driver.Navigate().GoToUrl(baseURL + "/about/");
-            Assert.Contains("welcome", driver.FindElement(By.TagName("body")).Text);
-        }
-
-        [Fact]
-        public void PostFromCategoryWithIndex()
-        {
-            driver.Navigate().GoToUrl(baseURL + "/about/datacenter");
-            Assert.Contains("machines", driver.FindElement(By.TagName("body")).Text);
-        }
-
-        [Fact]
-        public void PostFromCategoryWithIndexSlash()
-        {
-            driver.Navigate().GoToUrl(baseURL + "/about/datacenter/");
-            Assert.Contains("machines", driver.FindElement(By.TagName("body")).Text);
-        }
-
-        [Fact]
         public void Photos()
         {
             driver.Navigate().GoToUrl(baseURL + "/photo");
@@ -166,34 +138,6 @@ namespace Test
         {
             driver.Navigate().GoToUrl(baseURL + "/Talks/HEWNY15/");
             Assert.Equal("There's an App for That", driver.Title);
-        }
-
-        [Fact]
-        public void CapitalizedCategoryIndex()
-        {
-            driver.Navigate().GoToUrl(baseURL + "/About");
-            Assert.Contains("welcome", driver.FindElement(By.TagName("body")).Text);
-        }
-
-        [Fact]
-        public void CapitalizedCategoryIndexSlash()
-        {
-            driver.Navigate().GoToUrl(baseURL + "/About/");
-            Assert.Contains("welcome", driver.FindElement(By.TagName("body")).Text);
-        }
-
-        [Fact]
-        public void CapitalizedPostFromCategoryWithIndex()
-        {
-            driver.Navigate().GoToUrl(baseURL + "/About/Datacenter");
-            Assert.Contains("machines", driver.FindElement(By.TagName("body")).Text);
-        }
-
-        [Fact]
-        public void CapitalizedPostFromCategoryWithIndexSlash()
-        {
-            driver.Navigate().GoToUrl(baseURL + "/About/Datacenter/");
-            Assert.Contains("machines", driver.FindElement(By.TagName("body")).Text);
         }
 
         [Fact]

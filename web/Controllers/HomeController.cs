@@ -9,22 +9,19 @@ namespace Web.Controllers
     {
         public IActionResult Index()
         {
-            var pages = Cache.Pages.Where(p => p.Aggregate).OrderByDescending(p => p.Timestamp);
-            return View(pages);
+            ViewBag.Posts = Cache.FrontPagePosts;
+            ViewBag.Images = Cache.FrontPageImages;
+            return View();
         }
 
         public IActionResult Page(string url)
         {
-            var page = Cache.Pages.FirstOrDefault(p => p.Category.Matches("Home") && p.URL.Matches(url));
-            if (page != null)
-                return SubPage(page);
-
             var pages = Cache.Pages.Where(p => p.Category.Matches(url) && p.Aggregate).OrderByDescending(p => p.Timestamp);
             if (!pages.Any())
                 return Redirect("/");
 
             ViewBag.Subtitle = pages.First().Category;
-            return View("Index", pages);
+            return View(pages);
         }
 
         public IActionResult SubPage(string category, string url)
@@ -37,7 +34,7 @@ namespace Web.Controllers
 
         private IActionResult SubPage(Page page)
         {
-            ViewBag.Subtitle = (page.Category.Matches("Home") ? "" : page.Category + " – ") + page.Title;
+            ViewBag.Subtitle = page.Category + " – " + page.Title;
             return View("SubPage", page);
         }
     }

@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
     @{
-        var name = "Steve Desmond";
+        const string name = "Steve Desmond";
+        const string description = "Software developer and photographer from Ithaca, NY";
         var title = !string.IsNullOrEmpty(ViewBag.Subtitle) ? name + " – " + ViewBag.Subtitle : name;
-        var description = "Software developer and photographer from Ithaca, NY";
     }
     <title>@title</title>
     <meta name="description" content="@description" />
@@ -16,8 +16,8 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="stevedesmond_ca" />
     <meta name="twitter:title" content="@title" />
-    <meta name="twitter:description" content="@description"/>
-    <meta name="twitter:image" content="http://images.vtsv.ca/steve-0300.jpg"/>
+    <meta name="twitter:description" content="@description" />
+    <meta name="twitter:image" content="http://images.vtsv.ca/steve-0300.jpg" />
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/index.css" />
@@ -36,42 +36,7 @@
             </a>
         </h1>
     </div>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <ul class="nav navbar-nav">
-                <li class="hidden-print">
-                    <a href="/">
-                        <i class="fa fa-home"></i>
-                        <span>Home</span>
-                    </a>
-                </li>
-                <li class="hidden-print">
-                    <a href="/photo">
-                        <i class="fa fa-camera"></i>
-                        <span>Photography</span>
-                    </a>
-                </li>
-                <li class="hidden-print">
-                    <a href="/talks">
-                        <i class="fa fa-comment"></i>
-                        <span>Talks</span>
-                    </a>
-                </li>
-                <li class="visible-xs hidden-print">
-                    <a target="_blank" href="https://github.com/stevedesmond-ca">
-                        <i class="fa fa-github"></i>
-                        <span>Github</span>
-                    </a>
-                </li>
-                <li class="visible-xs hidden-print">
-                    <a target="_blank" href="https://twitter.com/stevedesmond_ca">
-                        <i class="fa fa-twitter"></i>
-                        <span>Twitter</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    @Html.Partial("Navbar")
     <img alt="Steve" class="profile-photo" src="@Startup.ImageBase/steve-0300.jpg"
          srcset="@Startup.ImageBase/steve-0100.jpg 100w,
                 @Startup.ImageBase/steve-0150.jpg 150w,
@@ -80,6 +45,9 @@
          sizes="(max-width: 767px) 100px, 150px" />
     <div class="container">
         @RenderBody()
+
+        <hr />
+
         <small id="copyright" class="pull-right">&copy; Steve Desmond</small>
     </div>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />

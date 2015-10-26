@@ -1,7 +1,25 @@
-﻿@model IEnumerable<Web.Models.Page>
+﻿@using Web.Models
 
-@foreach (var page in Model)
-{
-    @Html.Partial("SubPage", page)
-    <hr />
-}
+<h4>First Time Here?</h4>
+<p>Learn a little <a href="/about">About Steve</a></p>
+
+<hr/>
+
+<h4>Recent Blog Posts</h4>
+<ul class="list-unstyled">
+    @foreach (Page post in ViewBag.Posts)
+    {
+        <li>
+            <div class="shortdate">@post.Timestamp.ToString("MMM d")</div>
+            -
+            <a href="/blog/@post.URL.ToLower()"><b>@post.Title</b></a>
+        </li>
+    }
+</ul>
+<a href="/blog"><i>(more)</i></a>
+
+<hr />
+
+<h4>Recent Photos</h4>
+@Html.Partial("~/Views/Photo/Gallery", (IEnumerable<Image>)ViewBag.Images)
+<a href="/photo"><i>(more)</i></a>

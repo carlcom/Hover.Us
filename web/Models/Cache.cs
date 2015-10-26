@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Data.Entity;
+using Web.Helpers;
 
 namespace Web.Models
 {
@@ -19,7 +20,7 @@ namespace Web.Models
                 }
                 return pages;
             }
-        }  
+        }
 
         private static IList<Image> images;
         public static IList<Image> Images
@@ -39,10 +40,46 @@ namespace Web.Models
             }
         }
 
+        private static IList<Page> frontPagePosts;
+        public static IList<Page> FrontPagePosts
+        {
+            get
+            {
+                if (frontPagePosts == null)
+                {
+                    frontPagePosts = Pages
+                        .Where(p => p.Category.Matches("Blog") && p.Aggregate)
+                        .OrderByDescending(p => p.Timestamp)
+                        .Take(8)
+                        .ToList();
+                }
+                return frontPagePosts;
+            }
+        }
+
+        private static IList<Image> frontPageImages;
+        public static IList<Image> FrontPageImages
+        {
+            get
+            {
+                if (frontPageImages == null)
+                {
+                    frontPageImages = Images
+                        .Where(i => i.Enabled)
+                        .OrderByDescending(i => i.ID)
+                        .Take(8)
+                        .ToList();
+                }
+                return frontPageImages;
+            }
+        }
+
         public static void Flush()
         {
             pages = null;
             images = null;
+            frontPagePosts = null;
+            frontPageImages = null;
         }
     }
 }
