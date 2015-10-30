@@ -47,7 +47,8 @@ namespace Web.Controllers
             if (!authorized)
                 return authorizationPrompt;
 
-            var pages = db.Pages.OrderBy(p => p.Category).ThenBy(p => p.Timestamp);
+            var pages = Cache.Pages.OrderBy(p => p.Category).ThenBy(p => p.Timestamp);
+            ViewBag.Subtitle = "Admin";
             return View(pages);
         }
 
@@ -58,6 +59,7 @@ namespace Web.Controllers
                 return authorizationPrompt;
 
             var page = new Page { ID = db.Pages.Max(p => p.ID) + 1 };
+            ViewBag.Subtitle = "Create";
             return View("Edit", page);
         }
 
@@ -68,7 +70,10 @@ namespace Web.Controllers
                 return authorizationPrompt;
 
             if (!ModelState.IsValid)
+            {
+                ViewBag.Subtitle = "Create";
                 return View("Edit", page);
+            }
 
             db.Pages.Add(page);
             db.SaveChanges();
@@ -85,6 +90,7 @@ namespace Web.Controllers
                 return authorizationPrompt;
 
             var page = db.Pages.First(p => p.ID == id);
+            ViewBag.Subtitle = "Edit – " + page.Title;
             return View(page);
         }
 
@@ -93,6 +99,8 @@ namespace Web.Controllers
         {
             if (!authorized)
                 return authorizationPrompt;
+
+            ViewBag.Subtitle = "Edit – " + page.Title;
 
             if (!ModelState.IsValid)
                 return View(page);

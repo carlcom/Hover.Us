@@ -36,7 +36,7 @@ namespace Web.Helpers
             var img = Path.GetFileNameWithoutExtension(imgSrc.Value).Split('-')[0];
 
             if (image.Attribute("src") == null)
-                image.Add(new XAttribute("src", Startup.ImageBase + "/" + img + "-0240.jpg"));
+                image.Add(new XAttribute("src", Startup.ImageBase + "/" + img + "-1280.jpg"));
 
             if (image.Attribute("sizes") == null)
             {

@@ -8,7 +8,11 @@ namespace Web.Controllers
 {
     public class PhotoController : Controller
     {
-        private IEnumerable<Tag> tags => Cache.Images.SelectMany(i => i.ImageTags.Select(t => t.Tag)).Distinct().ToList();
+        private static IEnumerable<Tag> tags => Cache.Images
+            .SelectMany(i => i.ImageTags.Select(t => t.Tag))
+            .Distinct()
+            .OrderBy(t => t.Name)
+            .ToList();
 
         public IActionResult Index()
         {

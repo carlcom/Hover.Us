@@ -51,7 +51,6 @@ img {
     right: 2%;
     top: 0;
     width: 150px;
-    z-index: 10000;
 }
 
 /* navbar */
@@ -110,6 +109,15 @@ img {
         padding-left: 10px;
         padding-right: 10px;
     }
+
+    .nav-tabs li {
+        padding: 0;
+    }
+
+        .nav-tabs li a {
+            padding: 5px;
+            font-size: 9pt;
+        }
 }
 
 @media (max-width: 767px) {
@@ -191,10 +199,10 @@ img {
 }
 
 @page {
-    margin: 0.5in 0;
+    margin: 0.25in 0;
 }
 
-#resume ~ #copyright {
+#resume ~ #copyright, #resume ~ hr {
     display: none;
 }
 

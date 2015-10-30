@@ -18,11 +18,27 @@
         @foreach (var page in Model)
         {
             <tr>
-                <td>@page.Timestamp</td>
-                <td>@page.Category</td>
-                <td>@Html.ActionLink(page.Title, "edit", new { id = page.ID })</td>
-                <td>@page.Aggregate</td>
-                <td>@page.Crawl</td>
+                <td>
+                    @page.Timestamp.ToString("g")
+                </td>
+                <td>
+                    @page.Category
+                </td>
+                <td>
+                    @Html.ActionLink(page.Title, "Edit", new { id = page.ID })
+                </td>
+                <td>
+                    @if (page.Aggregate)
+                    {
+                        <i class="fa fa-check"></i>
+                    }
+                </td>
+                <td>
+                    @if (page.Crawl)
+                    {
+                        <i class="fa fa-check"></i>
+                    }
+                </td>
             </tr>
         }
     </tbody>
