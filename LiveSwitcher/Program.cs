@@ -3,9 +3,9 @@ using System.Xml.Linq;
 
 namespace LiveSwitcher
 {
-    class Program
+    public static class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             var xml = XDocument.Load("web.config");
             var url = xml.Root?.Element("system.webServer")?.Element("rewrite")?.Element("rules")?.Element("rule")?.Element("action")?.Attribute("url");

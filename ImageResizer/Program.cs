@@ -5,11 +5,11 @@ using System.Threading;
 
 namespace ImageResizer
 {
-    class Program
+    public static class Program
     {
-        static readonly int[] defaultSizes = { 240, 320, 480, 640, 800, 960, 1280, 1600, 1920, 2400 };
+        private static readonly int[] defaultSizes = { 240, 320, 480, 640, 800, 960, 1280, 1600, 1920, 2400 };
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             switch (args.Length)
             {
