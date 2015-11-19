@@ -7,12 +7,7 @@ namespace Web.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
-        {
-            ViewBag.Posts = Cache.FrontPagePosts;
-            ViewBag.Images = Cache.FrontPageImages;
-            return View();
-        }
+        public IActionResult Index() => View();
 
         public IActionResult Page(string url)
         {

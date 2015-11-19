@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.StaticFiles;
-using Microsoft.Framework.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
+using Web.Models;
 
 namespace Web
 {
@@ -11,6 +12,7 @@ namespace Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            Cache.Flush();
         }
 
         public void Configure(IApplicationBuilder app)

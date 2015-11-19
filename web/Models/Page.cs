@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.AspNet.Mvc.Rendering;
 
 namespace Web.Models
 {
@@ -31,6 +30,8 @@ namespace Web.Models
         public bool Partial { get; set; }
 
         public bool NoCrawl { get; set; }
+
+        [NotMapped]
         public bool Crawl => !NoCrawl;
 
         public string TwitterStatus { get; set; }

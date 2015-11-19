@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Microsoft.Data.Entity;
 using Web.Helpers;
@@ -74,12 +75,18 @@ namespace Web.Models
             }
         }
 
+        [SuppressMessage("ReSharper", "UnusedVariable")]
         public static void Flush()
         {
             pages = null;
             images = null;
             frontPagePosts = null;
             frontPageImages = null;
+
+            var a = Pages;
+            var b = Images;
+            var c = FrontPagePosts;
+            var d = FrontPageImages;
         }
     }
 }

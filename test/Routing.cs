@@ -172,28 +172,28 @@ namespace Test
         public void Resume()
         {
             driver.Navigate().GoToUrl(baseURL + "/resume");
-            Assert.Equal("Steve Desmond – Resumé", driver.Title);
+            Assert.Equal("Steve Desmond – Resume", driver.Title);
         }
 
         [Fact]
         public void ResumeSlash()
         {
             driver.Navigate().GoToUrl(baseURL + "/resume/");
-            Assert.Equal("Steve Desmond – Resumé", driver.Title);
+            Assert.Equal("Steve Desmond – Resume", driver.Title);
         }
 
         [Fact]
         public void CapitalizedResume()
         {
             driver.Navigate().GoToUrl(baseURL + "/Resume");
-            Assert.Equal("Steve Desmond – Resumé", driver.Title);
+            Assert.Equal("Steve Desmond – Resume", driver.Title);
         }
 
         [Fact]
         public void CapitalizedResumeSlash()
         {
             driver.Navigate().GoToUrl(baseURL + "/Resume/");
-            Assert.Equal("Steve Desmond – Resumé", driver.Title);
+            Assert.Equal("Steve Desmond – Resume", driver.Title);
         }
 
         [Fact]

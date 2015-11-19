@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Web", "web\Web.xproj", "{CFF8A3E1-9AB7-4FCB-81CD-2786058CF9F7}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Web", "Web\Web.xproj", "{CFF8A3E1-9AB7-4FCB-81CD-2786058CF9F7}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Test", "test\Test.xproj", "{89E149E6-953F-4AB6-8159-BE4EDB88438A}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Test", "Test\Test.xproj", "{89E149E6-953F-4AB6-8159-BE4EDB88438A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSwitcher", "LiveSwitcher\LiveSwitcher.csproj", "{C5C391E0-9A55-46F8-B8F6-A9044A3D1B14}"
 EndProject

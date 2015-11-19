@@ -1,6 +1,5 @@
-using System.Linq;
 using System.Xml.Linq;
-using Microsoft.AspNet.Razor.Runtime.TagHelpers;
+using Microsoft.AspNet.Razor.TagHelpers;
 using Web.Models;
 
 namespace Web.Helpers
@@ -21,7 +20,7 @@ namespace Web.Helpers
             foreach (var image in images)
                 ResponsiveImage.UpdateTag(image);
 
-            output.Content.SetContentEncoded(content.Root.ToString().Replace("<root>", "").Replace("</root>", ""));
+            output.Content.SetHtmlContent(content.Root.ToString().Replace("<root>", "").Replace("</root>", ""));
         }
     }
 }

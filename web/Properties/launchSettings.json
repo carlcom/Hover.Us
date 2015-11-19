@@ -1,4 +1,12 @@
 {
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:54464/",
+      "sslPort": 0
+    }
+  },
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
@@ -13,7 +21,7 @@
       "commandName": "web",
       "launchBrowser": true,
       "launchUrl": "http://localhost:5000/",
-      "sdkVersion": "dnx-coreclr-win-x64.1.0.0-beta8"
+      "sdkVersion": "dnx-coreclr-win-x64.1.0.0-rc1-final"
     }
   }
 }
