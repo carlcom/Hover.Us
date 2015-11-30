@@ -20,7 +20,7 @@ namespace Web.Helpers
             foreach (var image in images)
                 ResponsiveImage.UpdateTag(image);
 
-            output.Content.SetHtmlContent(content.Root.ToString().Replace("<root>", "").Replace("</root>", ""));
+            output.Content.SetHtmlContent(content.Root?.ToString().Replace("<root>", "").Replace("</root>", ""));
         }
     }
 }

@@ -1,32 +1,34 @@
 ﻿@model Web.Models.Page
-<div id="@Model.URL.ToLower()" class="post">
-    @if (!Model.Partial)
-    {
-        <h3 class="title">
-            <a href="/@Model.Category.ToLower()/@Model.URL">
-                @Model.Title
-            </a>
-        </h3>
-        <h4 class="timestamp">
-            <small>
-                <i>@Model.Timestamp.ToString("dddd, MMMM d, yyyy @ h:mm")@Model.Timestamp.ToString("tt").ToLower()</i>
-            </small>
-        </h4>
-    }
-    <content page="Model" />
-    @if (!Model.Partial)
-    {
-        <p class="signature">
-            <i>-Steve</i>
-        </p>
-        if (!string.IsNullOrEmpty(Model.TwitterStatus))
+<div class="row">
+    <div id="@Model.URL.ToLower()" class="post col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2">
+        @if (!Model.Partial)
         {
-            <p class="share">
-                <a href="http://twitter.com/stevedesmond_ca/status/@Model.TwitterStatus" target="_blank">
-                    <i class="fa fa-twitter"></i>
-                    Comment / Share
+            <h3 class="title">
+                <a href="/@Model.Category.ToLower()/@Model.URL">
+                    @Model.Title
                 </a>
-            </p>
+            </h3>
+            <h4 class="timestamp">
+                <small>
+                    <i>@Model.Timestamp.ToString("dddd, MMMM d, yyyy @ h:mm")@Model.Timestamp.ToString("tt").ToLower()</i>
+                </small>
+            </h4>
         }
-    }
+        <content page="Model" />
+        @if (!Model.Partial)
+        {
+            <p class="signature">
+                <i>-Steve</i>
+            </p>
+            if (!string.IsNullOrEmpty(Model.TwitterStatus))
+            {
+                <p class="share">
+                    <a href="http://twitter.com/stevedesmond_ca/status/@Model.TwitterStatus" target="_blank">
+                        <i class="fa fa-twitter"></i>
+                        Comment / Share
+                    </a>
+                </p>
+            }
+        }
+    </div>
 </div>
