@@ -7,7 +7,7 @@ namespace Web
 {
     public class Startup
     {
-        public const string ImageBase = "http://stevedesmond.ca/images";
+        public const string ImageBase = "//stevedesmond.ca/images";
 
         public void ConfigureServices(IServiceCollection services)
         {

@@ -164,7 +164,7 @@ img {
 
     .thumbnail-image:hover {
         border-color: #c00;
-        border-color: rgba(192, 0, 0, 0.5);
+        border-color: rgba(192, 0, 0, 0.75);
     }
 
 #photo-filters {
