@@ -7,7 +7,7 @@
 
     @{
         const string name = "Steve Desmond";
-        const string description = "Software developer and photographer from Ithaca, NY";
+        string description = ViewBag.Description ?? "Software developer and photographer from Ithaca, NY";
         var title = !string.IsNullOrEmpty(ViewBag.Subtitle) ? name + " – " + ViewBag.Subtitle : name;
     }
     <title>@title</title>

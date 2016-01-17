@@ -8,6 +8,14 @@
                     @Model.Title
                 </a>
             </h3>
+            if (!string.IsNullOrEmpty(Model.Description))
+            {
+                <h4 class="description">
+                    <small>
+                        @Model.Description
+                    </small>
+                </h4>
+            }
             <h4 class="timestamp">
                 <small>
                     <i>@Model.Timestamp.ToString("dddd, MMMM d, yyyy @ h:mm")@Model.Timestamp.ToString("tt").ToLower()</i>

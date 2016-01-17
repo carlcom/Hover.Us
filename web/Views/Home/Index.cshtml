@@ -9,10 +9,14 @@
 <ul class="list-unstyled">
     @foreach (Page post in Cache.FrontPagePosts)
     {
-        <li>
+        <li class="post-summary">
             <div class="shortdate">@post.Timestamp.ToString("MMM d")</div>
             -
             <a href="/blog/@post.URL.ToLower()"><b>@post.Title</b></a>
+            <br />
+            <div class="description">
+                <h4><small>@post.Description</small></h4>
+            </div>
         </li>
     }
 </ul>

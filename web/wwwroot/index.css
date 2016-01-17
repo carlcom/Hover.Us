@@ -91,11 +91,25 @@ img {
     float: right !important;
 }
 
-.shortdate {
+/* index */
+
+.post-summary .shortdate {
     display: inline-block;
     min-width: 4em;
     text-align: right;
 }
+
+.post-summary .description {
+    margin-left: 5em;
+}
+
+    .post-summary .description h4 {
+        margin: 0;
+    }
+
+    .post-summary .description small {
+        vertical-align: top;
+    }
 
 /* mobile */
 
