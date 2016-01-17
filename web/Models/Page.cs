@@ -27,12 +27,11 @@ namespace Web.Models
         [Required, Column("Live")]
         public bool Aggregate { get; set; }
 
+        [Required]
         public bool Partial { get; set; }
 
-        public bool NoCrawl { get; set; }
-
-        [NotMapped]
-        public bool Crawl => !NoCrawl;
+        [Required]
+        public bool Crawl { get; set; }
 
         public string TwitterStatus { get; set; }
     }
