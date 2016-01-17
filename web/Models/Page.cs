@@ -9,14 +9,17 @@ namespace Web.Models
         [Required]
         public int ID { get; set; }
 
-        [Required]
+        [Required, MaxLength(10)]
         public string Category { get; set; }
 
-        [Required]
+        [Required, MaxLength(50)]
         public string URL { get; set; }
 
-        [Required]
+        [Required, MaxLength(50)]
         public string Title { get; set; }
+
+        [MaxLength(250)]
+        public string Description { get; set; }
 
         [Required]
         public string Body { get; set; }

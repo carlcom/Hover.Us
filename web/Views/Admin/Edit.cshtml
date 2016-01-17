@@ -57,6 +57,13 @@
 
 <div class="row">
     <div class="form-group col-sm-12">
+        @Html.LabelFor(p => p.Description)
+        @Html.TextBoxFor(p => p.Description, new { Class = "form-control" })
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group col-sm-12">
         @Html.LabelFor(p => p.Body)
         @Html.TextAreaFor(p => p.Body, new { Class = "form-control", style = "height: 25em;" })
     </div>
