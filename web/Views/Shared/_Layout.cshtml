@@ -1,4 +1,6 @@
-﻿@using Web
+﻿@using System.IO
+@using Microsoft.AspNet.Http.Extensions
+@using Web
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,17 +15,20 @@
     <title>@title</title>
     <meta name="description" content="@description" />
 
+    <meta name="og:site_name" content="Steve Desmond" />
+    <meta name="og:type" content="article" />
+    <meta name="og:title" content="@title" />
+    <meta name="og:description" content="@description" />
+    <meta name="og:url" content="@Context.Request.GetDisplayUrl()" />
+    <meta name="og:image" content="http://stevedesmond.ca/images/steve-0300.jpg" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="stevedesmond_ca" />
-    <meta name="twitter:title" content="@title" />
-    <meta name="twitter:description" content="@description" />
-    <meta name="twitter:image" content="http://stevedesmond.ca/images/steve-0300.jpg" />
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="/index.css" />
+    <link rel="stylesheet" type="text/css" href="/index.css?@Math.Abs(File.ReadAllText("wwwroot/index.css").GetHashCode())" />
 </head>
 <body>
-    <div class="header">
+    <header>
         <h1 class="title">
             <a href="/">Steve Desmond</a>
         </h1>
@@ -35,22 +40,23 @@
                 <i class="fa fa-twitter"></i>
             </a>
         </h1>
-    </div>
-    @Html.Partial("Navbar")
-    <img alt="Steve" class="profile-photo" src="@Startup.ImageBase/steve-0300.jpg"
-         srcset="@Startup.ImageBase/steve-0100.jpg 100w,
+        @Html.Partial("Navbar")
+        <img alt="Steve" class="profile-photo" src="@Startup.ImageBase/steve-0300.jpg"
+             srcset="@Startup.ImageBase/steve-0100.jpg 100w,
                 @Startup.ImageBase/steve-0150.jpg 150w,
                 @Startup.ImageBase/steve-0200.jpg 200w,
                 @Startup.ImageBase/steve-0300.jpg 300w"
-         sizes="(max-width: 767px) 100px, 150px" />
-    <div class="container">
+             sizes="(max-width: 767px) 100px, 150px" />
+    </header>
+    <main class="container">
         @RenderBody()
+    </main>
 
+    <footer class="container">
         <hr />
-
         <small id="copyright" class="pull-right">&copy; Steve Desmond</small>
-    </div>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
-    @Html.Partial("GA")
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+        @Html.Partial("GA")
+    </footer>
 </body>
 </html>

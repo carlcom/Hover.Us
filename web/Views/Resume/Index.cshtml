@@ -1,9 +1,9 @@
 ﻿@model Web.Models.Page
-<div id="resume" class="row">
-    <div class="contact">
+<article id="resume" class="row">
+    <section class="contact">
         @Html.Raw(ViewBag.ContactInfo)
-    </div>
-    <div class="content col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2">
+    </section>
+    <section class="content col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2">
         @Html.Raw(Model.Body)
-    </div>
-</div>
+    </section>
+</article>

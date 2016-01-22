@@ -6,12 +6,12 @@ h1, h2, h3 {
 
 h1 {
     margin: 0;
-    padding: 0.5em;
+    padding: 18px;
 }
 
     h1 a {
         color: #000;
-        padding: 0.5em;
+        padding: 18px;
     }
 
         h1 a:hover,
@@ -83,29 +83,21 @@ img {
     float: left !important;
 }
 
-    .navbar-nav.navbar-right:last-child {
-        margin-right: -15px !important;
-    }
-
-.navbar-right {
-    float: right !important;
-}
-
 /* index */
 
-.post-summary .shortdate {
+.post-summary time {
     display: inline-block;
-    min-width: 4em;
+    width: 50px;
     text-align: right;
 }
 
-.post-summary .description {
-    margin-left: 5em;
+.post-summary .title {
+    margin-left: 5px;
 }
 
-    .post-summary .description h4 {
-        margin: 0;
-    }
+.post-summary .description {
+    margin: 0 0 0 60px;
+}
 
     .post-summary .description small {
         vertical-align: top;
@@ -157,10 +149,6 @@ img {
 
 /* photo section */
 
-.gallery {
-    text-align: center;
-}
-
 .thumbnail-image {
     background-position: center;
     background-repeat: no-repeat;
@@ -183,7 +171,7 @@ img {
 
 #photo-filters {
     min-height: 34px;
-    margin-bottom: 1em;
+    margin-bottom: 10px;
 }
 
     #photo-filters > a {

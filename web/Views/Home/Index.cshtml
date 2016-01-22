@@ -1,29 +1,30 @@
 ﻿@using Web.Models
-
-<h4>First Time Here?</h4>
-<p>Learn a little <a href="/about">About Steve</a></p>
-
+<section id="intro">
+    <h4>First Time Here?</h4>
+    <ul>
+        <li>Learn a little <a href="/about">about me</a></li>
+        <li>Check out my <a href="/resume">resume</a> <!-- and <a href="/portfolio">portfolio</a> --> <small><i>(wink wink, nudge nudge)</i></small></li>
+        <li></li>
+    </ul>
+</section>
 <hr />
-
-<h4>Recent Blog Posts</h4>
-<ul class="list-unstyled">
-    @foreach (Page post in Cache.FrontPagePosts)
-    {
-        <li class="post-summary">
-            <div class="shortdate">@post.Timestamp.ToString("MMM d")</div>
-            -
-            <a href="/blog/@post.URL.ToLower()"><b>@post.Title</b></a>
-            <br />
-            <div class="description">
-                <h4><small>@post.Description</small></h4>
-            </div>
-        </li>
-    }
-</ul>
-<a href="/blog"><i>(more)</i></a>
-
+<section id="blog">
+    <h4>Recent Blog Posts</h4>
+    <ul class="list-unstyled">
+        @foreach (Page post in Cache.FrontPagePosts)
+        {
+            <li class="post-summary">
+                <time>@post.Timestamp.ToString("MMM d")</time>
+                <a class="title" href="/blog/@post.URL.ToLower()"><b>@post.Title</b></a>
+                <h4 class="description"><small>@post.Description</small></h4>
+            </li>
+        }
+    </ul>
+    <a href="/blog"><i>(more)</i></a>
+</section>
 <hr />
-
-<h4>Recent Photos</h4>
-@Html.Partial("~/Views/Photo/Gallery", Cache.FrontPageImages)
-<a href="/photo"><i>(more)</i></a>
+<section id="photos">
+    <h4>Recent Photos</h4>
+    @Html.Partial("~/Views/Photo/Gallery", Cache.FrontPageImages)
+    <a href="/photo"><i>(more)</i></a>
+</section>

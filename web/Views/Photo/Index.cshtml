@@ -30,7 +30,7 @@
 
 <h3>@ViewBag.Subtitle</h3>
 
-<div id="photo-filters" class="form-inline">
+<section id="photo-filters" class="form-inline">
     <a href="javascript:toggleFilters()">
         <i id="filter-toggle" class="fa fa-caret-right"></i>
         <label for="filter-toggle">Filter</label>
@@ -42,6 +42,6 @@
         @FilterDropdown(ViewBag.Treatments, "Treatment")
         @FilterDropdown(ViewBag.Orientations, "Orientation")
     </span>
-</div>
+</section>
 
 @Html.Partial("Gallery", Model)
