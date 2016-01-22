@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNet.Builder;
+﻿using System;
+using System.IO;
+using Microsoft.AspNet.Builder;
+using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.StaticFiles;
 using Microsoft.Extensions.DependencyInjection;
 using Web.Models;
@@ -7,7 +10,15 @@ namespace Web
 {
     public class Startup
     {
-        public const string ImageBase = "//stevedesmond.ca/images";
+        public static int cssHash;
+        public const string ImageBase = "https://stevedesmond.ca/images";
+
+        public Startup(IHostingEnvironment env)
+        {
+            var cssPath = Path.Combine(env.WebRootPath, "index.css");
+            var cssFile = File.ReadAllText(cssPath);
+            cssHash = Math.Abs(cssFile.GetHashCode());
+        }
 
         public void ConfigureServices(IServiceCollection services)
         {

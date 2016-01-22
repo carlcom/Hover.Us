@@ -1,5 +1,4 @@
-﻿@using System.IO
-@using Microsoft.AspNet.Http.Extensions
+﻿@using Microsoft.AspNet.Http.Extensions
 @using Web
 <!DOCTYPE html>
 <html>
@@ -15,7 +14,7 @@
     <title>@title</title>
     <meta name="description" content="@description" />
 
-    <meta name="og:site_name" content="Steve Desmond" />
+    <meta name="og:site_name" content="@name" />
     <meta name="og:type" content="article" />
     <meta name="og:title" content="@title" />
     <meta name="og:description" content="@description" />
@@ -25,7 +24,7 @@
     <meta name="twitter:site" content="stevedesmond_ca" />
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="/index.css?@Math.Abs(File.ReadAllText("wwwroot/index.css").GetHashCode())" />
+    <link rel="stylesheet" type="text/css" href="/index.css?@Startup.cssHash" />
 </head>
 <body>
     <header>
