@@ -2,26 +2,20 @@
 
 h1, h2, h3 {
     font-weight: bold;
+    display: inline-block;
 }
 
-h1 {
-    margin: 0;
-    padding: 18px;
-}
-
-    h1 a {
-        color: #000;
+    h1, h1 a {
+        margin: 0;
         padding: 18px;
     }
 
+        h1,
+        h1 a,
         h1 a:hover,
         h1 a:focus {
-            color: #999;
+            color: #000;
         }
-
-    h1.title {
-        display: inline-block;
-    }
 
 a:hover, a:focus {
     text-decoration: none;
@@ -107,7 +101,6 @@ img {
 
 @media (max-width: 480px) {
     .navbar-inverse .navbar-nav > li > a {
-        font-size: 125%;
         padding-left: 10px;
         padding-right: 10px;
     }
@@ -123,13 +116,18 @@ img {
 }
 
 @media (max-width: 767px) {
-    h1, .navbar-inverse a {
-        font-size: 150%;
+    h1, h1 a {
+        font-size: 24px;
+        padding: 10px;
     }
 
     .navbar-inverse {
         min-height: 40px;
     }
+
+        .navbar-inverse .navbar-nav > li > a {
+            font-size: 18px;
+        }
 
         .navbar-inverse a span {
             display: none;
@@ -183,9 +181,22 @@ img {
             width: 8px;
         }
 
-/* resume */
+/* resume printing */
 
 @media print {
+
+    h3 {
+        font-size: 18px;
+    }
+
+    h4 {
+        font-size: 16px;
+    }
+
+    i, li {
+        font-size: 12px;
+    }
+
     .navbar {
         background: #900 linear-gradient(#a00, #800) !important;
         display: inherit;
@@ -198,10 +209,6 @@ img {
 
 @page {
     margin: 0.25in 0;
-}
-
-#resume ~ #copyright, #resume ~ hr {
-    display: none;
 }
 
 /* talks */

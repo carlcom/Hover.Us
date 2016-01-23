@@ -47,13 +47,17 @@
                 @Startup.ImageBase/steve-0300.jpg 300w"
              sizes="(max-width: 767px) 100px, 150px" />
     </header>
+
     <main class="container">
         @RenderBody()
     </main>
 
     <footer class="container">
-        <hr />
-        <small id="copyright" class="pull-right">&copy; Steve Desmond</small>
+        @if (!(ViewBag.NoFooter ?? false))
+        {
+            <hr />
+            <small id="copyright" class="pull-right">&copy; Steve Desmond</small>
+        }
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
         @Html.Partial("GA")
     </footer>
