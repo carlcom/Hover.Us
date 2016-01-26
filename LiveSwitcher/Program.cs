@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -20,7 +21,7 @@ namespace LiveSwitcher
             if (args.Length >= 1)
             {
                 url.SetValue("http://127.0.0.1:" + args[0] + "/{R:1}");
-                xml.Save("web.config");
+                xml.Save(new FileStream("web.config", FileMode.OpenOrCreate));
             }
             Console.WriteLine(url.Value);
         }
