@@ -34,6 +34,9 @@ namespace Web.Models
         public bool Partial { get; set; }
 
         [Required]
+        public bool FullWidth { get; set; }
+
+        [Required]
         public bool Crawl { get; set; }
 
         public string TwitterStatus { get; set; }

@@ -83,19 +83,24 @@
 </div>
 
 <div class="row">
-    <div class="form-group col-sm-4">
-        @Html.LabelFor(p => p.Aggregate)
+    <div class="form-group col-sm-3">
         @Html.CheckBoxFor(p => p.Aggregate)
+        @Html.LabelFor(p => p.Aggregate)
     </div>
 
-    <div class="form-group col-sm-4">
-        @Html.LabelFor(p => p.Partial)
+    <div class="form-group col-sm-3">
         @Html.CheckBoxFor(p => p.Partial)
+        @Html.LabelFor(p => p.Partial)
     </div>
 
-    <div class="form-group col-sm-4">
-        @Html.LabelFor(p => p.Crawl)
+    <div class="form-group col-sm-3">
+        @Html.CheckBoxFor(p => p.FullWidth)
+        @Html.LabelFor(p => p.FullWidth)
+    </div>
+
+    <div class="form-group col-sm-3">
         @Html.CheckBoxFor(p => p.Crawl)
+        @Html.LabelFor(p => p.Crawl)
     </div>
 </div>
 

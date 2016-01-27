@@ -1,52 +1,51 @@
 ﻿@model Web.Models.Page
-<article id="@Model.URL.ToLower()" class="row">
-    <div class="post col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2">
-        @if (!Model.Partial)
-        {
-            <header>
-                <h3 class="title">
-                    <a href="/@Model.Category.ToLower()/@Model.URL">
-                        @Model.Title
-                    </a>
-                </h3>
-                @if (!string.IsNullOrEmpty(Model.Description))
+@{ var articleStyle = (Model.FullWidth) ? "row" : "row col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2"; }
+<article id="@Model.URL.ToLower()" class="@articleStyle">
+    @if (!Model.Partial)
+    {
+        <header>
+            <h3 class="title">
+                <a href="/@Model.Category.ToLower()/@Model.URL">
+                    @Model.Title
+                </a>
+            </h3>
+            @if (!string.IsNullOrEmpty(Model.Description))
                 {
-                    <h4 class="description">
-                        <small>
-                            @Model.Description
-                        </small>
-                    </h4>
-                }
-                <h4 class="timestamp">
+                <h4 class="description">
                     <small>
-                        <i>
-                            <time>@Model.Timestamp.ToString("dddd, MMMM d, yyyy @ h:mm")@Model.Timestamp.ToString("tt").ToLower()</time>
-                        </i>
+                        @Model.Description
                     </small>
                 </h4>
-            </header>
-        }
+            }
+            <h4 class="timestamp">
+                <small>
+                    <i>
+                        <time>@Model.Timestamp.ToString("dddd, MMMM d, yyyy @ h:mm")@Model.Timestamp.ToString("tt").ToLower()</time>
+                    </i>
+                </small>
+            </h4>
+        </header>
+    }
 
-        <section>
-            <content page="Model" />
-        </section>
+    <section>
+        <content page="Model" />
+    </section>
 
-        @if (!Model.Partial)
-        {
-            <footer>
-                <p class="signature">
-                    <i>-Steve</i>
-                </p>
-                @if (!string.IsNullOrEmpty(Model.TwitterStatus))
+    @if (!Model.Partial)
+    {
+        <footer>
+            <p class="signature">
+                <i>-Steve</i>
+            </p>
+            @if (!string.IsNullOrEmpty(Model.TwitterStatus))
                 {
-                    <p class="share">
-                        <a href="http://twitter.com/stevedesmond_ca/status/@Model.TwitterStatus" target="_blank">
-                            <i class="fa fa-twitter"></i>
-                            Comment / Share
-                        </a>
-                    </p>
-                }
-            </footer>
-        }
-    </div>
+                <p class="share">
+                    <a href="http://twitter.com/stevedesmond_ca/status/@Model.TwitterStatus" target="_blank">
+                        <i class="fa fa-twitter"></i>
+                        Comment / Share
+                    </a>
+                </p>
+            }
+        </footer>
+    }
 </article>
