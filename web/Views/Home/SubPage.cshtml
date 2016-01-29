@@ -1,9 +1,9 @@
 ﻿@model Web.Models.Page
-@{ var articleStyle = (Model.FullWidth) ? "row" : "row col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2"; }
-<article id="@Model.URL.ToLower()" class="@articleStyle">
+@{ var articleStyle = (Model.FullWidth) ? "" : "col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2"; }
+<article id="@Model.URL.ToLower()" class="row">
     @if (!Model.Partial)
     {
-        <header>
+        <header class="@articleStyle">
             <h3 class="title">
                 <a href="/@Model.Category.ToLower()/@Model.URL">
                     @Model.Title
@@ -27,13 +27,13 @@
         </header>
     }
 
-    <section>
+    <section class="@articleStyle">
         <content page="Model" />
     </section>
 
     @if (!Model.Partial)
     {
-        <footer>
+        <footer class="@articleStyle">
             <p class="signature">
                 <i>-Steve</i>
             </p>
