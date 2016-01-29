@@ -75,6 +75,36 @@ namespace Web.Models
             }
         }
 
+        private static string navbar;
+        public static string Navbar
+        {
+            get
+            {
+                if (navbar == null)
+                {
+                    navbar = Pages
+                        .First(p => p.Category == "Main" && p.Title == "Navbar")
+                        .Body;
+                }
+                return navbar;
+            }
+        }
+
+        private static string intro;
+        public static string Intro
+        {
+            get
+            {
+                if (intro == null)
+                {
+                    intro = Pages
+                        .First(p => p.Category == "Main" && p.Title == "Intro")
+                        .Body;
+                }
+                return intro;
+            }
+        }
+
         [SuppressMessage("ReSharper", "UnusedVariable")]
         public static void Flush()
         {
@@ -82,11 +112,15 @@ namespace Web.Models
             images = null;
             frontPagePosts = null;
             frontPageImages = null;
+            navbar = null;
+            intro = null;
 
             var a = Pages;
             var b = Images;
             var c = FrontPagePosts;
             var d = FrontPageImages;
+            var e = Navbar;
+            var f = Intro;
         }
     }
 }

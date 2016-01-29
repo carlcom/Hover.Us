@@ -1,35 +1,7 @@
-﻿<nav class="navbar navbar-inverse container-fluid">
+﻿@using Web.Models
+<nav class="navbar navbar-inverse container-fluid">
     <ul class="nav navbar-nav">
-        <li class="hidden-print">
-            <a href="/">
-                <i class="fa fa-home"></i>
-                <span>Home</span>
-            </a>
-        </li>
-        <li class="hidden-print">
-            <a href="/about">
-                <i class="fa fa-user"></i>
-                <span>About</span>
-            </a>
-        </li>
-        <li class="hidden-print">
-            <a href="/blog">
-                <i class="fa fa-file-text"></i>
-                <span>Blog</span>
-            </a>
-        </li>
-        <li class="hidden-print">
-            <a href="/photo">
-                <i class="fa fa-camera"></i>
-                <span>Photography</span>
-            </a>
-        </li>
-        <li class="hidden-print">
-            <a href="/talks">
-                <i class="fa fa-comment"></i>
-                <span>Talks</span>
-            </a>
-        </li>
+        @Html.Raw(Cache.Navbar)
         <li class="visible-xs hidden-print">
             <a target="_blank" href="https://github.com/stevedesmond-ca">
                 <i class="fa fa-github"></i>
