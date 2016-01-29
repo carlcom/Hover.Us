@@ -1,8 +1,11 @@
-﻿@model Web.Models.Image
+﻿@using System.Threading.Tasks
+@using Web
+@model Web.Models.Image
 
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:description" content="@ViewBag.Subtitle"/>
-<meta name="twitter:image" content="http://stevedesmond.ca/images/@Model.Name-0960.jpg"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="og:description" content="@ViewBag.Subtitle" />
+<meta name="og:image" content="@Startup.ImageBase/@Model.Name-0960.jpg" />
+<meta name="twitter:image" content="@Startup.ImageBase/@Model.Name-0960.jpg" />
 
 <h3 class="text-center">@ViewBag.Subtitle</h3>
 <rimg base="@Model.Name" alt="@string.Join("; ", Model.ImageTags.Select(it => it.Tag).Select(t => t.Name))" />

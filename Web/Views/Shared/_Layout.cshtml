@@ -16,14 +16,14 @@
 
     <meta name="og:site_name" content="@name" />
     <meta name="og:type" content="article" />
+    <meta name="og:url" content="@Context.Request.GetDisplayUrl()" />
     <meta name="og:title" content="@title" />
     <meta name="og:description" content="@description" />
-    <meta name="og:url" content="@Context.Request.GetDisplayUrl()" />
-    <meta name="og:image" content="http://stevedesmond.ca/images/steve-0300.jpg" />
+    <meta name="og:image" content="@Startup.ImageBase/steve-0300.jpg" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="stevedesmond_ca" />
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/index.css?@Startup.cssHash" />
 </head>
 <body>

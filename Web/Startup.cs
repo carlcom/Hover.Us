@@ -11,7 +11,8 @@ namespace Web
     public class Startup
     {
         public static int cssHash;
-        public const string ImageBase = "https://stevedesmond.ca/images";
+        public const string Domain = "https://stevedesmond.ca/";
+        public const string ImageBase = Domain + "images";
 
         public Startup(IHostingEnvironment env)
         {
