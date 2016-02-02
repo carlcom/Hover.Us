@@ -7,8 +7,6 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Web", "Web\Web.xproj", "{CF
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Test", "Test\Test.xproj", "{89E149E6-953F-4AB6-8159-BE4EDB88438A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageResizer", "ImageResizer\ImageResizer.csproj", "{E9D17DBF-7F25-4703-8C1D-C9ABA7586FA7}"
-EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "LiveSwitcher", "LiveSwitcher\LiveSwitcher.xproj", "{5A43D89F-E500-455A-B566-B6B1A2285968}"
 EndProject
 Global
@@ -25,10 +23,6 @@ Global
 		{89E149E6-953F-4AB6-8159-BE4EDB88438A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89E149E6-953F-4AB6-8159-BE4EDB88438A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89E149E6-953F-4AB6-8159-BE4EDB88438A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E9D17DBF-7F25-4703-8C1D-C9ABA7586FA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E9D17DBF-7F25-4703-8C1D-C9ABA7586FA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E9D17DBF-7F25-4703-8C1D-C9ABA7586FA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E9D17DBF-7F25-4703-8C1D-C9ABA7586FA7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5A43D89F-E500-455A-B566-B6B1A2285968}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5A43D89F-E500-455A-B566-B6B1A2285968}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A43D89F-E500-455A-B566-B6B1A2285968}.Release|Any CPU.ActiveCfg = Release|Any CPU
