@@ -47,7 +47,7 @@ namespace Web.Controllers
             if (!authorized)
                 return authorizationPrompt;
 
-            var pages = Cache.Pages.OrderBy(p => p.Category).ThenBy(p => p.Timestamp);
+            var pages = Cache.Pages.OrderBy(p => p.Category).ThenByDescending(p => p.Timestamp);
             ViewBag.Subtitle = "Admin";
             return View(pages);
         }
