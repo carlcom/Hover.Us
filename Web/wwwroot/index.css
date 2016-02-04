@@ -8,13 +8,12 @@ h1, h2, h3 {
     h1, h1 a {
         margin: 0;
         padding: 18px;
+        color: #000;
     }
 
-        h1,
-        h1 a,
         h1 a:hover,
         h1 a:focus {
-            color: #000;
+            color: #333;
         }
 
 a:hover, a:focus {
@@ -52,28 +51,17 @@ img {
     font-weight: bold;
 }
 
-    .navbar-inverse .navbar-nav > li > a,
-    .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
-        color: #eee;
-    }
-
-        .navbar-inverse .dropdown-menu > li > a:hover,
-        .navbar-inverse .dropdown-menu > li > a:focus,
-        .navbar-inverse .navbar-nav > li > a:hover,
-        .navbar-inverse .navbar-nav > li > a:focus,
-        .navbar-inverse .navbar-nav > .open > a,
-        .navbar-inverse .navbar-nav > .open > a:focus,
-        .navbar-inverse .navbar-nav > .open > a:hover,
-        .navbar-inverse .navbar-toggle:focus,
-        .navbar-inverse .navbar-toggle:hover {
-            background-color: #600;
-        }
-
-.navbar-collapse.collapse {
-    display: block !important;
+.navbar-nav li a {
+    color: #eee !important;
 }
 
-.navbar-nav > li, .navbar-nav {
+.navbar-nav a:hover,
+.navbar-nav a:focus {
+    background: #600 linear-gradient(#700, #500);
+}
+
+.navbar-nav,
+.navbar-nav li {
     float: left !important;
 }
 
@@ -100,11 +88,6 @@ img {
 /* mobile */
 
 @media (max-width: 480px) {
-    .navbar-inverse .navbar-nav > li > a {
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
     .nav-tabs li {
         padding: 0;
     }
@@ -123,27 +106,35 @@ img {
 
     .navbar-inverse {
         min-height: 40px;
+        background: transparent;
+        padding: 0;
     }
-
-        .navbar-inverse .navbar-nav > li > a {
-            font-size: 18px;
-        }
-
-        .navbar-inverse a span {
-            display: none;
-        }
 
     .navbar-nav {
-        margin-bottom: 0;
-        margin-top: 0;
+        margin: 0;
+        width: 100%;
+        background: #900 linear-gradient(#a00, #800);
     }
+
+    #main-menu {
+        width: 150px;
+        background: #222 linear-gradient(#333, #111);
+    }
+
+        #main-menu li {
+            float: none !important;
+        }
+
+        #main-menu a:hover,
+        #main-menu a:focus {
+            background: #555 linear-gradient(#666, #444);
+        }
 
     .profile-photo {
         height: 100px;
         width: 100px;
     }
 }
-
 
 /* photo section */
 
@@ -181,7 +172,7 @@ img {
             width: 8px;
         }
 
-/* resume printing */
+/* printing */
 
 @media print {
 
@@ -209,15 +200,4 @@ img {
 
 @page {
     margin: 0.25in 0;
-}
-
-/* talks */
-
-#talks a {
-    white-space: normal;
-}
-
-.slide-thumbnail {
-    width: 100%;
-    margin-top: 8px;
 }
