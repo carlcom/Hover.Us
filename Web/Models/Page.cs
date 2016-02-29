@@ -15,6 +15,9 @@ namespace Web.Models
         [Required, MaxLength(50)]
         public string URL { get; set; }
 
+        [NotMapped]
+        public object FullURL => Startup.Domain + "/" + Category.ToLower() + "/" + URL;
+
         [Required, MaxLength(50)]
         public string Title { get; set; }
 

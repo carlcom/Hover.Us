@@ -8,14 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
     @{
-        const string name = "Steve Desmond";
-        string description = ViewBag.Description ?? "Software developer and photographer from Ithaca, NY";
-        var title = !string.IsNullOrEmpty(ViewBag.Subtitle) ? name + " – " + ViewBag.Subtitle : name;
+        string description = ViewBag.Description ?? Startup.Description;
+        var title = !string.IsNullOrEmpty(ViewBag.Subtitle) ? Startup.Title + " – " + ViewBag.Subtitle : Startup.Title;
     }
     <title>@title</title>
     <meta name="description" content="@description" />
 
-    <meta name="og:site_name" content="@name" />
+    <meta name="og:site_name" content="@Startup.Title" />
     <meta name="og:type" content="article" />
     <meta name="og:url" content="@Context.Request.GetDisplayUrl()" />
     <meta name="og:title" content="@title" />
@@ -24,8 +23,10 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="stevedesmond_ca" />
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/index.css?@Startup.cssHash" />
+    <link rel="alternate" type="application/atom+xml" href="/feeds/atom" />
+    <link rel="alternate" type="application/rss+xml" href="/feeds/rss" />
 </head>
 <body>
     <header>
