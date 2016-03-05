@@ -28,7 +28,7 @@ namespace Web.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer("Server=server;Database=www;Integrated Security=true;MultipleActiveResultSets=true");
+            options.UseSqlite(Settings.ConnectionString);
         }
     }
 }

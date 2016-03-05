@@ -52,7 +52,7 @@ namespace Web.Controllers
 
         private static XElement urlElementFor(string url)
         {
-            return new XElement("url", new XElement("loc", Startup.Domain + url));
+            return new XElement("url", new XElement("loc", Settings.Domain + url));
         }
     }
 }

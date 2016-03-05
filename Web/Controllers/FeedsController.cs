@@ -13,9 +13,9 @@ namespace Web.Controllers
             var xml = new XElement("rss",
                 new XAttribute("version", "2.0"),
                 new XElement("channel",
-                    new XElement("title", Startup.Title),
-                    new XElement("description", Startup.Description),
-                    new XElement("link", Startup.Domain),
+                    new XElement("title", Settings.Title),
+                    new XElement("description", Settings.Description),
+                    new XElement("link", Settings.Domain),
                     Cache.FrontPagePosts
                         .Select(p => new XElement("item",
                             new XElement("title", p.Title),
@@ -33,15 +33,15 @@ namespace Web.Controllers
         public IActionResult atom()
         {
             var xml = new XElement("feed",
-                new XElement("title", Startup.Title),
-                new XElement("subtitle", Startup.Description),
-                new XElement("link", new XAttribute("href", Startup.Domain)),
+                new XElement("title", Settings.Title),
+                new XElement("subtitle", Settings.Description),
+                new XElement("link", new XAttribute("href", Settings.Domain)),
                 new XElement("updated", Cache.FrontPagePosts.First().Timestamp.ToString("s") + "-05:00"),
-                new XElement("id", Startup.Domain),
+                new XElement("id", Settings.Domain),
                 Cache.FrontPagePosts
                     .Select(p => new XElement("entry",
                         new XElement("author",
-                            new XElement("name", Startup.Title)),
+                            new XElement("name", Settings.Title)),
                         new XElement("title", p.Title),
                         new XElement("summary", p.Description),
                         new XElement("link", new XAttribute("href", p.FullURL)),

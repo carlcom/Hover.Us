@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Xml.Linq;
 using Microsoft.AspNet.Razor.TagHelpers;
+using Web.Models;
 
 namespace Web.Helpers
 {
@@ -28,21 +29,21 @@ namespace Web.Helpers
             image.Name = "img";
 
             var imgSrc = image.Attribute("base");
-            if (!imgSrc.Value.StartsWith(Startup.ImageBase))
+            if (!imgSrc.Value.StartsWith(Settings.ImageBase))
             {
-                imgSrc.Value = Startup.ImageBase + "/" + imgSrc.Value;
+                imgSrc.Value = Settings.ImageBase + "/" + imgSrc.Value;
             }
 
             var img = Path.GetFileNameWithoutExtension(imgSrc.Value).Split('-')[0];
 
             if (image.Attribute("src") == null)
-                image.Add(new XAttribute("src", Startup.ImageBase + "/" + img + "-1280.jpg"));
+                image.Add(new XAttribute("src", Settings.ImageBase + "/" + img + "-1280.jpg"));
 
             if (image.Attribute("sizes") == null)
             {
                 var widths = new[] { 240, 320, 480, 640, 800, 960, 1280, 1600, 1920, 2400 };
                 var srcset = string.Join(", ",
-                    widths.Select(s => Startup.ImageBase + "/" + img + "-" + (s < 1000 ? "0" : "") + s + ".jpg " + s + "w"));
+                    widths.Select(s => Settings.ImageBase + "/" + img + "-" + (s < 1000 ? "0" : "") + s + ".jpg " + s + "w"));
 
                 image.Add(new XAttribute("srcset", srcset));
             }

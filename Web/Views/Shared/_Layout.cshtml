@@ -1,6 +1,7 @@
 ﻿@using System.Threading.Tasks
 @using Microsoft.AspNet.Http.Extensions
 @using Web
+@using Web.Models
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,18 +9,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
     @{
-        string description = ViewBag.Description ?? Startup.Description;
-        var title = !string.IsNullOrEmpty(ViewBag.Subtitle) ? Startup.Title + " – " + ViewBag.Subtitle : Startup.Title;
+        string description = ViewBag.Description ?? Settings.Description;
+        var title = !string.IsNullOrEmpty(ViewBag.Subtitle) ? Settings.Title + " – " + ViewBag.Subtitle : Settings.Title;
     }
     <title>@title</title>
     <meta name="description" content="@description" />
 
-    <meta name="og:site_name" content="@Startup.Title" />
+    <meta name="og:site_name" content="@Settings.Title" />
     <meta name="og:type" content="article" />
     <meta name="og:url" content="@Context.Request.GetDisplayUrl()" />
     <meta name="og:title" content="@title" />
     <meta name="og:description" content="@description" />
-    <meta name="og:image" content="@Startup.ImageBase/steve-0300.jpg" />
+    <meta name="og:image" content="@Settings.ImageBase/steve-0300.jpg" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="stevedesmond_ca" />
 
@@ -42,11 +43,11 @@
             </a>
         </h1>
         @Html.Partial("Navbar")
-        <img alt="Steve" class="profile-photo" src="@Startup.ImageBase/steve-0300.jpg"
-             srcset="@Startup.ImageBase/steve-0100.jpg 100w,
-                @Startup.ImageBase/steve-0150.jpg 150w,
-                @Startup.ImageBase/steve-0200.jpg 200w,
-                @Startup.ImageBase/steve-0300.jpg 300w"
+        <img alt="Steve" class="profile-photo" src="@Settings.ImageBase/steve-0300.jpg"
+             srcset="@Settings.ImageBase/steve-0100.jpg 100w,
+                @Settings.ImageBase/steve-0150.jpg 150w,
+                @Settings.ImageBase/steve-0200.jpg 200w,
+                @Settings.ImageBase/steve-0300.jpg 300w"
              sizes="(max-width: 767px) 100px, 150px" />
     </header>
 
