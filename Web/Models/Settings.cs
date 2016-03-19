@@ -6,6 +6,6 @@
         public const string Domain = "https://stevedesmond.ca/";
         public const string Description = "Software developer and photographer from Ithaca, NY";
         public const string ImageBase = Domain + "images";
-        public const string ConnectionString = @"Data Source=D:\www\db.sqlite";
+        public const string ConnectionString = @"Data Source=C:\www\db.sqlite";
     }
 }
