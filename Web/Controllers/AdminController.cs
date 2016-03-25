@@ -16,7 +16,7 @@ namespace Web.Controllers
         public AdminController()
         {
             db = new DB();
-            adminKey = System.IO.File.ReadAllText(Path.Combine("D:\\", "www", "admin.key"));
+            adminKey = System.IO.File.ReadAllText(Path.Combine(Settings.BasePath, "admin.key"));
         }
 
         private bool authorized

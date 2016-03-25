@@ -1,11 +1,14 @@
 ﻿@model Web.Models.Page
-@{ var articleStyle = (Model.FullWidth) ? "" : "col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2"; }
+@{
+    var articleStyle = (Model.FullWidth) ? "" : "col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2";
+    var summarize = ViewBag.Summarize ?? false;
+}
 <article id="@Model.URL.ToLower()" class="row">
     @if (!Model.Partial)
     {
         <header class="@articleStyle">
             <h3 class="title">
-                <a href="/@Model.Category.ToLower()/@Model.URL">
+                <a href="@Model.AbsoluteURL">
                     @Model.Title
                 </a>
             </h3>
@@ -28,10 +31,16 @@
     }
 
     <section class="@articleStyle">
-        <content page="Model" />
+        <content page="Model" summarize="@summarize" />
     </section>
 
-    @if (!Model.Partial)
+    @if (summarize)
+    {
+        <footer class="@articleStyle">
+            <a href="@Model.AbsoluteURL"><i>Read more...</i></a>
+        </footer>
+    }
+    else if (!Model.Partial)
     {
         <footer class="@articleStyle">
             <p class="signature">

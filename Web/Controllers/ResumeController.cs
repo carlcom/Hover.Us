@@ -13,7 +13,7 @@ namespace Web.Controllers
         {
             if (For != null)
             {
-                var active = System.IO.File.ReadAllLines(Path.Combine("D:\\", "www", "active.txt"));
+                var active = System.IO.File.ReadAllLines(Path.Combine(Settings.BasePath, "active.txt"));
                 if (active.Contains(For))
                 {
                     var contactPage = Cache.Pages.First(p => p.Category.Matches("Resume") && p.URL.Matches("Contact"));

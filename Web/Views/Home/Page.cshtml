@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Web.Models.Page>
+@{ ViewBag.Summarize = Model.First().Category == "Blog"; }
 @foreach (var page in Model)
 {
     @Html.Partial("SubPage", page)
