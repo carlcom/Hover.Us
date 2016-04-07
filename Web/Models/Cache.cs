@@ -9,34 +9,19 @@ namespace Web.Models
     public static class Cache
     {
         private static IList<Page> pages;
-        public static IList<Page> Pages
-        {
-            get
-            {
-                if (pages == null)
-                {
-                    var db = new DB();
-                    pages = db.Pages.ToList();
-                }
-                return pages;
-            }
-        }
+        public static IList<Page> Pages => pages ?? (pages = new DB().Pages.ToList());
 
         private static IList<Image> images;
         public static IList<Image> Images
         {
             get
             {
-                if (images == null)
-                {
-                    var db = new DB();
-                    images = db.Images
+                return images
+                    ?? (images = new DB().Images
                         .Include(i => i.ImageTags)
                         .ThenInclude(it => it.Tag)
                         .ThenInclude(t => t.TagType)
-                        .ToList();
-                }
-                return images;
+                        .ToList());
             }
         }
 
@@ -45,15 +30,12 @@ namespace Web.Models
         {
             get
             {
-                if (frontPagePosts == null)
-                {
-                    frontPagePosts = Pages
+                return frontPagePosts
+                    ?? (frontPagePosts = Pages
                         .Where(p => p.Category.Matches("Blog") && p.Aggregate)
                         .OrderByDescending(p => p.Timestamp)
                         .Take(8)
-                        .ToList();
-                }
-                return frontPagePosts;
+                        .ToList());
             }
         }
 
@@ -62,15 +44,12 @@ namespace Web.Models
         {
             get
             {
-                if (frontPageImages == null)
-                {
-                    frontPageImages = Images
+                return frontPageImages
+                    ?? (frontPageImages = Images
                         .Where(i => i.Enabled)
                         .OrderByDescending(i => i.ID)
                         .Take(8)
-                        .ToList();
-                }
-                return frontPageImages;
+                        .ToList());
             }
         }
 
@@ -79,17 +58,19 @@ namespace Web.Models
         {
             get
             {
-                if (intro == null)
-                {
-                    intro = Pages
+                return intro ??
+                    (intro = Pages
                         .First(p => p.Category == "Main" && p.Title == "Intro")
-                        .Body;
-                }
-                return intro;
+                        .Body);
             }
         }
 
-        [SuppressMessage("ReSharper", "UnusedVariable")]
+        public static void Reset()
+        {
+            Flush();
+            Prime();
+        }
+
         public static void Flush()
         {
             pages = null;
@@ -97,7 +78,11 @@ namespace Web.Models
             frontPagePosts = null;
             frontPageImages = null;
             intro = null;
+        }
 
+        [SuppressMessage("ReSharper", "UnusedVariable")]
+        public static void Prime()
+        {
             var a = Pages;
             var b = Images;
             var c = FrontPagePosts;

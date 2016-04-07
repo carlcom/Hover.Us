@@ -1,6 +1,7 @@
 {
   "version": "1.0.0-*",
   "dependencies": {
+    "Microsoft.AspNet.Hosting": "1.0.0-rc1-final",
     "Selenium.WebDriver": "2.48.0",
     "Selenium.WebDriverBackedSelenium": "2.48.0",
     "xunit": "2.1.0",

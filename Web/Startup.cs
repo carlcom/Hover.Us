@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
@@ -17,21 +17,25 @@ namespace Web
             var cssPath = Path.Combine(env.WebRootPath, "index.css");
             var cssFile = File.ReadAllText(cssPath);
             cssHash = Math.Abs(cssFile.GetHashCode());
+            Cache.Reset();
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            Cache.Flush();
         }
 
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            var defaultFiles = new DefaultFilesOptions { DefaultFileNames = new[] { "index.html" } };
-            app.UseDefaultFiles(defaultFiles);
-
+            app.UseDefaultFiles(new DefaultFilesOptions { DefaultFileNames = new[] { "index.html" } });
+            app.UseIISPlatformHandler();
             app.UseStaticFiles();
-            app.UseDeveloperExceptionPage();
+
+            if (env.IsDevelopment())
+            {
+                app.UseBrowserLink();
+                app.UseDeveloperExceptionPage();
+            }
 
             app.UseMvc(routes =>
             {
@@ -43,5 +47,7 @@ namespace Web
                     new { controller = "Home", action = "SubPage" });
             });
         }
+
+        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }

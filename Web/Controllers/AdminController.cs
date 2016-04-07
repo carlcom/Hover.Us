@@ -77,7 +77,7 @@ namespace Web.Controllers
 
             db.Pages.Add(page);
             db.SaveChanges();
-            Cache.Flush();
+            Cache.Reset();
 
             ViewBag.Success = true;
             return RedirectToAction("Edit", new { id = page.ID });
@@ -107,7 +107,7 @@ namespace Web.Controllers
 
             db.Pages.Update(page);
             db.SaveChanges();
-            Cache.Flush();
+            Cache.Reset();
 
             ViewBag.Success = true;
             return View(page);
@@ -115,7 +115,7 @@ namespace Web.Controllers
 
         public IActionResult Flush()
         {
-            Cache.Flush();
+            Cache.Reset();
             return RedirectToAction("Index");
         }
     }
