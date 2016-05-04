@@ -1,0 +1,76 @@
+﻿@using Web.Models
+<header class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="container">
+        <ul class="nav navbar-nav hidden-print col-xs-12 col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2">
+            <li class="pull-left visible-xs">
+                <a id="main-menu-button" href="javascript:return false;" onclick="toggleMenu()">
+                    <i class="fa fa-bars"></i>
+                    <span>Menu</span>
+                </a>
+            </li>
+            <li id="initials">
+                <a href="/" class="text-center">
+                    <img src="@Settings.ImageBase/initials.png" />
+                    <span class="sr-only">Steve Desmond</span>
+                </a>
+            </li>
+            <li class="main-menu hidden-xs">
+                <a href="/">
+                    <i class="fa fa-home"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="main-menu hidden-xs">
+                <a href="/about">
+                    <i class="fa fa-user"></i>
+                    <span>About</span>
+                </a>
+            </li>
+            <li class="main-menu hidden-xs">
+                <a href="/work-with-steve">
+                    <i class="fa fa-briefcase"></i>
+                    <span>Work With Steve</span>
+                </a>
+            </li>
+            <li class="main-menu hidden-xs">
+                <a href="/blog">
+                    <i class="fa fa-file-text"></i>
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li class="main-menu hidden-xs">
+                <a href="/talks">
+                    <i class="fa fa-comment"></i>
+                    <span>Talks</span>
+                </a>
+            </li>
+            <li class="main-menu hidden-xs">
+                <a target="_blank" href="https://github.com/stevedesmond-ca">
+                    <i class="fa fa-github"></i>
+                    <span>Github</span>
+                </a>
+            </li>
+            <li class="main-menu hidden-xs">
+                <a target="_blank" href="https://twitter.com/stevedesmond_ca">
+                    <i class="fa fa-twitter"></i>
+                    <span>Twitter</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<script type="text/javascript">
+    function toggleItem(menuItem) {
+        if (menuItem.className.indexOf('hidden-xs') > 0) {
+            menuItem.className = 'main-menu';
+        } else {
+            menuItem.className = 'main-menu hidden-xs';
+        }
+    }
+    function toggleMenu() {
+        var mainMenu = document.getElementsByClassName('main-menu');
+        for (var x = 0; x < mainMenu.length; x++) {
+            toggleItem(mainMenu[x]);
+        }
+    }
+</script>

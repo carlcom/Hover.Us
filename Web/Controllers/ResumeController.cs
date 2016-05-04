@@ -13,8 +13,8 @@ namespace Web.Controllers
         {
             if (For != null)
             {
-                var active = System.IO.File.ReadAllLines(Path.Combine(Settings.BasePath, "active.txt"));
-                if (active.Contains(For))
+                var contactUsers = Startup.Credentials["ContactUsers"].Split(',');
+                if (contactUsers.Contains(For))
                 {
                     var contactPage = Cache.Pages.First(p => p.Category.Matches("Resume") && p.URL.Matches("Contact"));
                     ViewBag.ContactInfo = contactPage.Body;
@@ -23,7 +23,7 @@ namespace Web.Controllers
             var resume = Cache.Pages.First(p => p.Category.Matches("Resume") && p.URL.Matches("Resume"));
             ViewBag.Subtitle = resume.Title;
             ViewBag.NoFooter = true;
-            return View("Index", resume);
+            return View(resume);
         }
 
         public IActionResult Contact()

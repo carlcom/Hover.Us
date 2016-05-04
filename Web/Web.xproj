@@ -22,6 +22,9 @@
     <IISExpressAnonymousAuthentication>Enabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>Disabled</IISExpressWindowsAuthentication>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <ProduceOutputsOnBuild>True</ProduceOutputsOnBuild>
+  </PropertyGroup>
   <Import Project="$(VSToolsPath)\DNX\Microsoft.DNX.Props" />
   <Import Project="$(VSToolsPath)\DNX\Microsoft.DNX.targets" />
 </Project>

@@ -1,5 +1,4 @@
-﻿@using System.Threading.Tasks
-@using Microsoft.AspNet.Http.Extensions
+﻿@using Microsoft.AspNet.Http.Extensions
 @using Web
 @using Web.Models
 <!DOCTYPE html>
@@ -30,39 +29,12 @@
     <link rel="alternate" type="application/rss+xml" href="/feeds/rss" />
 </head>
 <body>
-    <header>
-        <h1 class="title">
-            <a href="/">Steve Desmond</a>
-        </h1>
-        <h1 class="pull-right link-icons hidden-xs">
-            <a target="_blank" href="https://github.com/stevedesmond-ca" title="stevedesmond-ca">
-                <i class="fa fa-github"></i>
-            </a>
-            <a target="_blank" href="https://twitter.com/stevedesmond_ca" title="stevedesmond_ca">
-                <i class="fa fa-twitter"></i>
-            </a>
-        </h1>
-        @Html.Partial("Navbar")
-        <img alt="Steve" class="profile-photo" src="@Settings.ImageBase/steve-0300.jpg"
-             srcset="@Settings.ImageBase/steve-0100.jpg 100w,
-                @Settings.ImageBase/steve-0150.jpg 150w,
-                @Settings.ImageBase/steve-0200.jpg 200w,
-                @Settings.ImageBase/steve-0300.jpg 300w"
-             sizes="(max-width: 767px) 100px, 150px" />
-    </header>
+    @Html.Partial("Header")
 
-    <main class="container">
+    <main id="main" class="container">
         @RenderBody()
     </main>
 
-    <footer class="container">
-        @if (!(ViewBag.NoFooter ?? false))
-        {
-            <hr />
-            <small id="copyright" class="pull-right">&copy; Steve Desmond</small>
-        }
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
-        @Html.Partial("GA")
-    </footer>
+    @Html.Partial("Footer")
 </body>
 </html>

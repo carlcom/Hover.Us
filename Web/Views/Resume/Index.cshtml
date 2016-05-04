@@ -1,9 +1,13 @@
-﻿@model Web.Models.Page
-<article id="resume" class="row">
+﻿@using System.Threading.Tasks
+@using Web.Models
+@model Page
+<article id="resume" class="page col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2">
     <section class="contact">
+        <img class="pull-right row hidden-xs" src="@Settings.ImageBase/steve-0300.jpg" alt="Steve Desmond" />
+        <h1 class="col-sm-9 text-center">Steve Desmond</h1>
         @Html.Raw(ViewBag.ContactInfo)
     </section>
-    <section class="content col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2">
+    <section class="content">
         @Html.Raw(Model.Body)
     </section>
 </article>

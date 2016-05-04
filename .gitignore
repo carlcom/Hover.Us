@@ -6,3 +6,4 @@ obj
 PublishProfiles
 *.lock.*
 packages
+credentials.json

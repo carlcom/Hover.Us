@@ -1,0 +1,73 @@
+﻿@using System.Threading.Tasks
+@using Web.Models
+@model ContactForm
+
+<article class="row">
+    <aside class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-0">
+        @Html.Raw(Cache.Pages.First(p => p.Category == "Work" && p.Title == "Index").Body)
+    </aside>
+    <script type="text/javascript">
+        function show(type) {
+            switch (type) {
+                case 'Email':
+                    document.getElementById('email-group').className = 'form-group';
+                    document.getElementById('phone-group').className = 'form-group hidden';
+                    break;
+                case 'Phone':
+                    document.getElementById('phone-group').className = 'form-group';
+                    document.getElementById('email-group').className = 'form-group hidden';
+                    break;
+            }
+        }
+    </script>
+    <form class="well col-xs-12 col-sm-10 col-md-6 col-sm-offset-1 col-md-offset-0" method="post">
+        <div class="form-group">
+            @Html.LabelFor(f => f.Name)
+            @Html.TextBoxFor(f => f.Name, new { Class = "form-control" })
+            @Html.ValidationMessageFor(f => f.Name, null, new { Class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(f => f.Company)
+            @Html.TextBoxFor(f => f.Company, new { Class = "form-control" })
+            @Html.ValidationMessageFor(f => f.Company, null, new { Class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(f => f.PreferredMethod)
+            @foreach (var method in Enum.GetValues(typeof(ContactMethod)))
+            {
+                <div class="radio">
+                    <label>
+                        @Html.RadioButtonFor(f => f.PreferredMethod, method, new { onclick = "show('" + method + "')" })
+                        @method
+                    </label>
+                </div>
+            }
+        </div>
+        @Html.ValidationMessageFor(f => f.PreferredMethod, null, new { Class = "text-danger" })
+
+        @{ var emailClass = Model != null && Model.PreferredMethod == ContactMethod.Email ? "form-group" : "form-group hidden"; }
+        <div id="email-group" class="@emailClass">
+            @Html.LabelFor(f => f.Email)
+            @Html.TextBoxFor(f => f.Email, new { Class = "form-control" })
+            @Html.ValidationMessageFor(f => f.Email, null, new { Class = "text-danger" })
+        </div>
+
+        @{ var phoneClass = Model != null && Model.PreferredMethod == ContactMethod.Phone ? "form-group" : "form-group hidden"; }
+        <div id="phone-group" class="@phoneClass">
+            @Html.LabelFor(f => f.Phone)
+            @Html.TextBoxFor(f => f.Phone, new { Class = "form-control" })
+            @Html.ValidationMessageFor(f => f.Phone, null, new { Class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(f => f.Message)
+            <div class="small">e.g. What are you building? What do you need help with? What's your timeline look like?</div>
+            @Html.TextAreaFor(f => f.Message, new { Class = "form-control", style = "height: 8em;" })
+            @Html.ValidationMessageFor(f => f.Message, null, new { Class = "text-danger" })
+        </div>
+
+        <input type="submit" class="btn btn-default" value="Submit" />
+    </form>
+</article>

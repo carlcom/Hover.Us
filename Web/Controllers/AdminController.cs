@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -10,13 +9,11 @@ namespace Web.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly string adminKey;
         private readonly DB db;
 
         public AdminController()
         {
             db = new DB();
-            adminKey = System.IO.File.ReadAllText(Path.Combine(Settings.BasePath, "admin.key"));
         }
 
         private bool authorized
@@ -28,7 +25,7 @@ namespace Web.Controllers
                     return false;
 
                 var hash = Encoding.UTF8.GetString(SHA256.Create().ComputeHash(Convert.FromBase64String(auth.First().Substring(6))));
-                return hash == adminKey;
+                return hash == Startup.Credentials["AdminKey"];
             }
         }
 

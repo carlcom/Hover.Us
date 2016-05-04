@@ -3,6 +3,7 @@ using System.IO;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.StaticFiles;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Web.Models;
 
@@ -11,13 +12,20 @@ namespace Web
     public class Startup
     {
         public static int cssHash;
+        public static IConfigurationRoot Credentials;
 
         public Startup(IHostingEnvironment env)
         {
-            var cssPath = Path.Combine(env.WebRootPath, "index.css");
+            Credentials = new ConfigurationBuilder().AddJsonFile("credentials.json").Build();
+            hashCSS(env.WebRootPath);
+            Cache.Reset();
+        }
+
+        private static void hashCSS(string basePath)
+        {
+            var cssPath = Path.Combine(basePath, "index.css");
             var cssFile = File.ReadAllText(cssPath);
             cssHash = Math.Abs(cssFile.GetHashCode());
-            Cache.Reset();
         }
 
         public void ConfigureServices(IServiceCollection services)

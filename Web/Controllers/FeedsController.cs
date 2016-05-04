@@ -16,7 +16,7 @@ namespace Web.Controllers
                     new XElement("title", Settings.Title),
                     new XElement("description", Settings.Description),
                     new XElement("link", Settings.Domain),
-                    Cache.FrontPagePosts
+                    Cache.Pages.Where(p => p.Category == "Blog").OrderByDescending(p => p.Timestamp)
                         .Select(p => new XElement("item",
                             new XElement("title", p.Title),
                             new XElement("description", p.Description),
@@ -32,13 +32,14 @@ namespace Web.Controllers
 
         public IActionResult atom()
         {
+            var blogPosts = Cache.Pages.Where(p => p.Category == "Blog").OrderByDescending(p => p.Timestamp);
             var xml = new XElement("feed",
                 new XElement("title", Settings.Title),
                 new XElement("subtitle", Settings.Description),
                 new XElement("link", new XAttribute("href", Settings.Domain)),
-                new XElement("updated", Cache.FrontPagePosts.First().Timestamp.ToString("s") + "-05:00"),
+                new XElement("updated", blogPosts.First().Timestamp.ToString("s") + "-05:00"),
                 new XElement("id", Settings.Domain),
-                Cache.FrontPagePosts
+                blogPosts
                     .Select(p => new XElement("entry",
                         new XElement("author",
                             new XElement("name", Settings.Title)),

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 using Microsoft.AspNet.Razor.TagHelpers;
@@ -16,7 +17,7 @@ namespace Web.Helpers
             output.TagName = "img";
             output.TagMode = TagMode.SelfClosing;
 
-            var img = new XElement("img", new XAttribute("base", Base));
+            var img = new XElement("img", new XAttribute("base", Base), context.AllAttributes);
             UpdateTag(img);
             output.Attributes["src"] = img.Attribute("src").Value;
             output.Attributes["srcset"] = img.Attribute("srcset").Value;
