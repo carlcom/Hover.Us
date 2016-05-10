@@ -225,10 +225,6 @@ img.hero:focus {
         width: 1.5in;
     }
 
-    #resume h1 {
-        margin-bottom: 0.2in;
-    }
-
     #resume h3 {
         font-size: 18px;
     }
@@ -257,7 +253,7 @@ img.hero:focus {
         clear: both;
     }
 
-        #resume .contact .row {
+        #resume .contact h1 {
             margin-bottom: 0.1in;
         }
 

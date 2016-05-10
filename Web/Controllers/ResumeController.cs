@@ -11,6 +11,22 @@ namespace Web.Controllers
     {
         public IActionResult Index(string For)
         {
+            setViewBagInfo(For);
+            var resume = Cache.Pages.First(p => p.Category.Matches("Resume") && p.URL.Matches("Resume"));
+            return View(resume);
+        }
+
+        public IActionResult Draft(string For)
+        {
+            setViewBagInfo(For);
+            var resume = Cache.Pages.First(p => p.Category.Matches("Resume") && p.URL.Matches("Draft"));
+            return View("Index", resume);
+        }
+
+        private void setViewBagInfo(string For)
+        {
+            ViewBag.Subtitle = "Resume";
+            ViewBag.NoFooter = true;
             if (For != null)
             {
                 var contactUsers = Startup.Credentials["ContactUsers"].Split(',');
@@ -20,10 +36,6 @@ namespace Web.Controllers
                     ViewBag.ContactInfo = contactPage.Body;
                 }
             }
-            var resume = Cache.Pages.First(p => p.Category.Matches("Resume") && p.URL.Matches("Resume"));
-            ViewBag.Subtitle = resume.Title;
-            ViewBag.NoFooter = true;
-            return View(resume);
         }
 
         public IActionResult Contact()
