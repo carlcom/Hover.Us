@@ -30,9 +30,18 @@
     "emitEntryPoint": true,
     "preserveCompilationContext": true
   },
+  "runtimeOptions": {
+    "configProperties": {
+      "System.GC.Server": true
+    }
+  },
+
   "publishOptions": {
     "include": [
-      "credentials.json"
+      "wwwroot",
+      "Views",
+      "credentials.json",
+      "web.config"
     ]
   }
 }
