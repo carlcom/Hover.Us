@@ -1,8 +1,7 @@
 using System;
 using System.IO;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
-using Microsoft.AspNet.StaticFiles;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Web.Models;
@@ -16,7 +15,7 @@ namespace Web
 
         public Startup(IHostingEnvironment env)
         {
-            Credentials = new ConfigurationBuilder().AddJsonFile("credentials.json").Build();
+            Credentials = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("credentials.json").Build();
             hashCSS(env.WebRootPath);
             Cache.Reset();
         }
@@ -36,14 +35,10 @@ namespace Web
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseDefaultFiles(new DefaultFilesOptions { DefaultFileNames = new[] { "index.html" } });
-            app.UseIISPlatformHandler();
             app.UseStaticFiles();
 
             if (env.IsDevelopment())
-            {
-                app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
-            }
 
             app.UseMvc(routes =>
             {
@@ -55,7 +50,5 @@ namespace Web
                     new { controller = "Home", action = "SubPage" });
             });
         }
-
-        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }

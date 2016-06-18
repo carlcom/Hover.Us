@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Web.Helpers;
 using Web.Models;
 

@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.Entity;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Web.Models
 {
@@ -6,24 +6,9 @@ namespace Web.Models
     {
         public DbSet<Page> Pages { get; set; }
 
-        public DbSet<TagType> TagTypes { get; set; }
-        public DbSet<Tag> Tags { get; set; }
-        public DbSet<Image> Images { get; set; }
-        public DbSet<ImageTag> ImageTags { get; set; }
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Page>().ToTable("Pages");
-
-            builder.Entity<TagType>().ToTable("TagTypes");
-            builder.Entity<Tag>().ToTable("Tags");
-            builder.Entity<Image>().ToTable("Images");
-            builder.Entity<ImageTag>().ToTable("ImageTags");
-
-            builder.Entity<TagType>().HasMany(tt => tt.Tags).WithOne(t => t.TagType).HasForeignKey("Type_ID");
-            builder.Entity<Tag>().HasMany(t => t.ImageTags).WithOne(it => it.Tag).HasForeignKey("Tag_ID");
-            builder.Entity<Image>().HasMany(i => i.ImageTags).WithOne(it => it.Image).HasForeignKey("Image_ID");
-            builder.Entity<ImageTag>().HasKey("Image_ID", "Tag_ID");
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)

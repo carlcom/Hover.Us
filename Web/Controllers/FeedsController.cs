@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Xml.Linq;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 using Web.Models;
 
@@ -27,7 +27,7 @@ namespace Web.Controllers
                     )
                 )
             );
-            return new ContentResult { Content = xml.ToString(), ContentType = MediaTypeHeaderValue.Parse("application/rss+xml") };
+            return new ContentResult { Content = xml.ToString(), ContentType = "application/rss+xml" };
         }
 
         public IActionResult atom()
@@ -53,7 +53,7 @@ namespace Web.Controllers
             );
             foreach (var element in xml.DescendantsAndSelf())
                 element.Name = XName.Get(element.Name.LocalName, "http://www.w3.org/2005/Atom");
-            return new ContentResult { Content = xml.ToString(), ContentType = MediaTypeHeaderValue.Parse("application/atom+xml") };
+            return new ContentResult { Content = xml.ToString(), ContentType = "application/atom+xml" };
         }
     }
 }

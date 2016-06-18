@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Xml.Linq;
-using Microsoft.AspNet.Razor.TagHelpers;
-using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 using Web.Models;
 
 namespace Web.Helpers
@@ -11,8 +10,6 @@ namespace Web.Helpers
     {
         public Page Page { get; set; }
         public bool Summarize { get; set; }
-
-        public IApplicationEnvironment ApplicationEnvironment { get; set; }
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {

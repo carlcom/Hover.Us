@@ -99,34 +99,6 @@ namespace Test
         }
 
         [Fact]
-        public void Photos()
-        {
-            driver.Navigate().GoToUrl(baseURL + "/photo");
-            Assert.EndsWith(" – Photography", driver.Title);
-        }
-
-        [Fact]
-        public void PhotosSlash()
-        {
-            driver.Navigate().GoToUrl(baseURL + "/photo/");
-            Assert.EndsWith(" – Photography", driver.Title);
-        }
-
-        [Fact]
-        public void Image()
-        {
-            driver.Navigate().GoToUrl(baseURL + "/photo/image/135");
-            Assert.EndsWith(" – Photography – Matthew Good – Toronto, ON – 6/8/2004", driver.Title);
-        }
-
-        [Fact]
-        public void ImageSlash()
-        {
-            driver.Navigate().GoToUrl(baseURL + "/photo/image/135/");
-            Assert.EndsWith(" – Photography – Matthew Good – Toronto, ON – 6/8/2004", driver.Title);
-        }
-
-        [Fact]
         public void CapitalizedStaticPage()
         {
             driver.Navigate().GoToUrl(baseURL + "/Talks/HEWNY15");
@@ -138,34 +110,6 @@ namespace Test
         {
             driver.Navigate().GoToUrl(baseURL + "/Talks/HEWNY15/");
             Assert.Equal("There's an App for That", driver.Title);
-        }
-
-        [Fact]
-        public void CapitalizedPhotos()
-        {
-            driver.Navigate().GoToUrl(baseURL + "/Photo");
-            Assert.EndsWith(" – Photography", driver.Title);
-        }
-
-        [Fact]
-        public void CapitalizedPhotosSlash()
-        {
-            driver.Navigate().GoToUrl(baseURL + "/Photo/");
-            Assert.EndsWith(" – Photography", driver.Title);
-        }
-
-        [Fact]
-        public void CapitalizedImage()
-        {
-            driver.Navigate().GoToUrl(baseURL + "/Photo/Image/135");
-            Assert.EndsWith(" – Photography – Matthew Good – Toronto, ON – 6/8/2004", driver.Title);
-        }
-
-        [Fact]
-        public void CapitalizedImageSlash()
-        {
-            driver.Navigate().GoToUrl(baseURL + "/Photo/Image/135/");
-            Assert.EndsWith(" – Photography – Matthew Good – Toronto, ON – 6/8/2004", driver.Title);
         }
 
         [Fact]

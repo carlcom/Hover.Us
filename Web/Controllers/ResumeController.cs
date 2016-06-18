@@ -1,6 +1,5 @@
-﻿using System.IO;
-using System.Linq;
-using Microsoft.AspNet.Mvc;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 using Web.Helpers;
 using Web.Models;
@@ -43,7 +42,7 @@ namespace Web.Controllers
             var lolPage = Cache.Pages.First(p => p.Category.Matches("Resume") && p.URL.Matches("LOL"));
             var niceTry = new ContentResult
             {
-                ContentType = new MediaTypeHeaderValue("text/plain"),
+                ContentType = "text/plain",
                 Content = lolPage.Body
             };
             return niceTry;

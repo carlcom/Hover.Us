@@ -1,6 +1,6 @@
 ﻿using System;
 using MailKit.Net.Smtp;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using MimeKit;
 using Web.Models;
 

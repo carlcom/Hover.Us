@@ -1,8 +1,7 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Xml.Linq;
-using Microsoft.AspNet.Razor.TagHelpers;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 using Web.Models;
 
 namespace Web.Helpers
@@ -19,10 +18,10 @@ namespace Web.Helpers
 
             var img = new XElement("img", new XAttribute("base", Base), context.AllAttributes);
             UpdateTag(img);
-            output.Attributes["src"] = img.Attribute("src").Value;
-            output.Attributes["srcset"] = img.Attribute("srcset").Value;
-            output.Attributes["sizes"] = img.Attribute("sizes").Value;
-            output.Attributes["title"] = context.AllAttributes["alt"].Value.ToString();
+            output.Attributes.SetAttribute("src", img.Attribute("src").Value);
+            output.Attributes.SetAttribute("srcset", img.Attribute("srcset").Value);
+            output.Attributes.SetAttribute("sizes", img.Attribute("sizes").Value);
+            output.Attributes.SetAttribute("title", context.AllAttributes["alt"].Value.ToString());
         }
 
         public static void UpdateTag(XElement image)

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Web.Models;
 
 namespace Web.Controllers

@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Xml.Linq;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Web.Helpers;
 using Web.Models;
 
@@ -14,7 +14,6 @@ namespace Web.Controllers
             var xml = new XElement(XName.Get("urlset", "http://www.sitemaps.org/schemas/sitemap/0.9"));
 
             addCmsSitemap(xml);
-            addPhotoSitemap(xml);
 
             return new XDocument(new XDeclaration("1.0", "UTF-8", null), xml).ToString().Replace(" xmlns=\"\"", "");
         }
@@ -32,22 +31,6 @@ namespace Web.Controllers
                 foreach (var page in category.Where(p => !p.Category.Matches("Home") && p.Crawl))
                     xml.Add(urlElementFor(categoryName + "/" + page.URL.ToLower()));
             }
-        }
-
-        private void addPhotoSitemap(XContainer xml)
-        {
-            xml.Add(urlElementFor("photo"));
-            foreach (var photo in Cache.Images)
-                xml.Add(urlElementFor("photo/image/" + photo.ID));
-
-            var allTags = Cache.Images.SelectMany(i => i.ImageTags.Select(it => it.Tag)).Distinct();
-            var tags = allTags
-               .Where(t => t.ImageTags.Any(it => it.Image.Enabled))
-               .OrderBy(t => t.TagType.ID)
-               .ThenBy(t => t.ID)
-               .ToList();
-            foreach (var tag in tags)
-                xml.Add(urlElementFor("photo/" + tag.TagType.Name.ToLower() + "/" + tag.ID));
         }
 
         private static XElement urlElementFor(string url)
