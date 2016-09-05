@@ -1,11 +1,11 @@
 using System;
-using System.Diagnostics;
-using System.IO;
+using System.Diagnostics.CodeAnalysis;
 using OpenQA.Selenium;
 using OpenQA.Selenium.PhantomJS;
 
 namespace Test
 {
+    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
     public class PhantomFixture : IDisposable
     {
         public readonly IWebDriver driver;

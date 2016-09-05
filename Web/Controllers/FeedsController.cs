@@ -1,12 +1,11 @@
 ﻿using System.Linq;
 using System.Xml.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Net.Http.Headers;
 using Web.Models;
 
 namespace Web.Controllers
 {
-    public class FeedsController
+    public sealed class FeedsController : Controller
     {
         public IActionResult rss()
         {

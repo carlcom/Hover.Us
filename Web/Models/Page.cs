@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Web.Models
 {
-    public class Page
+    public sealed class Page
     {
         [Required]
         public int ID { get; set; }

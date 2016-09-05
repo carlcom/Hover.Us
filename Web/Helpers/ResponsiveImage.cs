@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 using Microsoft.AspNetCore.Razor.TagHelpers;
@@ -7,7 +8,8 @@ using Web.Models;
 namespace Web.Helpers
 {
     [HtmlTargetElement("rimg", Attributes = "base")]
-    public class ResponsiveImage : TagHelper
+    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
+    public sealed class ResponsiveImage : TagHelper
     {
         public string Base { get; set; }
 

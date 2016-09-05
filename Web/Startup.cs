@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,14 +9,18 @@ using Web.Models;
 
 namespace Web
 {
+    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
     public class Startup
     {
-        public static int cssHash;
-        public static IConfigurationRoot Credentials;
+        private static int cssHash;
+        private static IConfigurationRoot credentials;
+
+        public static int GetCssHash() => cssHash;
+        public static IConfigurationRoot GetCredentials()  => credentials;
 
         public Startup(IHostingEnvironment env)
         {
-            Credentials = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("credentials.json").Build();
+            credentials = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("credentials.json").Build();
             hashCSS(env.WebRootPath);
             Cache.Reset();
         }
@@ -27,19 +32,18 @@ namespace Web
             cssHash = Math.Abs(cssFile.GetHashCode());
         }
 
+        [SuppressMessage("ReSharper", "UnusedMember.Global")]
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
         }
 
+        [SuppressMessage("ReSharper", "UnusedMember.Global")]
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseDefaultFiles(new DefaultFilesOptions { DefaultFileNames = new[] { "index.html" } });
             app.UseStaticFiles();
-
-            if (env.IsDevelopment())
-                app.UseDeveloperExceptionPage();
-
+            app.UseDeveloperExceptionPage();
             app.UseMvc(routes =>
             {
                 routes.MapRoute("default", "{controller}/{action}/{id?}",

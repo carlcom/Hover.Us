@@ -7,7 +7,7 @@ using Web.Models;
 
 namespace Web.Controllers
 {
-    public class AdminController : Controller
+    public sealed class AdminController : Controller
     {
         private readonly DB db;
 
@@ -25,7 +25,7 @@ namespace Web.Controllers
                     return false;
 
                 var hash = Encoding.UTF8.GetString(SHA256.Create().ComputeHash(Convert.FromBase64String(auth.First().Substring(6))));
-                return hash == Startup.Credentials["AdminKey"];
+                return hash == Startup.GetCredentials()["AdminKey"];
             }
         }
 

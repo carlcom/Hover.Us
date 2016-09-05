@@ -1,12 +1,11 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Net.Http.Headers;
 using Web.Helpers;
 using Web.Models;
 
 namespace Web.Controllers
 {
-    public class ResumeController : Controller
+    public sealed class ResumeController : Controller
     {
         public IActionResult Index(string For)
         {
@@ -28,7 +27,7 @@ namespace Web.Controllers
             ViewBag.NoFooter = true;
             if (For != null)
             {
-                var contactUsers = Startup.Credentials["ContactUsers"].Split(',');
+                var contactUsers = Startup.GetCredentials()["ContactUsers"].Split(',');
                 if (contactUsers.Contains(For))
                 {
                     var contactPage = Cache.Pages.First(p => p.Category.Matches("Resume") && p.URL.Matches("Contact"));

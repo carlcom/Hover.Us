@@ -6,7 +6,7 @@ using Web.Models;
 
 namespace Web.Controllers
 {
-    public class ContactController : Controller
+    public sealed class ContactController : Controller
     {
         [HttpGet("/work-with-steve")]
         public IActionResult Index() => View();
@@ -33,7 +33,7 @@ namespace Web.Controllers
             using (var client = new SmtpClient())
             {
                 client.Connect(Settings.EmailServer, 465);
-                client.Authenticate(Settings.EmailUser, Startup.Credentials["EmailPassword"]);
+                client.Authenticate(Settings.EmailUser, Startup.GetCredentials()["EmailPassword"]);
                 client.Send(emailMessage);
                 client.Disconnect(true);
             }

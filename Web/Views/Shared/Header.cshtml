@@ -10,7 +10,8 @@
             </li>
             <li id="initials">
                 <a href="/" class="text-center">
-                    <img src="@Settings.ImageBase/initials.png" />
+                    @{ var initials = $"{Settings.ImageBase}/initials.png"; }
+                    <img src="@initials" alt="SD" />
                     <span class="sr-only">Steve Desmond</span>
                 </a>
             </li>
@@ -39,7 +40,7 @@
                 </a>
             </li>
             <li class="main-menu hidden-xs">
-                <a href="/talks">
+                <a href="/talks/">
                     <i class="fa fa-comment"></i>
                     <span>Talks</span>
                 </a>

@@ -2,8 +2,12 @@
 <div class="row">
     <section id="title" class="col-xs-12">
         <a href="/">
-            <img src="@Settings.ImageBase/title-xs.png" class="hero visible-xs" alt="Steve Desmond Software Development" />
-            <img src="@Settings.ImageBase/title-sm.png" class="hero hidden-xs" alt="Steve Desmond Software Development" />
+            @{
+                var xs = $"{Settings.ImageBase}/title-xs.png"; 
+                var sm = $"{Settings.ImageBase}/title-sm.png"; 
+            }
+            <img src="@xs" class="hero visible-xs" alt="Steve Desmond Software Development"/>
+            <img src="@sm" class="hero hidden-xs" alt="Steve Desmond Software Development"/>
         </a>
     </section>
 
@@ -30,7 +34,7 @@
     </section>
 
     <section id="talks" class="col-xs-12 col-sm-6">
-        <a href="/talks">
+        <a href="/talks/">
             <rimg base="talks" class="hero" alt="Talks"
                   sizes="(max-width: 767px) 100vw, 50vw" />
         </a>

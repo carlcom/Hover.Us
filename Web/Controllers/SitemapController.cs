@@ -6,7 +6,7 @@ using Web.Models;
 
 namespace Web.Controllers
 {
-    public class SitemapController : Controller
+    public sealed class SitemapController : Controller
     {
         [HttpGet("sitemap.xml")]
         public string Index()

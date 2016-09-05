@@ -10,7 +10,7 @@
 
 <div class="row">
     <div class="pull-left">
-        <a href="/admin">&lt;&lt; Back</a>
+        @Html.ActionLink("<< Back", "")
     </div>
 
     @if (!string.IsNullOrEmpty(Model.Category) || !string.IsNullOrEmpty(Model.URL))

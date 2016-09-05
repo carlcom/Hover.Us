@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Xml.Linq;
 using Microsoft.AspNetCore.Razor.TagHelpers;
@@ -6,7 +7,10 @@ using Web.Models;
 namespace Web.Helpers
 {
     [HtmlTargetElement("content", Attributes = "page, summarize")]
-    public class ContentRenderer : TagHelper
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
+    public sealed class ContentRenderer : TagHelper
     {
         public Page Page { get; set; }
         public bool Summarize { get; set; }
@@ -25,6 +29,7 @@ namespace Web.Helpers
             foreach (var image in images)
                 ResponsiveImage.UpdateTag(image);
 
+            // ReSharper disable once MustUseReturnValue
             output.Content.SetHtmlContent(content.Root?.ToString().Replace("<root>", "").Replace("</root>", ""));
         }
     }

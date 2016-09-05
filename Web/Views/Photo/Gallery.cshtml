@@ -1,8 +1,0 @@
-﻿@model IEnumerable<Web.Models.Image>
-
-<section id="gallery" class="text-center">
-    @foreach (var image in Model)
-            {
-        @Html.Partial("~/Views/Photo/Thumbnail", image)
-    }
-</section>

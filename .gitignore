@@ -7,3 +7,5 @@ PublishProfiles
 *.lock.*
 packages
 credentials.json
+NDependOut
+
