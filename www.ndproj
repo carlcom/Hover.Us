@@ -67,11 +67,6 @@
       <Serie MetricName="# Lines of Code (NotMyCode)" MetricUnit="Loc" Color="#FFA9A9A9" ChartType="Area" ScaleExp="0" />
       <Serie MetricName="# Lines of Comments" MetricUnit="Lines" Color="#FF008000" ChartType="Line" ScaleExp="0" />
     </Chart>
-    <Chart Name="Rules Violated" ShowInReport="True">
-      <Serie MetricName="# Rules" MetricUnit="Rules" Color="#FF66CDAA" ChartType="Line" ScaleExp="0" />
-      <Serie MetricName="# Rules Violated" MetricUnit="Rules" Color="#FFFF8C00" ChartType="Area" ScaleExp="0" />
-      <Serie MetricName="# Critical Rules Violated" MetricUnit="Rules" Color="#FFFF0000" ChartType="Area" ScaleExp="0" />
-    </Chart>
     <Chart Name="Rules Violations" ShowInReport="True">
       <Serie MetricName="# Rules Violations" MetricUnit="Violations" Color="#FFFF8C00" ChartType="Area" ScaleExp="0" />
       <Serie MetricName="# Critical Rules Violations" MetricUnit="Violations" Color="#FFFF0000" ChartType="Area" ScaleExp="0" />

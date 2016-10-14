@@ -39,10 +39,10 @@ namespace Web
         }
 
         [SuppressMessage("ReSharper", "UnusedMember.Global")]
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            app.UseDefaultFiles(new DefaultFilesOptions { DefaultFileNames = new[] { "index.html" } });
             app.UseStaticFiles();
+            app.UseDefaultFiles(new DefaultFilesOptions { DefaultFileNames = new[] { "index.html" } });
             app.UseDeveloperExceptionPage();
             app.UseMvc(routes =>
             {
