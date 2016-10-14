@@ -1,0 +1,4 @@
+#!/bin/bash
+docker build -t www Web
+docker rm -f $1
+docker run -d -p $2:5000 -v /db:/db --name $1 www
