@@ -41,13 +41,14 @@ namespace Web
         [SuppressMessage("ReSharper", "UnusedMember.Global")]
         public void Configure(IApplicationBuilder app)
         {
-            app.UseStaticFiles();
             app.UseDefaultFiles(new DefaultFilesOptions { DefaultFileNames = new[] { "index.html" } });
+            app.UseStaticFiles();
             app.UseDeveloperExceptionPage();
+            app.UseStatusCodePagesWithRedirects("/");
             app.UseMvc(routes =>
             {
                 routes.MapRoute("default", "{controller}/{action}/{id?}",
-                    new { controller = "Home", action = "Index" });
+                    new { controller = "Home", action = "Index", id = 0 });
                 routes.MapRoute("page", "{url}",
                     new { controller = "Home", action = "Page" });
                 routes.MapRoute("sub-page", "{category}/{url}",

@@ -113,6 +113,13 @@ namespace Test
         }
 
         [Fact]
+        public void PageNotFoundRedirects()
+        {
+            driver.Navigate().GoToUrl(baseURL + "/photo/image/123");
+            Assert.Equal("Steve Desmond Software Development", driver.Title);
+        }
+
+        [Fact]
         public void Resume()
         {
             driver.Navigate().GoToUrl(baseURL + "/resume");
