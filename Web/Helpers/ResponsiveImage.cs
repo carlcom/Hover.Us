@@ -7,7 +7,7 @@ using Web.Models;
 
 namespace Web.Helpers
 {
-    [HtmlTargetElement("rimg", Attributes = "base")]
+    [HtmlTargetElement("rimg")]
     [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
     public sealed class ResponsiveImage : TagHelper
     {
