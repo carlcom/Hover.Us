@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-
+    
     @{
         string description = ViewBag.Description ?? Settings.Description;
         var title = !string.IsNullOrEmpty(ViewBag.Subtitle) ? Settings.Title + " – " + ViewBag.Subtitle : Settings.Title;
@@ -27,6 +27,8 @@
     <link rel="stylesheet" type="text/css" href="/index.css?@Startup.GetCssHash()" />
     <link rel="alternate" type="application/atom+xml" href="/feeds/atom" />
     <link rel="alternate" type="application/rss+xml" href="/feeds/rss" />
+
+    @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
 </head>
 <body>
     @Html.Partial("Header")
