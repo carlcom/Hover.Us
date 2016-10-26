@@ -13,14 +13,19 @@ namespace Web
     public class Startup
     {
         private static int cssHash;
-        private static IConfigurationRoot credentials;
+        private static IConfigurationRoot config;
 
         public static int GetCssHash() => cssHash;
-        public static IConfigurationRoot GetCredentials()  => credentials;
+        public static IConfigurationRoot GetConfig()  => config;
 
         public Startup(IHostingEnvironment env)
         {
-            credentials = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("credentials.json").Build();
+            config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("credentials.json")
+                .AddApplicationInsightsSettings(env.IsDevelopment())
+                .Build();
+
             hashCSS(env.WebRootPath);
             Cache.Reset();
         }
@@ -36,6 +41,7 @@ namespace Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddApplicationInsightsTelemetry(config);
         }
 
         [SuppressMessage("ReSharper", "UnusedMember.Global")]
@@ -43,8 +49,13 @@ namespace Web
         {
             app.UseDefaultFiles(new DefaultFilesOptions { DefaultFileNames = new[] { "index.html" } });
             app.UseStaticFiles();
+
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePagesWithRedirects("/");
+
+            app.UseApplicationInsightsRequestTelemetry();
+            app.UseApplicationInsightsExceptionTelemetry();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute("default", "{controller}/{action}/{id?}",

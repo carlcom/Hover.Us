@@ -25,7 +25,7 @@ namespace Web.Controllers
                     return false;
 
                 var hash = Encoding.UTF8.GetString(SHA256.Create().ComputeHash(Convert.FromBase64String(auth.First().Substring(6))));
-                return hash == Startup.GetCredentials()["AdminKey"];
+                return hash == Startup.GetConfig()["AdminKey"];
             }
         }
 

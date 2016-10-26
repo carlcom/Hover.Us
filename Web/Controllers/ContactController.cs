@@ -33,7 +33,7 @@ namespace Web.Controllers
             using (var client = new SmtpClient())
             {
                 client.Connect(Settings.EmailServer, 465);
-                client.Authenticate(Settings.EmailUser, Startup.GetCredentials()["EmailPassword"]);
+                client.Authenticate(Settings.EmailUser, Startup.GetConfig()["EmailPassword"]);
                 client.Send(emailMessage);
                 client.Disconnect(true);
             }

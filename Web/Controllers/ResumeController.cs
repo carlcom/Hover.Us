@@ -27,7 +27,7 @@ namespace Web.Controllers
             ViewBag.NoFooter = true;
             if (For != null)
             {
-                var contactUsers = Startup.GetCredentials()["ContactUsers"].Split(',');
+                var contactUsers = Startup.GetConfig()["ContactUsers"].Split(',');
                 if (contactUsers.Contains(For))
                 {
                     var contactPage = Cache.Pages.First(p => p.Category.Matches("Resume") && p.URL.Matches("Contact"));
