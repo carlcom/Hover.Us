@@ -11,14 +11,12 @@ namespace Web.Helpers
     [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
     public sealed class ResponsiveImage : TagHelper
     {
-        public string Base { get; set; }
-
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             output.TagName = "img";
             output.TagMode = TagMode.SelfClosing;
 
-            var img = new XElement("img", new XAttribute("base", Base), context.AllAttributes);
+            var img = new XElement("img", context.AllAttributes.Select(a => new XAttribute(a.Name, a.Value)));
             UpdateTag(img);
             output.Attributes.SetAttribute("src", img.Attribute("src").Value);
             output.Attributes.SetAttribute("srcset", img.Attribute("srcset").Value);
@@ -41,7 +39,7 @@ namespace Web.Helpers
             if (image.Attribute("src") == null)
                 image.Add(new XAttribute("src", Settings.ImageBase + "/" + img + "-1280.jpg"));
 
-            if (image.Attribute("sizes") == null)
+            if (image.Attribute("srcset") == null)
             {
                 var widths = new[] { 240, 320, 480, 640, 800, 960, 1280, 1600, 1920, 2400 };
                 var srcset = string.Join(", ",

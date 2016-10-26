@@ -85,34 +85,6 @@ namespace Test
         }
 
         [Fact]
-        public void StaticPage()
-        {
-            driver.Navigate().GoToUrl(baseURL + "/talks/hewny15");
-            Assert.Equal("There's an App for That", driver.Title);
-        }
-
-        [Fact]
-        public void StaticPageSlash()
-        {
-            driver.Navigate().GoToUrl(baseURL + "/talks/hewny15/");
-            Assert.Equal("There's an App for That", driver.Title);
-        }
-
-        [Fact]
-        public void CapitalizedStaticPage()
-        {
-            driver.Navigate().GoToUrl(baseURL + "/Talks/HEWNY15");
-            Assert.Equal("There's an App for That", driver.Title);
-        }
-
-        [Fact]
-        public void CapitalizedStaticPageSlash()
-        {
-            driver.Navigate().GoToUrl(baseURL + "/Talks/HEWNY15/");
-            Assert.Equal("There's an App for That", driver.Title);
-        }
-
-        [Fact]
         public void PageNotFoundRedirects()
         {
             driver.Navigate().GoToUrl(baseURL + "/photo/image/123");

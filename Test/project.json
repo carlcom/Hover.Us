@@ -1,10 +1,9 @@
 {
   "version": "1.0.0-*",
   "dependencies": {
-    "dotnet-test-xunit": "2.2.0-*",
-    "NETStandard.Library": "1.5.0-rc2-24027",
-    "Selenium.WebDriver": "2.53.0",
-    "Selenium.WebDriverBackedSelenium": "2.53.0",
+    "NETStandard.Library": "1.6.0",
+    "Selenium.WebDriver": "3.0.0",
+    "Selenium.WebDriverBackedSelenium": "3.0.0",
     "xunit": "2.1.0",
     "xunit.runner.visualstudio": "2.1.0"
   },
