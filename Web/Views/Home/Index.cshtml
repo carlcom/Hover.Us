@@ -2,12 +2,10 @@
 <div class="row">
     <section id="title" class="col-xs-12">
         <a href="/">
-            @{
-                var xs = $"{Settings.ImageBase}/title-xs.png";
-                var sm = $"{Settings.ImageBase}/title-sm.png";
-            }
-            <img src="@xs" class="hero visible-xs" alt="@Settings.Title" />
-            <img src="@sm" class="hero hidden-xs" alt="@Settings.Title" />
+            
+    
+            <img src="@($"{Settings.ImageBase}/title-xs.png")" srcset="@($"{Settings.ImageBase}/title-xs.png") 1x, @($"{Settings.ImageBase}/title-xs-2x.png") 2x" class="hero visible-xs" alt="@Settings.Title" />
+            <img src="@($"{Settings.ImageBase}/title-sm.png")" srcset="@($"{Settings.ImageBase}/title-sm.png") 1x, @($"{Settings.ImageBase}/title-sm-2x.png") 2x" class="hero hidden-xs" alt="@Settings.Title" />
         </a>
     </section>
 
