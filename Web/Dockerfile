@@ -1,11 +1,7 @@
-FROM microsoft/dotnet:1.0.0-preview2-sdk
+FROM microsoft/aspnetcore:1.0.1
+RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y sqlite3 libsqlite3-dev
 RUN mkdir -p /app
 WORKDIR /app
-EXPOSE 5000
+COPY bin/Release/netcoreapp1.0/publish /app
 
-RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y sqlite3 libsqlite3-dev
-COPY . /app
-RUN dotnet restore
-RUN dotnet build
-
-ENTRYPOINT ["dotnet", "run", "--server.urls=http://*:5000"]
+ENTRYPOINT ["dotnet", "Web.dll"]
