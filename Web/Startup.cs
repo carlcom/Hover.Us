@@ -12,36 +12,23 @@ namespace Web
     [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
     public class Startup
     {
-        private static int cssHash;
-        private static IConfigurationRoot config;
-
-        public static int GetCssHash() => cssHash;
-        public static IConfigurationRoot GetConfig()  => config;
-
         public Startup(IHostingEnvironment env)
         {
-            config = new ConfigurationBuilder()
+            Cache.Config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("credentials.json")
                 .AddApplicationInsightsSettings(env.IsDevelopment())
                 .Build();
 
-            hashCSS(env.WebRootPath);
+            Cache.CSSHash = Math.Abs(File.ReadAllText(Path.Combine(env.WebRootPath, "index.css")).GetHashCode());
             Cache.Reset();
-        }
-
-        private static void hashCSS(string basePath)
-        {
-            var cssPath = Path.Combine(basePath, "index.css");
-            var cssFile = File.ReadAllText(cssPath);
-            cssHash = Math.Abs(cssFile.GetHashCode());
         }
 
         [SuppressMessage("ReSharper", "UnusedMember.Global")]
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddApplicationInsightsTelemetry(config);
+            services.AddApplicationInsightsTelemetry(Cache.Config);
         }
 
         [SuppressMessage("ReSharper", "UnusedMember.Global")]

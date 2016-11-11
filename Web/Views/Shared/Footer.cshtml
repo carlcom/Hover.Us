@@ -1,7 +1,9 @@
-﻿@if (!(ViewBag.NoFooter ?? false))
+﻿@using System.Threading.Tasks
+@using Web.Models
+@if (!(ViewBag.NoFooter ?? false))
 {
     <footer class="container">
-        <small id="copyright" class="pull-right">&copy; Steve Desmond</small>
+        <small id="copyright" class="pull-right">&copy; @Settings.Title</small>
     </footer>
 }
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />

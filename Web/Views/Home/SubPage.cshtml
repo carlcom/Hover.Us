@@ -1,9 +1,56 @@
-﻿@model Web.Models.Page
+﻿@using System.Threading.Tasks
+@using Web.Models
+@model Page
 @{
     var articleStyle = (Model.FullWidth) ? "" : "col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2";
     var summarize = ViewBag.Summarize ?? false;
+    var date = Model.Timestamp.ToString("yyyy-MM-dd");
 }
 <article id="@Model.URL.ToLower()" class="row">
+    <script type="application/ld+json">
+    {
+        "@@context": "http://schema.org",
+        "@@type": "Article",
+        "@@id": "@Model.FullURL",
+        "name": "@Model.Title",
+        "articleSection": "@Model.Category",
+        "about": "@Model.Description",
+        "author": "Steve Desmond",
+        "dateCreated": "@date",
+        "dateModified": "@date",
+        "datePublished": "@date",
+        "description": "@Model.Description",
+        "image": "@Settings.ProfileImage",
+        "inLanguage": "en-US",
+        "isFamilyFriendly": "true",
+        "locationCreated": "Ithaca, NY",
+        "thumbnailUrl": "@Settings.ProfileImage",
+        "url": "@Model.FullURL"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@@context": "http://schema.org",
+        "@@type": "BreadcrumbList",
+        "itemListElement": [
+        {
+            "@@type": "ListItem",
+            "position": 1,
+            "item": {
+                "@@id": "@Settings.Domain/@Model.Category.ToLower()",
+                "name": "@Model.Category"
+            }
+        },
+        {
+            "@@type": "ListItem",
+            "position": 2,
+            "item": {
+                "@@id": "@Model.FullURL",
+                "name": "@Model.Title",
+            }
+        }]
+    }
+    </script>
     @if (!Model.Partial)
     {
         <header class="@articleStyle">

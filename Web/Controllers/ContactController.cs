@@ -1,6 +1,7 @@
 ﻿using System;
 using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using MimeKit;
 using Web.Models;
 
@@ -33,7 +34,7 @@ namespace Web.Controllers
             using (var client = new SmtpClient())
             {
                 client.Connect(Settings.EmailServer, 465);
-                client.Authenticate(Settings.EmailUser, Startup.GetConfig()["EmailPassword"]);
+                client.Authenticate(Settings.EmailUser, Cache.Config["EmailPassword"]);
                 client.Send(emailMessage);
                 client.Disconnect(true);
             }

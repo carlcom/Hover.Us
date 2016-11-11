@@ -1,16 +1,14 @@
-﻿@using Microsoft.AspNetCore.Http.Extensions
-@using Web
-@using Web.Models
+﻿@using Web.Models
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    
+
     @{
-        var canonicalURL = Settings.Domain + Context.Request.Path.ToString().Substring(1);
+        var canonicalURL = Settings.Domain + Context.Request.Path;
         string description = ViewBag.Description ?? Settings.Description;
-        var title = !string.IsNullOrEmpty(ViewBag.Subtitle) ? Settings.Title + " – " + ViewBag.Subtitle : Settings.Title;
+        string title = !string.IsNullOrEmpty(ViewBag.Subtitle) ? Settings.Title + " – " + ViewBag.Subtitle : Settings.Title;
     }
     <title>@title</title>
     <meta name="description" content="@description" />
@@ -20,15 +18,31 @@
     <meta name="og:url" content="@canonicalURL" />
     <meta name="og:title" content="@title" />
     <meta name="og:description" content="@description" />
-    <meta name="og:image" content="@Settings.ImageBase/steve-0300.jpg" />
+    <meta name="og:image" content="@Settings.ProfileImage" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="stevedesmond_ca" />
-    
+
     <link rel="canonical" content="@canonicalURL" />
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="/index.css?@Startup.GetCssHash()" />
+    <link rel="stylesheet" type="text/css" href="/index.css?@Cache.CSSHash" />
     <link rel="alternate" type="application/atom+xml" href="/feeds/atom" />
     <link rel="alternate" type="application/rss+xml" href="/feeds/rss" />
+
+    <script type="application/ld+json">
+    {
+        "@@context": "http://schema.org",
+        "@@type": "Organization",
+        "@@id": "@Settings.Domain",
+        "name": "@Settings.Title",
+        "url": "@Settings.Domain",
+        "image": "@Settings.ProfileImage",
+        "description": "@description",
+        "mainEntityOfPage": "@Settings.Domain",
+        "email": "@Settings.EmailFromAndTo",
+        "legalName": "@Settings.Title",
+        "location": "@Settings.Location"
+    }
+    </script>
 
     @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
 </head>

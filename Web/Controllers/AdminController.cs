@@ -3,6 +3,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Web.Models;
 
 namespace Web.Controllers
@@ -25,7 +26,7 @@ namespace Web.Controllers
                     return false;
 
                 var hash = Encoding.UTF8.GetString(SHA256.Create().ComputeHash(Convert.FromBase64String(auth.First().Substring(6))));
-                return hash == Startup.GetConfig()["AdminKey"];
+                return hash == Cache.Config["AdminKey"];
             }
         }
 
