@@ -10,8 +10,8 @@
             </li>
             <li id="initials">
                 <a href="/" class="text-center" rel="home">
-                    @{ var initials = $"{Settings.ImageBase}/initials.png"; }
-                    <img src="@initials" alt="SD" />
+                    
+                    <img src="@($"{Settings.ImageBase}/initials.png")" srcset="@($"{Settings.ImageBase}/initials.png") 1x, @($"{Settings.ImageBase}/initials-2x.png") 2x, @($"{Settings.ImageBase}/initials-3x.png") 3x, @($"{Settings.ImageBase}/initials-4x.png") 4x" alt="SD" />
                     <h1 class="sr-only">@Settings.Title</h1>
                 </a>
             </li>
