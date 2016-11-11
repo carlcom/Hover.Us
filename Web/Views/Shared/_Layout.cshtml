@@ -40,7 +40,13 @@
         "mainEntityOfPage": "@Settings.Domain",
         "email": "@Settings.EmailFromAndTo",
         "legalName": "@Settings.Title",
-        "location": "@Settings.Location"
+        "location": {
+            "@@context": "http://schema.org",
+            "@@type": "PostalAddress",
+            "addressLocality": "Ithaca",
+            "addressRegion": "NY",
+            "addressCountry": "US"
+        }
     }
     </script>
 
