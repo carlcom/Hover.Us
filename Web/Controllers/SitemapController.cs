@@ -13,6 +13,7 @@ namespace Web.Controllers
         {
             var xml = new XElement(XName.Get("urlset", "http://www.sitemaps.org/schemas/sitemap/0.9"));
 
+            xml.Add(urlElementFor(Settings.Domain));
             addCmsSitemap(xml);
 
             return new XDocument(new XDeclaration("1.0", "UTF-8", null), xml).ToString().Replace(" xmlns=\"\"", "");
@@ -26,16 +27,16 @@ namespace Web.Controllers
                 var categoryName = category.Key.ToLower();
 
                 if (!categoryName.Matches("Home"))
-                    xml.Add(urlElementFor(categoryName));
+                    xml.Add(urlElementFor(Settings.Domain + "/" + categoryName));
 
                 foreach (var page in category.Where(p => !p.Category.Matches("Home") && p.Crawl))
-                    xml.Add(urlElementFor(categoryName + "/" + page.URL.ToLower()));
+                    xml.Add(urlElementFor(page.FullURL));
             }
         }
 
         private static XElement urlElementFor(string url)
         {
-            return new XElement("url", new XElement("loc", Settings.Domain + url));
+            return new XElement("url", new XElement("loc", url));
         }
     }
 }
