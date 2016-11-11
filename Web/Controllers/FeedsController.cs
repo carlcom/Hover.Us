@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Web.Models;
@@ -7,6 +8,13 @@ namespace Web.Controllers
 {
     public sealed class FeedsController : Controller
     {
+        private readonly IEnumerable<Page> livePosts;
+
+        public FeedsController()
+        {
+            livePosts = Cache.Pages.Where(p => p.Category == "Blog" && p.Crawl).OrderByDescending(p => p.Timestamp);
+        }
+
         public IActionResult rss()
         {
             var xml = new XElement("rss",
@@ -15,8 +23,7 @@ namespace Web.Controllers
                     new XElement("title", Settings.Title),
                     new XElement("description", Settings.Description),
                     new XElement("link", Settings.Domain),
-                    Cache.Pages.Where(p => p.Category == "Blog").OrderByDescending(p => p.Timestamp)
-                        .Select(p => new XElement("item",
+                    livePosts.Select(p => new XElement("item",
                             new XElement("title", p.Title),
                             new XElement("description", p.Description),
                             new XElement("link", p.FullURL),
@@ -31,14 +38,13 @@ namespace Web.Controllers
 
         public IActionResult atom()
         {
-            var blogPosts = Cache.Pages.Where(p => p.Category == "Blog").OrderByDescending(p => p.Timestamp);
             var xml = new XElement("feed",
                 new XElement("title", Settings.Title),
                 new XElement("subtitle", Settings.Description),
                 new XElement("link", new XAttribute("href", Settings.Domain)),
-                new XElement("updated", blogPosts.First().Timestamp.ToString("s") + "-05:00"),
+                new XElement("updated", livePosts.First().Timestamp.ToString("s") + "-05:00"),
                 new XElement("id", Settings.Domain),
-                blogPosts
+                livePosts
                     .Select(p => new XElement("entry",
                         new XElement("author",
                             new XElement("name", Settings.Title)),
