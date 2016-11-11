@@ -29,25 +29,7 @@
     <link rel="alternate" type="application/rss+xml" href="/feeds/rss" />
 
     <script type="application/ld+json">
-    {
-        "@@context": "http://schema.org",
-        "@@type": "Organization",
-        "@@id": "@Settings.Domain",
-        "name": "@Settings.Title",
-        "url": "@Settings.Domain",
-        "image": "@Settings.ProfileImage",
-        "description": "@description",
-        "mainEntityOfPage": "@Settings.Domain",
-        "email": "@Settings.EmailFromAndTo",
-        "legalName": "@Settings.Title",
-        "location": {
-            "@@context": "http://schema.org",
-            "@@type": "PostalAddress",
-            "addressLocality": "Ithaca",
-            "addressRegion": "NY",
-            "addressCountry": "US"
-        }
-    }
+        @Html.Raw(Settings.OrgJSON)
     </script>
 
     @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)

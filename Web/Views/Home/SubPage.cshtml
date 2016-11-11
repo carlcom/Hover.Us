@@ -21,11 +21,12 @@
         "datePublished": "@date",
         "description": "@Model.Description",
         "headline": "@Model.Title",
-        "image": "@Settings.ProfileImage",
+        "image": @Html.Raw(Settings.ProfileImageJSON),
         "inLanguage": "en-US",
         "isFamilyFriendly": "true",
         "locationCreated": "Ithaca, NY",
-        "publisher": "Steve Desmond",
+        "mainEntityOfPage": "@Model.FullURL",
+        "publisher": @Html.Raw(Settings.OrgJSON),
         "thumbnailUrl": "@Settings.ProfileImage",
         "url": "@Model.FullURL"
     }
