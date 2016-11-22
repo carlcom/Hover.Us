@@ -29,7 +29,7 @@
   <Import Project="$(VSToolsPath)\DNX\Microsoft.DNX.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties wwwroot_4ld_1json__JSONSchema="http://json.schemastore.org/schema-org-thing" />
+      <UserProperties />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
