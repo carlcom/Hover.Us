@@ -6,7 +6,7 @@ body {
 }
 
 main {
-    padding-top: 64px;
+    padding-top: 72px;
 }
 
 h1, h2, h3 {
@@ -73,8 +73,6 @@ footer {
         color: #eee;
         font-weight: normal;
         min-width: 48px;
-        min-height: 48px;
-        text-align: center;
     }
 
         .navbar .navbar-nav > li a:hover,
@@ -163,6 +161,10 @@ img.hero:focus {
 @media (min-width: 768px) and (max-width: 991px) {
     .navbar-nav {
         margin: 0 -8px;
+    }
+
+    .icon-only-sm a {
+        text-align: center;
     }
 
     .icon-only-sm i {
