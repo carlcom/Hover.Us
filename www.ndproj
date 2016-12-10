@@ -33,9 +33,9 @@
     <Name>Microsoft.AspNetCore.Hosting</Name>
     <Name>Microsoft.AspNetCore.Server.Kestrel</Name>
     <Name>System.IO.FileSystem</Name>
-    <Name>Microsoft.AspNetCore.Server.IISIntegration</Name>
     <Name>Microsoft.Extensions.Configuration.FileExtensions</Name>
     <Name>Microsoft.Extensions.Configuration.Json</Name>
+    <Name>Microsoft.ApplicationInsights.AspNetCore</Name>
     <Name>System.Runtime.Extensions</Name>
     <Name>Microsoft.AspNetCore.Mvc</Name>
     <Name>Microsoft.AspNetCore.Diagnostics</Name>
@@ -54,6 +54,7 @@
     <Dir>C:\WINDOWS\Microsoft.NET\Framework\v4.0.30319</Dir>
     <Dir>C:\WINDOWS\Microsoft.NET\Framework\v4.0.30319\WPF</Dir>
     <Dir>D:\Code\www\Web\bin\Debug\netcoreapp1.0</Dir>
+    <Dir>D:\Code\www\Web\artifacts\bin\Web\Web\bin\Debug\netcoreapp1.1</Dir>
   </Dirs>
   <MergeCodeGeneratedByCompiler>True</MergeCodeGeneratedByCompiler>
   <Report Kind="0" SectionsEnabled="45055" XslPath="" Flags="261120" />
