@@ -1,7 +1,7 @@
 ﻿@using Web.Models
 <header class="navbar navbar-inverse navbar-fixed-top">
     <nav class="container">
-        <ul class="nav navbar-nav hidden-print col-xs-12 col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2">
+        <ul class="nav navbar-nav hidden-print">
             <li class="pull-left visible-xs">
                 <a id="main-menu-button" href="javascript:return false;" onclick="toggleMenu()">
                     <i class="fa fa-bars"></i>
@@ -10,21 +10,32 @@
             </li>
             <li id="initials">
                 <a href="/" class="text-center" rel="home">
-                    
-                    <img src="@($"{Settings.ImageBase}/initials.png")" srcset="@($"{Settings.ImageBase}/initials.png") 1x, @($"{Settings.ImageBase}/initials-2x.png") 2x, @($"{Settings.ImageBase}/initials-3x.png") 3x, @($"{Settings.ImageBase}/initials-4x.png") 4x" alt="SD" />
                     <h1 class="sr-only">@Settings.Title</h1>
+                    <img src="@($"{Settings.ImageBase}/initials.png")" srcset="@($"{Settings.ImageBase}/initials.png") 1x, @($"{Settings.ImageBase}/initials-2x.png") 2x, @($"{Settings.ImageBase}/initials-3x.png") 3x, @($"{Settings.ImageBase}/initials-4x.png") 4x" alt="SD" />
                 </a>
             </li>
-            <li class="main-menu hidden-xs">
+            <li class="main-menu hidden-xs visible-xs">
                 <a href="/" rel="home">
                     <i class="fa fa-home"></i>
                     <span>Home</span>
                 </a>
             </li>
             <li class="main-menu hidden-xs">
-                <a href="/about">
+                <a href="/services">
                     <i class="fa fa-user"></i>
-                    <span>About</span>
+                    <span>Services</span>
+                </a>
+            </li>
+            <li class="main-menu hidden-xs">
+                <a href="/resume">
+                    <i class="fa fa-file-text"></i>
+                    <span>Resume</span>
+                </a>
+            </li>
+            <li class="main-menu hidden-xs">
+                <a href="/portfolio">
+                    <i class="fa fa-window-restore"></i>
+                    <span>Portfolio</span>
                 </a>
             </li>
             <li class="main-menu hidden-xs">
@@ -35,7 +46,7 @@
             </li>
             <li class="main-menu hidden-xs">
                 <a href="/blog">
-                    <i class="fa fa-file-text"></i>
+                    <i class="fa fa-file-text-o"></i>
                     <span>Blog</span>
                 </a>
             </li>
@@ -45,14 +56,14 @@
                     <span>Talks</span>
                 </a>
             </li>
-            <li class="main-menu hidden-xs">
-                <a target="_blank" href="https://github.com/stevedesmond-ca">
+            <li class="main-menu hidden-xs icon-only-sm">
+                <a target="_blank" href="https://github.com/stevedesmond-ca" title="Github">
                     <i class="fa fa-github"></i>
-                    <span>Github</span>
+                    <span class="hidden-sm">Github</span>
                 </a>
             </li>
-            <li class="main-menu hidden-xs">
-                <a target="_blank" href="https://twitter.com/stevedesmond_ca">
+            <li class="main-menu hidden-xs icon-only-sm">
+                <a target="_blank" href="https://twitter.com/stevedesmond_ca" title="Twitter">
                     <i class="fa fa-twitter"></i>
                     <span>Twitter</span>
                 </a>
@@ -62,8 +73,12 @@
 </header>
 <script type="text/javascript">
     function toggleItem(menuItem) {
-        if (menuItem.className.indexOf('hidden-xs') > 0) {
+        if (menuItem.className.indexOf('hidden-xs') > 0 && menuItem.className.indexOf('visible-xs') > 0) {
+            menuItem.className = 'main-menu visible-xs';
+        } else if (menuItem.className.indexOf('hidden-xs') > 0) {
             menuItem.className = 'main-menu';
+        } else if (menuItem.className.indexOf('visible-xs') > 0) {
+            menuItem.className = 'main-menu hidden-xs visible-xs';
         } else {
             menuItem.className = 'main-menu hidden-xs';
         }

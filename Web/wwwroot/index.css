@@ -2,8 +2,11 @@
 
 body {
     background: #222 linear-gradient(#111, #222) fixed;
-    color: #eee;
-    padding-top: 50px;
+    color: #ddd;
+}
+
+main {
+    padding-top: 64px;
 }
 
 h1, h2, h3 {
@@ -58,28 +61,26 @@ footer {
 .navbar {
     background: #900 linear-gradient(#a00, #800);
     border: none;
-    border-radius: 0;
+    box-shadow: 0 16px 16px 0 #111;
     min-height: 40px;
-    margin: 0;
-    padding: 0;
 }
 
     .navbar nav {
         padding: 0;
     }
 
-    .navbar .navbar-nav {
-        padding: 0;
+    .navbar .navbar-nav > li a {
+        color: #eee;
+        font-weight: normal;
+        min-width: 48px;
+        min-height: 48px;
+        text-align: center;
     }
 
-        .navbar .navbar-nav > li a {
-            color: #eee;
+        .navbar .navbar-nav > li a:hover,
+        .navbar .navbar-nav > li a:focus {
+            background: #600 linear-gradient(#700, #500);
         }
-
-            .navbar .navbar-nav > li a:hover,
-            .navbar .navbar-nav > li a:focus {
-                background: #600 linear-gradient(#700, #500);
-            }
 
 #main-menu-button {
     z-index: 1;
@@ -104,8 +105,8 @@ img.hero:focus {
     transition: 0.1s;
 }
 
-#about img.hero:hover,
-#about img.hero:focus {
+#services img.hero:hover,
+#services img.hero:focus {
     filter: contrast(110%) saturate(110%);
 }
 
@@ -143,10 +144,6 @@ img.hero:focus {
             clear: both;
         }
 
-            .navbar .navbar-nav > li.main-menu:last-child {
-                box-shadow: 0 24px 16px 0 #222;
-            }
-
             .navbar .navbar-nav > li.main-menu a:hover,
             .navbar .navbar-nav > li.main-menu a:focus {
                 background: #555 linear-gradient(#666, #444);
@@ -163,116 +160,95 @@ img.hero:focus {
     }
 }
 
+@media (min-width: 768px) and (max-width: 991px) {
+    .navbar-nav {
+        margin: 0 -8px;
+    }
+
+    .icon-only-sm i {
+        font-size: 125%;
+        vertical-align: middle;
+    }
+
+    .icon-only-sm span {
+        display: none;
+    }
+}
+
 @media (min-width: 992px) {
-    .navbar .navbar-nav.col-md-offset-1 {
-        margin-left: 8.333%;
+    .navbar-nav {
+        margin: 0 60px;
     }
 }
 
 @media (min-width: 1200px) {
-    .navbar .navbar-nav.col-lg-offset-2 {
-        margin-left: 16.667%;
+    .navbar-nav {
+        margin: 0 160px;
     }
 }
-
-/* photo section */
-
-.thumbnail-image {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border: 2px solid #222;
-    border-radius: 4px;
-    box-shadow: 0 0 16px #222;
-    cursor: pointer;
-    display: inline-block;
-    height: 120px;
-    margin: 8px;
-    transition: 0.1s;
-    width: 120px;
-}
-
-    .thumbnail-image:hover {
-        border-color: #c00;
-        border-color: rgba(192, 0, 0, 0.75);
-    }
-
-#photo-filters {
-    min-height: 34px;
-    margin-bottom: 10px;
-}
-
-    #photo-filters > a {
-        display: inline-block;
-        padding: 6px;
-    }
-
-        #photo-filters > a > i {
-            width: 8px;
-        }
 
 /* resume */
 
-#resume {
-    background-color: #fff;
-    color: #000;
+.page {
+    background-color: #f9f9f8;
+    color: #222;
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
-    #resume img {
+    .page img {
         height: 1.5in;
         width: 1.5in;
     }
 
-    #resume h3 {
+    .page h3 {
         font-size: 18px;
     }
 
-    #resume h4 {
+    .page h4 {
         font-size: 16px;
     }
 
-    #resume i,
-    #resume li {
+    .page i,
+    .page li {
         font-size: 12px;
     }
 
-    #resume a,
-    #resume a:hover,
-    #resume a:focus {
+    .page a,
+    .page a:hover,
+    .page a:focus {
         color: #000;
     }
 
-        #resume a:hover,
-        #resume a:focus {
+        .page a:hover,
+        .page a:focus {
             color: #333;
         }
 
-    #resume .contact {
+    .page .contact {
         clear: both;
     }
 
-        #resume .contact h1 {
+        .page .contact h1 {
             margin-bottom: 0.1in;
         }
 
-        #resume .contact a {
+        .page .contact a {
             font-weight: normal;
         }
 
-    #resume .keep-together {
+    .page .keep-together {
         page-break-inside: avoid;
         margin-bottom: 0.25in;
         clear: both;
     }
 
 @media (max-width: 992px) {
-    #resume ul {
+    .page ul {
         padding-left: 16px;
     }
 
-        #resume ul li.col-sm-6 {
+        .page ul li.col-sm-6 {
             padding: 0 7.5px;
         }
 }
@@ -296,7 +272,7 @@ img.hero:focus {
 }
 
 @media screen and (min-width: 768px) {
-    #resume {
+    .page {
         padding: 0.25in 0.5in;
     }
 }
