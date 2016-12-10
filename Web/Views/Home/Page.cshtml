@@ -1,7 +1,11 @@
 ﻿@model IEnumerable<Web.Models.Page>
 @{
     var category = Model.First().Category;
+    var articleStyle = (Model.First().FullWidth) ? "" : "col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2";
     ViewBag.Summarize = category == "Blog"; }
+<header class="row">
+    <h2 class="@articleStyle">@category</h2>
+</header>
 @foreach (var page in Model)
 {
     @Html.Partial("SubPage", page)
