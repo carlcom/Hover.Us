@@ -3,4 +3,4 @@ dotnet restore Web
 dotnet publish Web -c Release
 docker build -t www Web
 docker rm -f $1
-docker run -d -p $2:80 -v /db:/db --name $1 www
+docker run -d --restart=always -p $2:80 -v /db:/db --name $1 www

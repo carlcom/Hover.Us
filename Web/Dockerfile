@@ -1,7 +1,7 @@
-FROM microsoft/aspnetcore:1.0.1
+FROM microsoft/aspnetcore:1.1.0
 RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y sqlite3 libsqlite3-dev
 RUN mkdir -p /app
 WORKDIR /app
-COPY bin/Release/netcoreapp1.0/publish /app
+COPY bin/Release/netcoreapp1.1/publish /app
 
 ENTRYPOINT ["dotnet", "Web.dll"]
