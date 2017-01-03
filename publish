@@ -4,3 +4,6 @@ dotnet publish Web -c Release
 docker build -t www Web
 docker rm -f $1
 docker run -d --restart=always -p $2:80 -v /db:/db --name $1 www
+echo "Starting..."
+sleep 10
+curl -sS localhost:$2 > /dev/null

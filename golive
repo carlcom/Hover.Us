@@ -1,4 +1,4 @@
 #!/bin/bash
-sudo sed -i 's/proxy\_pass.*/proxy_pass http:\/\/127.0.0.1:'"$1"'\/;/' /etc/nginx/conf.d/default.conf
+sudo sed -i 's/proxy\_pass.*/proxy_pass http:\/\/127.0.0.1:'"$1"'\/;/' /etc/nginx/conf.d/stevedesmond.ca.conf
 sudo service nginx configtest
 sudo service nginx restart
