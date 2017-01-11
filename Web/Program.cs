@@ -1,4 +1,6 @@
+using System;
 using System.IO;
+using System.Runtime;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
@@ -8,6 +10,8 @@ namespace Web
     {
         public static void Main(string[] args)
         {
+            GCSettings.LatencyMode = GCLatencyMode.LowLatency;
+
             var config = new ConfigurationBuilder()
                 .AddCommandLine(args)
                 .Build();
