@@ -20,7 +20,7 @@ namespace Web
                 .AddApplicationInsightsSettings(env.IsDevelopment())
                 .Build();
 
-            Cache.CSSHash = Math.Abs(File.ReadAllText(Path.Combine(env.WebRootPath, "index.css")).GetHashCode());
+            Cache.CSSHash = Math.Abs(File.ReadAllText(Path.Combine(env.WebRootPath, "style.css")).GetHashCode());
             Cache.Reset();
         }
 

@@ -1,9 +1,9 @@
 ﻿@using Web.Models
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no" />
     
     @{
         var canonicalURL = Settings.Domain + Context.Request.Path;
@@ -24,8 +24,7 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="@Settings.ImageBase/favicon.ico" />
     <link rel="canonical" content="@canonicalURL" />
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="/index.css?@Cache.CSSHash" />
+    <link rel="stylesheet" type="text/css" href="/style.css?@Cache.CSSHash" />
     <link rel="alternate" type="application/atom+xml" href="/feeds/atom" />
     <link rel="alternate" type="application/rss+xml" href="/feeds/rss" />
 

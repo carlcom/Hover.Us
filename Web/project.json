@@ -1,5 +1,5 @@
 {
-    "buildOptions": {
+  "buildOptions": {
     "emitEntryPoint": true,
     "preserveCompilationContext": true
   },
@@ -46,9 +46,8 @@
     }
   },
   "scripts": {
-    "postpublish": [
-      "dotnet razor-precompile --configuration %publish:Configuration% --framework %publish:TargetFramework% --output-path %publish:OutputPath% %publish:ProjectPath%"
-    ]
+    "postpublish": "dotnet razor-precompile --configuration %publish:Configuration% --framework %publish:TargetFramework% --output-path %publish:OutputPath% %publish:ProjectPath%",
+    "postrestore": "npm install"
   },
   "tools": {
     "Microsoft.AspNetCore.Mvc.Razor.ViewCompilation.Tools": {
