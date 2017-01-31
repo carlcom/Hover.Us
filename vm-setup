@@ -1,0 +1,19 @@
+#!/bin/bash
+set -e
+
+apt-get -y update
+apt-get -y dist-upgrade
+apt-get -y install git wget
+
+wget http://nginx.org/keys/nginx_signing.key
+apt-key add nginx_signing.key
+echo "deb http://nginx.org/packages/mainline/ubuntu/ xenial nginx" > /etc/apt/sources.list.d/nginx.list
+apt-get -y update
+apt-get -y install nginx
+
+echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ xenial main" > /etc/apt/sources.list.d/dotnetdev.list
+apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893
+apt-get -y update
+apt-get -y install dotnet-dev-1.0.0-preview2.1-003177
+
+curl https://get.docker.com | sh

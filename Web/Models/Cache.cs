@@ -7,6 +7,7 @@ namespace Web.Models
 {
     public static class Cache
     {
+        public static IConfigurationRoot Config { get; set; }
         public static int CSSHash { get; internal set; }
 
         private static IEnumerable<Page> pages;
@@ -19,20 +20,31 @@ namespace Web.Models
 
         private static string intro;
         public static string Intro => intro ?? setIntro(Pages.First(p => p.Category == "Main" && p.Title == "Intro").Body);
-        public static IConfigurationRoot Config { get; set; }
+
+        private static string availabilityMessage;
+        public static string AvailabilityMessage => availabilityMessage ?? setAvailability(Pages.First(p => p.Category == "Main" && p.Title == "Availability"));
 
         private static string setIntro(string content)
         {
             return intro = content;
         }
 
-        [SuppressMessage("ReSharper", "UnusedVariable")]
+        private static string setAvailability(Page page)
+        {
+            if (page != null && page.Description == "On")
+                return availabilityMessage = page.Body;
+
+            return availabilityMessage = null;
+        }
+
         public static void Reset()
         {
             setPages(null);
             setIntro(null);
+            setAvailability(null);
             var a = Pages;
             var b = Intro;
+            var c = AvailabilityMessage;
         }
     }
 }

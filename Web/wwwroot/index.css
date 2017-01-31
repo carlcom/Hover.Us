@@ -5,22 +5,32 @@ body {
     color: #ddd;
 }
 
-main {
-    padding-top: 72px;
-}
-
 h1, h2, h3 {
     font-weight: bold;
     display: inline-block;
     margin: 0;
 }
 
+h3, h4 {
+    line-height: 2;
+}
+
 h4 {
     font-weight: bold;
 }
 
+    h4.description {
+        line-height: 1.1;
+    }
+
     h4 small {
         color: #aaa;
+    }
+
+    p {
+        line-height: 1.5;
+        margin-bottom: 15px;
+        text-align: justify;
     }
 
 a {
@@ -61,7 +71,7 @@ footer {
 .navbar {
     background: #900 linear-gradient(#a00, #800);
     border: none;
-    box-shadow: 0 16px 16px 0 #111;
+    box-shadow: -4px 16px 16px 0 #111;
     min-height: 40px;
 }
 
@@ -89,6 +99,18 @@ footer {
     height: 18px;
     margin: -2px;
 }
+
+#available-message {
+    margin-top: 50px;
+    background: #444 linear-gradient(#555, #333);
+    margin-bottom: 20px;
+}
+
+    #available-message p {
+        padding: 16px 0 12px 0;
+        margin: 0;
+    }
+
 
 /* index */
 
@@ -153,6 +175,10 @@ img.hero:focus {
         width: 100%;
     }
 
+    #available-message {
+        margin-top: 40px;
+    }
+
     img.hero {
         margin-top: 7.5px;
         margin-bottom: 7.5px;
@@ -193,7 +219,7 @@ img.hero:focus {
 /* resume */
 
 .page {
-    background-color: #f9f9f8;
+    background-color: #fafafa;
     color: #222;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -210,6 +236,7 @@ img.hero:focus {
 
     .page h4 {
         font-size: 16px;
+        line-height: 1.1;
     }
 
     .page i,
@@ -257,7 +284,7 @@ img.hero:focus {
 }
 
 @media print {
-    body {
+    main {
         padding-top: 0;
     }
 
@@ -281,5 +308,5 @@ img.hero:focus {
 }
 
 @page {
-    margin: 0.25in 0;
+    margin: 0.25in;
 }

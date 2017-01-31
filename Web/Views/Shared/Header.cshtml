@@ -71,6 +71,14 @@
         </ul>
     </nav>
 </header>
+@if (Cache.AvailabilityMessage != null)
+{
+    <nav id="available-message" class="container-fluid col-xs-12 hidden-print">
+        <p class="text-center">
+            @Cache.AvailabilityMessage
+        </p>
+    </nav>
+}
 <script type="text/javascript">
     function toggleItem(menuItem) {
         if (menuItem.className.indexOf('hidden-xs') > 0 && menuItem.className.indexOf('visible-xs') > 0) {
