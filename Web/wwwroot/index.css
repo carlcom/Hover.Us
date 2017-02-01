@@ -66,6 +66,10 @@ footer {
     color: #000;
 }
 
+.default-line-height * {
+    line-height: inherit !important;
+}
+
 /* header */
 
 .navbar {
