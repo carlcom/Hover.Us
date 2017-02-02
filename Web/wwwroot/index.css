@@ -88,7 +88,7 @@ footer {
 .navbar {
     background: #900 linear-gradient(#a00, #800);
     border: none;
-    box-shadow: -4px 16px 16px 0 #111;
+    box-shadow: 0 16px 16px 0 #111;
     min-height: 40px;
 }
 
