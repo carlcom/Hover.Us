@@ -97,7 +97,7 @@ a {
 .hero {
     margin-top: 15px;
     margin-bottom: 15px;
-    transition: 0.1s;
+    width: 100%;
 }
 
 small {
@@ -124,17 +124,25 @@ small {
     }
 
     .hidden-xs {
-        display: none;
+        display: none !important;
     }
 
     .visible-xs {
         display: block;
     }
+
+    .navbar-nav {
+        margin: 0;
+    }
 }
 
 @media (min-width: 768px) {
-    .container {
-        width: 750px;
+    .hidden-xs {
+        display: block;
+    }
+
+    .visible-xs {
+        display: none !important;
     }
 
     .col-sm-6 {
@@ -148,17 +156,23 @@ small {
     .col-sm-offset-1 {
         margin-left: 8.333%;
     }
+}
 
-    .hidden-xs {
-        display: block;
+@media (min-width: 768px) and (max-width: 991px) {
+    .container {
+        width: 750px;
     }
 
-    .visible-xs {
-        display: none !important;
+    .navbar-nav {
+        margin: 0;
+    }
+
+    .icon-only-sm span {
+        display: none;
     }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 992px) and (max-width: 1199px) {
     .container {
         width: 970px;
     }
@@ -173,6 +187,10 @@ small {
 
     .navbar-nav {
         margin: 0 60px;
+    }
+
+    .hidden-sm {
+        display: block;
     }
 }
 
@@ -218,6 +236,7 @@ small {
 .btn-group-vertical > .btn-group:after, .btn-toolbar:after, .clearfix:after, .container-fluid:after, .container:after, .dl-horizontal dd:after, .form-horizontal .form-group:after, .modal-footer:after, .modal-header:after, .nav:after, .navbar-collapse:after, .navbar-header:after, .navbar:after, .pager:after, .panel-body:after, .row:after {
     clear: both;
 }
+
 .btn-group-vertical > .btn-group:after, .btn-group-vertical > .btn-group:before, .btn-toolbar:after, .btn-toolbar:before, .clearfix:after, .clearfix:before, .container-fluid:after, .container-fluid:before, .container:after, .container:before, .dl-horizontal dd:after, .dl-horizontal dd:before, .form-horizontal .form-group:after, .form-horizontal .form-group:before, .modal-footer:after, .modal-footer:before, .modal-header:after, .modal-header:before, .nav:after, .nav:before, .navbar-collapse:after, .navbar-collapse:before, .navbar-header:after, .navbar-header:before, .navbar:after, .navbar:before, .pager:after, .pager:before, .panel-body:after, .panel-body:before, .row:after, .row:before {
     display: table;
     content: " ";
