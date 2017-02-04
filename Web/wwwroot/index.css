@@ -186,6 +186,10 @@ img.hero:focus {
             clear: both;
         }
 
+        .navbar .navbar-nav > li.main-menu:last-child {
+            box-shadow: 0 16px 16px 0 #111;
+        }
+
             .navbar .navbar-nav > li.main-menu a:hover,
             .navbar .navbar-nav > li.main-menu a:focus {
                 background: #555 linear-gradient(#666, #444);
