@@ -24,11 +24,13 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="@Settings.ImageBase/favicon.png" />
     <link rel="canonical" content="@canonicalURL" />
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="/index.css?@Cache.CSSHash" />
     <link rel="alternate" type="application/atom+xml" href="/feeds/atom" />
     <link rel="alternate" type="application/rss+xml" href="/feeds/rss" />
-
+    
+    <style type="text/css">
+        @Html.Raw(Cache.CriticalPathCSS)
+    </style>
+    
     <script type="application/ld+json">
         @Html.Raw(Settings.OrgJSON)
     </script>
