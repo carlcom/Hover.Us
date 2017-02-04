@@ -11,7 +11,7 @@ h1, h2, h3 {
     margin: 0;
 }
 
-h3, h4 {
+h4 {
     line-height: 2;
 }
 
@@ -130,6 +130,10 @@ footer {
 
 
 /* index */
+
+#title svg {
+    width: 100%;
+}
 
 .hero {
     margin-top: 15px;
