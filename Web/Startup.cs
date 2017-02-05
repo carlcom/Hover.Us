@@ -22,9 +22,9 @@ namespace Web
                 .Build();
 
             Cache.CSSHash = Math.Abs(File.ReadAllText(Path.Combine(env.WebRootPath, "index.css")).GetHashCode());
-            Cache.CriticalPathCSS = File.ReadAllText(Path.Combine(env.WebRootPath, "critical.css"));
-            Cache.TitleImage = File.ReadAllText(Path.Combine(env.WebRootPath, "title.svg")).CleanSVG();
-            Cache.TitleImageXS = File.ReadAllText(Path.Combine(env.WebRootPath, "title-xs.svg")).CleanSVG();
+            Cache.CriticalPathCSS = File.ReadAllText(Path.Combine(env.WebRootPath, "critical.css")).Minify();
+            Cache.TitleImage = File.ReadAllText(Path.Combine(env.WebRootPath, "title.svg")).CleanSVG().Minify();
+            Cache.TitleImageXS = File.ReadAllText(Path.Combine(env.WebRootPath, "title-xs.svg")).CleanSVG().Minify();
             Cache.Reset();
         }
 
