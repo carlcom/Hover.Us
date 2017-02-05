@@ -117,6 +117,7 @@ small {
 @media (max-width: 767px) {
     .container {
         width: 100%;
+        padding: 0;
     }
 
     .col-xs-12 {
@@ -131,8 +132,31 @@ small {
         display: block;
     }
 
+    .navbar {
+        max-height: 40px;
+    }
+
+        .navbar li {
+            display: block;
+        }
+
+            .navbar li a {
+                display: block;
+                padding: 10px;
+            }
+
     .navbar-nav {
         margin: 0;
+        padding: 0;
+    }
+
+    #initials {
+        position: absolute;
+        width: 100%;
+    }
+
+    #available-message {
+        margin-top: 40px;
     }
 }
 
