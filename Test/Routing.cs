@@ -18,7 +18,7 @@ namespace Test
         public void HomePage()
         {
             driver.Navigate().GoToUrl(baseURL);
-            Assert.EndsWith("", driver.Title);
+            Assert.Equal("Steve Desmond Software Development", driver.Title);
         }
 
         [Fact]
@@ -32,56 +32,56 @@ namespace Test
         public void Category()
         {
             driver.Navigate().GoToUrl(baseURL + "/blog");
-            Assert.EndsWith(" – Blog", driver.Title);
+            Assert.StartsWith("Blog – ", driver.Title);
         }
 
         [Fact]
         public void CategorySlash()
         {
             driver.Navigate().GoToUrl(baseURL + "/blog/");
-            Assert.EndsWith(" – Blog", driver.Title);
+            Assert.StartsWith("Blog – ", driver.Title);
         }
 
         [Fact]
         public void Post()
         {
             driver.Navigate().GoToUrl(baseURL + "/blog/hello-vnext-world");
-            Assert.EndsWith(" – Blog – Hello, vNext World!", driver.Title);
+            Assert.StartsWith("Hello, vNext World! – Blog – ", driver.Title);
         }
 
         [Fact]
         public void PostSlash()
         {
             driver.Navigate().GoToUrl(baseURL + "/blog/hello-vnext-world/");
-            Assert.EndsWith(" – Blog – Hello, vNext World!", driver.Title);
+            Assert.StartsWith("Hello, vNext World! – Blog – ", driver.Title);
         }
 
         [Fact]
         public void CapitalizedCategory()
         {
             driver.Navigate().GoToUrl(baseURL + "/Blog");
-            Assert.EndsWith(" – Blog", driver.Title);
+            Assert.StartsWith("Blog – ", driver.Title);
         }
 
         [Fact]
         public void CapitalizedCategorySlash()
         {
             driver.Navigate().GoToUrl(baseURL + "/Blog/");
-            Assert.EndsWith(" – Blog", driver.Title);
+            Assert.StartsWith("Blog – ", driver.Title);
         }
 
         [Fact]
         public void CapitalizedPost()
         {
             driver.Navigate().GoToUrl(baseURL + "/Blog/Hello-vNext-World");
-            Assert.EndsWith(" – Blog – Hello, vNext World!", driver.Title);
+            Assert.StartsWith("Hello, vNext World! – Blog – ", driver.Title);
         }
 
         [Fact]
         public void CapitalizedPostSlash()
         {
             driver.Navigate().GoToUrl(baseURL + "/Blog/Hello-vNext-World/");
-            Assert.EndsWith(" – Blog – Hello, vNext World!", driver.Title);
+            Assert.StartsWith("Hello, vNext World! – Blog – ", driver.Title);
         }
 
         [Fact]
@@ -95,28 +95,28 @@ namespace Test
         public void Resume()
         {
             driver.Navigate().GoToUrl(baseURL + "/resume");
-            Assert.EndsWith(" – Resume", driver.Title);
+            Assert.StartsWith("Resume – ", driver.Title);
         }
 
         [Fact]
         public void ResumeSlash()
         {
             driver.Navigate().GoToUrl(baseURL + "/resume/");
-            Assert.EndsWith(" – Resume", driver.Title);
+            Assert.StartsWith("Resume – ", driver.Title);
         }
 
         [Fact]
         public void CapitalizedResume()
         {
             driver.Navigate().GoToUrl(baseURL + "/Resume");
-            Assert.EndsWith(" – Resume", driver.Title);
+            Assert.StartsWith("Resume – ", driver.Title);
         }
 
         [Fact]
         public void CapitalizedResumeSlash()
         {
             driver.Navigate().GoToUrl(baseURL + "/Resume/");
-            Assert.EndsWith(" – Resume", driver.Title);
+            Assert.StartsWith("Resume – ", driver.Title);
         }
 
         [Fact]

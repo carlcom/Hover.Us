@@ -8,7 +8,7 @@
     @{
         var canonicalURL = Settings.Domain + Context.Request.Path;
         string description = ViewBag.Description ?? Settings.Description;
-        string title = !string.IsNullOrEmpty(ViewBag.Subtitle) ? Settings.Title + " – " + ViewBag.Subtitle : Settings.Title;
+        string title = !string.IsNullOrEmpty(ViewBag.Subtitle) ? ViewBag.Subtitle + " – " + Settings.Title : Settings.Title;
     }
     <title>@title</title>
     <meta name="description" content="@description" />

@@ -29,7 +29,7 @@ namespace Web.Controllers
 
         private IActionResult SubPage(Page page)
         {
-            ViewBag.Subtitle = page.Category + " – " + page.Title;
+            ViewBag.Subtitle = page.Title + " – " + page.Category;
             ViewBag.Description = page.Description;
             return View("SubPage", page);
         }

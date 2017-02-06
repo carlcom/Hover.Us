@@ -1,12 +1,11 @@
 {
   "version": "1.0.0-*",
   "dependencies": {
-    "NETStandard.Library": "1.6.0",
-    "Selenium.WebDriver": "3.0.0",
-    "Selenium.WebDriverBackedSelenium": "3.0.0",
+    "Selenium.WebDriver": "3.0.1",
+    "Selenium.WebDriverBackedSelenium": "3.0.1",
     "xunit": "2.2.0-*",
     "xunit.runner.visualstudio": "2.2.0-*",
-    "dotnet-test-xunit":  "2.2.0-*" 
+    "dotnet-test-xunit": "2.2.0-*"
   },
   "frameworks": {
     "net461": {}

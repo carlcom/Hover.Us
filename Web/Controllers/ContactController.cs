@@ -10,7 +10,11 @@ namespace Web.Controllers
     public sealed class ContactController : Controller
     {
         [HttpGet("/work-with-steve")]
-        public IActionResult Index() => View();
+        public IActionResult Index()
+        {
+            ViewBag.Subtitle = "Work With Steve";
+            return View();
+        } 
 
         [HttpPost("/work-with-steve")]
         public IActionResult Submit(ContactForm form)
